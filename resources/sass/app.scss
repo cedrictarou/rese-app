@@ -1,0 +1,22 @@
+// Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+// @import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+// @import '~@fortawesome/fontawesome-free/scss/brands';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// 共通
+li {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+}
