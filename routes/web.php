@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/register');
+    return view('pages.index');
+})->name('index');
+
+Route::get('/thanks', function () {
+    return view('pages.thanks');
 });
-// Route::get('/', function () {
-//     return view('pages.index');
-// });
+Route::get('/done', function () {
+    return view('pages.done');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

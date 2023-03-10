@@ -20,3 +20,32 @@ img {
 input {
     width: 100%;
 }
+
+select,
+input[type=text] {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+}
+
+select:focus,
+input[type="text"]:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    border-bottom: 1px solid #3b82f6;
+    background-color: transparent;
+}
+
+a,
+button {
+    transition: all .3s;
+    cursor: pointer;
+}
+
+a:hover,
+button:hover {
+    opacity: .7;
+}
