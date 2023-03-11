@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('pages.index');
 })->name('index');
 
+Route::get('/detail/{shop_id}', function () {
+    return view('pages.detail');
+});
+
 Route::get('/thanks', function () {
     return view('pages.thanks');
 });

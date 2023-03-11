@@ -22,12 +22,17 @@ input {
 }
 
 select,
-input[type=text] {
+input {
     border: none;
     outline: none;
     box-shadow: none;
     transition: .2s ease-in-out;
     cursor: pointer;
+}
+
+select:hover,
+input:hover {
+    opacity: .7;
 }
 
 select:focus,

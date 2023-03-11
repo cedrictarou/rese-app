@@ -18,6 +18,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @stack('scripts')
+
 </head>
 
 <body class="font-sans antialiased bg-gray-100">
@@ -34,6 +36,8 @@
             {{ $slot }}
         </main>
     </div>
+
+
 </body>
 
 </html>

@@ -17,8 +17,11 @@
                             <span>#寿司</span>
                         </div>
                         <div class="flex justify-between">
-                            <x-link href="#">詳しくみる</x-link>
-                            <button> <i class="fa-solid fa-heart text-gray-300 fa-lg"></i> </button>
+                            <x-link href="/detail/{{ $i + 1 }}">詳しくみる</x-link>
+                            <form action="#" method="POST">
+                                @csrf
+                                <button type="submit"> <i class="far fa-heart text-gray-300 fa-lg"></i> </button>
+                            </form>
 
                         </div>
                     </div>
