@@ -21,7 +21,9 @@ module.exports = {
                     dark: colors.blue[700],
                 },
                 secondary: {
+                    light: colors.gray[100],
                     DEFAULT: colors.gray[300],
+                    dark: colors.gray[500],
                 },
                 accent: {
                     DEFAULT: colors.red[600],

@@ -1,7 +1,6 @@
 <x-guest-layout>
     <x-auth-card>
 
-
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -10,7 +9,6 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
             <!-- Title -->
             <x-slot name="title">
                 <h1>Login</h1>
@@ -19,15 +17,15 @@
             <!-- Email Address -->
             <div class="flex items-center">
                 <span class="mr-4"><i class="fa-solid fa-envelope fa-lg"></i></span>
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                    placeholder="Email" required autofocus />
+                <x-input id="email" class="mt-1" type="email" name="email" :value="old('email')" placeholder="Email"
+                    required autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4 flex items-center">
                 <span class="mr-4"><i class="fa-solid fa-lock fa-lg"></i></span>
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" placeholder="Password"
-                    required autocomplete="current-password" />
+                <x-input id="password" class="mt-1" type="password" name="password" placeholder="Password" required
+                    autocomplete="current-password" />
             </div>
 
             <div class="flex items-center justify-end mt-4 gap-3">

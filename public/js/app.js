@@ -5218,6 +5218,17 @@ __webpack_require__.r(__webpack_exports__);
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
 
+// navigation bar
+var navBtn = document.querySelector("#nav-btn");
+var navClose = document.querySelector("#nav-close");
+var nav = document.querySelector("#nav");
+navBtn.addEventListener("click", function () {
+  nav.classList.toggle("-translate-x-full");
+});
+navClose.addEventListener("click", function () {
+  nav.classList.toggle("-translate-x-full");
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

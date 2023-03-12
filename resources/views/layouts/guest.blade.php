@@ -20,9 +20,21 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body>
-    <div class="font-sans antialiased">
-        {{ $slot }}
+<body class="font-sans antialiased bg-gray-100">
+    <div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- header -->
+        <div class="h-16 mt-10">
+            <x-header />
+        </div>
+
+        {{-- navigation  --}}
+        <div>
+            <x-nav />
+        </div>
+
+        <main class="mt-10">
+            {{ $slot }}
+        </main>
     </div>
 </body>
 

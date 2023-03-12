@@ -21,15 +21,20 @@ Route::get('/detail/{shop_id}', function () {
     return view('pages.detail');
 });
 
+Route::get('/mypage', function () {
+    return view('pages.mypage');
+});
+
 Route::get('/thanks', function () {
     return view('pages.thanks');
 });
+
 Route::get('/done', function () {
     return view('pages.done');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

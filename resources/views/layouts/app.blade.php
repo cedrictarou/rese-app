@@ -26,9 +26,13 @@
     <div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- header -->
-        {{-- @include('layouts.header') --}}
-        <div class="h-16 mt-3">
+        <div class="h-16 mt-10">
             <x-header />
+        </div>
+
+        {{-- navigation  --}}
+        <div>
+            <x-nav />
         </div>
 
         <!-- Page Content -->

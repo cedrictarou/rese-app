@@ -8,8 +8,6 @@
     {{-- indexページの時だけ表示する --}}
     @if (request()->routeIs('index'))
         {{-- search box --}}
-        <div class="flex bg-white rounded-lg py-2 px-2 shadow items-center w-1/2 gap-2">
-            <x-search-box />
-        </div>
+        <x-search-box />
     @endif
 </header>
