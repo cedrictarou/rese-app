@@ -23,10 +23,5 @@ var confirmNumber = document.querySelector("#confirm-number");
 numberInput.addEventListener("input", function () {
   confirmNumber.innerText = numberInput.value + "人";
 });
-
-// shop name
-var shopNameInput = document.querySelector("#shop-name");
-var confirmShopName = document.querySelector("#confirm-shop-name");
-confirmShopName.innerText = shopNameInput.innerText;
 /******/ })()
 ;

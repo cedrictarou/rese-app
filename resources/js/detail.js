@@ -21,9 +21,3 @@ const confirmNumber = document.querySelector("#confirm-number");
 numberInput.addEventListener("input", () => {
     confirmNumber.innerText = numberInput.value + "人";
 });
-
-// shop name
-const shopNameInput = document.querySelector("#shop-name");
-const confirmShopName = document.querySelector("#confirm-shop-name");
-
-confirmShopName.innerText = shopNameInput.innerText;

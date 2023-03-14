@@ -25,7 +25,7 @@
             <div class="mt-4 flex items-center">
                 <span class="mr-4"><i class="fa-solid fa-lock fa-lg"></i></span>
                 <x-input id="password" class="mt-1" type="password" name="password" placeholder="Password" required
-                    autocomplete="current-password" />
+                    @csrf autocomplete="current-password" />
             </div>
 
             <div class="flex items-center justify-end mt-4 gap-3">

@@ -6,8 +6,7 @@
         </x-slot>
 
         {{-- button --}}
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+        <form method="GET" action="{{ route('login') }}">
             <x-button> ログインする </x-button>
         </form>
     </x-confirm-card>

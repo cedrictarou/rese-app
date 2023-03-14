@@ -2,12 +2,9 @@
     <x-confirm-card>
         {{-- text --}}
         <x-slot name="text">
-            <h1 class="text-center font-bold text-lg"> ご予約ありがとうございました。 </h1>
+            <h1 class="text-center font-bold text-lg"> ご予約ありがとうございます。 </h1>
         </x-slot>
-
         {{-- button --}}
-        <form method="GET" action="/">
-            <x-button> 戻る </x-button>
-        </form>
+        <x-link href="{{ route('index') }}">戻る</x-link>
     </x-confirm-card>
 </x-guest-layout>

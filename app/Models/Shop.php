@@ -16,4 +16,24 @@ class Shop extends Model
         'description',
         'image',
     ];
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Likes::class);
+    }
+
+    public function reserves()
+    {
+        return $this->hasMany(Reserve::class);
+    }
 }

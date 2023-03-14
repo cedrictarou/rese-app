@@ -15,25 +15,24 @@
                         <i class="fa-solid fa-chevron-left text-black"></i>
                     </x-link>
 
-                    <x-title2 id="shop-name" title="仙人" class="ml-4" />
+                    <x-title2 title="{{ $shop['name'] }}" class="ml-4" />
 
                 </div>
 
                 {{-- shop card --}}
                 <x-shop-card color="gray">
                     <x-slot name="cardHeader">
-                        <img class="rounded w-full object-cover object-center"
-                            src="https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg"
+                        <img class="rounded w-full object-cover object-center" src="{{ $shop['image'] }}"
                             alt="content">
                     </x-slot>
                     {{-- card body --}}
                     <div class="mt-5 text-black">
-                        <div class="text-sm text-gray-500 mb-5">
-                            <span>#東京</span>
-                            <span>#寿司</span>
+                        <div class="text-sm text-gray-500 mb-5 flex gap-2">
+                            <span>#{{ $shop->region['region'] }}</span>
+                            <span>#{{ $shop->genre['genre'] }}</span>
                         </div>
                         <div class="flex justify-between">
-                            <p>料理長厳選の食材から作る寿司を用いたコースをぜひお楽しみください。食材・味・価格、お客様の満足度を徹底的に追及したお店です。特別な日のお食事、ビジネス接待まで気軽に使用することができます。
+                            <p>{{ $shop['description'] }}
                             </p>
                         </div>
                     </div>
@@ -43,12 +42,12 @@
             {{-- reserve card --}}
             <x-reserve-card class="relative -mt-24">
                 <x-title2 title="予約" class="mb-4" />
-                <form action="#" method="POST">
+                <form action="{{ route('reservation', $shop['id']) }}" method="POST">
                     @csrf
                     <div class="mb-4 w-1/3">
                         <x-input id="date" type="date"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="日付を選択してください" required />
+                            name="date" placeholder="日付を選択してください" required />
                     </div>
                     <div class="mb-4">
                         <x-select
@@ -68,7 +67,7 @@
                     <div class="mb-4">
                         <x-select
                             class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:bg-white"
-                            type="select" id="number" name="num_of_people required">
+                            type="select" id="number" name="num_of_people" required>
                             <option selected>ご利用人数</option>
                             @for ($i = 1; $i < 11; $i++)
                                 <option value="{{ $i }}">{{ $i }}人</option>
@@ -80,7 +79,7 @@
                         <table class="w-full">
                             <tr>
                                 <th class="text-start w-1/3">Shop</th>
-                                <td id="confirm-shop-name" class="text-start w-2/3"></td>
+                                <td id="confirm-shop-name" class="text-start w-2/3">{{ $shop['name'] }}</td>
                             </tr>
                             <tr>
                                 <th class="text-start ">Date</th>
