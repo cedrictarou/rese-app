@@ -10,15 +10,37 @@ likeBtns.forEach((likeBtn) => {
     likeBtn.addEventListener("click", async (e) => {
         e.preventDefault();
         const shopId = likeBtn.getAttribute("data-shop-id");
-        const iconEl = likeBtn.firstElementChild;
-        iconEl.classList.toggle("text-gray-300");
-        iconEl.classList.toggle("text-accent");
+        if (!shopId) {
+            // ログインしていないときの処理
+            alert("この機能を使うにはログインする必要があります。");
+            return;
+        }
 
-        try {
-            const result = await axios.post(`/likes/${shopId}`);
-            console.log(result);
-        } catch (error) {
-            console.log(error);
+        const heartEl = likeBtn.firstElementChild;
+        const isLiked = heartEl.classList.contains("text-secondary-light")
+            ? false
+            : true;
+        if (!isLiked) {
+            // likeする
+            heartEl.classList.toggle("text-secondary-light");
+            heartEl.classList.toggle("text-accent");
+            try {
+                await axios.post(`/likes/${shopId}`);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            // unlikeする
+            const answer = confirm("お気に入りから外してもいいですか？");
+            if (answer) {
+                heartEl.classList.toggle("text-secondary-light");
+                heartEl.classList.toggle("text-accent");
+                try {
+                    await axios.delete(`/likes/${shopId}`);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
         }
     });
 });

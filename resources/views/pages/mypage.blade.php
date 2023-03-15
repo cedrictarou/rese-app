@@ -1,3 +1,8 @@
+@push('scripts')
+    <script src="{{ asset('js/like-shop.js') }}" defer></script>
+    <script src="{{ asset('js/cancel-reserve.js') }}" defer></script>
+@endpush
+
 <x-app-layout>
 
     {{-- my page --}}
@@ -7,7 +12,7 @@
             <div class="col-span-1 ">
                 <x-title3 title="予約状況" class="mb-4" />
                 @if ($reserves->count() === 0)
-                    <p>現在お気に入りに登録はありません。</p>
+                    <p>現在予約はありません。</p>
                 @endif
                 @foreach ($reserves as $reserve)
                     {{-- reserve card --}}
@@ -22,7 +27,7 @@
                             <form action="{{ route('cancel', $reserve['id']) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit">
+                                <button class="cancel-btn" type="submit">
                                     <i class="fa-regular fa-xmark fa-lg"></i>
                                 </button>
                             </form>
@@ -80,11 +85,10 @@
                                 {{-- card-footer --}}
                                 <div class="flex justify-between">
                                     <x-link href="/detail/{{ $like->shop['id'] }}">詳しくみる</x-link>
-                                    <form action="#" method="POST">
-                                        @csrf
-                                        <button type="submit"> <i class="far fa-heart fa-lg text-accent"></i>
-                                        </button>
-                                    </form>
+                                    <button type="button" class="btn btn-primary like-btn"
+                                        data-shop-id="{{ $like->shop['id'] }}">
+                                        <i class="fa-solid fa-heart text-accent fa-lg"></i>
+                                    </button>
                                 </div>
                             </div>
                         </x-shop-card>

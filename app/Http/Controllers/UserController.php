@@ -13,7 +13,6 @@ class UserController extends Controller
     {
         $user_id = Auth::id();
         $like_shops = Like::where('user_id', $user_id)->with('shop')->get();
-
         $reserves = Reserve::where('user_id', $user_id)->with('shop')->get();
 
         return view('pages.mypage', compact('like_shops', 'reserves'));

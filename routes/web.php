@@ -21,17 +21,15 @@ Route::get('/', [ShopController::class, 'index'])->name('index');
 
 Route::get('/detail/done', [ShopController::class, 'done'])->name('done');
 Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('detail');
-Route::post('/detail/{shop_id}', [ShopController::class, 'reservation'])->name('reservation');
-Route::delete('/detail/{shop_id}', [ShopController::class, 'cancel'])->name('cancel');
+Route::post('/detail/{shop_id}', [ShopController::class, 'reservation'])->middleware(['auth'])->name('reservation');
+Route::delete('/detail/{shop_id}', [ShopController::class, 'cancel'])->middleware(['auth'])->name('cancel');
 
-Route::get('/mypage', [UserController::class, 'index'])->name('mypage');
+Route::get('/mypage', [UserController::class, 'index'])->middleware(['auth'])->name('mypage');
 
 Route::get('/thanks', [RegisteredUserController::class, 'thanks'])->name('thanks');
 
-Route::post('/likes/{shop_id}', [LikeController::class, 'like'])->name('like');
+Route::post('/likes/{shop_id}', [LikeController::class, 'like'])->middleware(['auth'])->name('like');
+Route::delete('/likes/{shop_id}', [LikeController::class, 'unlike'])->middleware(['auth'])->name('unlike');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

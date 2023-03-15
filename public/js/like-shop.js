@@ -2351,32 +2351,66 @@ var likeBtns = document.querySelectorAll(".like-btn");
 likeBtns.forEach(function (likeBtn) {
   likeBtn.addEventListener("click", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-      var shopId, iconEl, result;
+      var shopId, heartEl, isLiked, answer;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             e.preventDefault();
             shopId = likeBtn.getAttribute("data-shop-id");
-            iconEl = likeBtn.firstElementChild;
-            iconEl.classList.toggle("text-gray-300");
-            iconEl.classList.toggle("text-accent");
-            _context.prev = 5;
-            _context.next = 8;
+            if (shopId) {
+              _context.next = 5;
+              break;
+            }
+            // ログインしていないときの処理
+            alert("この機能を使うにはログインする必要があります。");
+            return _context.abrupt("return");
+          case 5:
+            heartEl = likeBtn.firstElementChild;
+            isLiked = heartEl.classList.contains("text-secondary-light") ? false : true;
+            if (isLiked) {
+              _context.next = 20;
+              break;
+            }
+            // likeする
+            heartEl.classList.toggle("text-secondary-light");
+            heartEl.classList.toggle("text-accent");
+            _context.prev = 10;
+            _context.next = 13;
             return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/likes/".concat(shopId));
-          case 8:
-            result = _context.sent;
-            console.log(result);
-            _context.next = 15;
+          case 13:
+            _context.next = 18;
             break;
-          case 12:
-            _context.prev = 12;
-            _context.t0 = _context["catch"](5);
-            console.log(_context.t0);
           case 15:
+            _context.prev = 15;
+            _context.t0 = _context["catch"](10);
+            console.log(_context.t0);
+          case 18:
+            _context.next = 32;
+            break;
+          case 20:
+            // unlikeする
+            answer = confirm("お気に入りから外してもいいですか？");
+            if (!answer) {
+              _context.next = 32;
+              break;
+            }
+            heartEl.classList.toggle("text-secondary-light");
+            heartEl.classList.toggle("text-accent");
+            _context.prev = 24;
+            _context.next = 27;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/likes/".concat(shopId));
+          case 27:
+            _context.next = 32;
+            break;
+          case 29:
+            _context.prev = 29;
+            _context.t1 = _context["catch"](24);
+            console.log(_context.t1);
+          case 32:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[5, 12]]);
+      }, _callee, null, [[10, 15], [24, 29]]);
     }));
     return function (_x) {
       return _ref.apply(this, arguments);

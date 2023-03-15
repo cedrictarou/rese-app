@@ -5,13 +5,6 @@
 <x-app-layout>
 
     {{-- shop一覧ページ --}}
-    @if (session()->has('message'))
-        <x-flash-card>
-            {{ session()->get('message') }}
-        </x-flash-card>
-    @endif
-
-
     <section>
 
         <div class="grid grid-cols-4 gap-x-2 gap-y-4">
@@ -34,16 +27,18 @@
                         </div>
                         <div class="flex justify-between">
                             <x-link href="/detail/{{ $shop['id'] }}">詳しくみる</x-link>
-                            {{-- <form action="{{ route('like', $shop['id']) }}" method="POST"> --}}
-                            {{-- @csrf
-                                <button type="submit" class="btn btn-primary like-btn"
-                                    data-shop-id="{{ $shop['id'] }}">
-                                    <i class="fa-solid fa-heart text-gray-300 fa-lg"></i>
-                                </button> --}}
-                            <button type="button" class="btn btn-primary like-btn" data-shop-id="{{ $shop['id'] }}">
-                                <i class="fa-solid fa-heart text-gray-300 fa-lg"></i>
-                            </button>
-                            {{-- </form> --}}
+                            {{-- ユーザーがログインしているときだけいいねボタンを押せる --}}
+                            @if (Auth::check())
+                                <button type="button" class="btn btn-primary like-btn"
+                                    data-shop-id="{{ $shop['id'] }}" data-is-liked="{{ $shop['is_liked'] }}">
+                                    <i
+                                        class="fa-solid fa-heart {{ $shop['is_liked'] ? 'text-accent' : 'text-secondary-light' }} fa-lg"></i>
+                                </button>
+                            @else
+                                <button type="button" class="btn btn-primary like-btn">
+                                    <i class="fa-solid fa-heart text-secondary-light fa-lg"></i>
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </x-shop-card>
