@@ -30,20 +30,14 @@
                 {{ session()->get('message') }}
             </x-flash-card>
         @endif
-        <!-- header -->
-        <div class="h-16 mt-10">
-            <x-header />
-        </div>
 
         {{-- navigation  --}}
-        <div>
-            <x-nav />
-        </div>
+        <x-nav />
 
         <!-- Page Content -->
-        <main class="container mt-10 mx-auto">
+        <div class="container mt-10 mx-auto">
             {{ $slot }}
-        </main>
+        </div>
     </div>
 
 

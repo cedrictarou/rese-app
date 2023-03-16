@@ -8,6 +8,6 @@
     {{-- indexページの時だけ表示する --}}
     @if (request()->routeIs('index'))
         {{-- search box --}}
-        <x-search-box />
+        <x-search-box :shops="$shops" />
     @endif
 </header>

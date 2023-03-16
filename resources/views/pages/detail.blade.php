@@ -3,9 +3,13 @@
 @endpush
 
 <x-app-layout>
+    {{-- header part --}}
+    <div class="h-16 my-10">
+        <x-header />
+    </div>
 
     {{-- shop詳細ページ --}}
-    <section class="text-gray-600 body-font">
+    <main class="text-gray-600 body-font">
 
         <div class="grid grid-cols-2 gap-10">
 
@@ -105,6 +109,6 @@
             </x-reserve-card>
 
         </div>
-    </section>
+        </section>
 
 </x-app-layout>

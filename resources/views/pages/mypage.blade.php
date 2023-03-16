@@ -4,9 +4,13 @@
 @endpush
 
 <x-app-layout>
+    {{-- header part --}}
+    <div class="h-16 my-10">
+        <x-header />
+    </div>
 
     {{-- my page --}}
-    <section>
+    <main>
         <div class="grid grid-cols-3 gap-10">
             {{-- reserve card area --}}
             <div class="col-span-1 ">
@@ -97,6 +101,6 @@
             </div>
 
         </div>
-    </section>
+    </main>
 
 </x-app-layout>

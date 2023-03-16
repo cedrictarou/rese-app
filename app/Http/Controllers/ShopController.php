@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Region;
 use App\Models\Reserve;
 use App\Models\Shop;
-use App\Models\Like;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (!Auth::check()) {
             // ログインしていない場合
@@ -28,6 +26,17 @@ class ShopController extends Controller
             $shop->is_liked = $shop->likes->isNotEmpty();
             return $shop;
         });
+
+        // search用
+        // if ($request) {
+        //     $search_region = $request->input('region');
+        //     $search_genre = $request->input('genre');
+        //     $search_words = $request->input('words');
+
+        //     // dd($search_region);
+        //     // $searched_shops = $shops->where()
+        // }
+
         return view('pages.index', compact('shops'));
     }
 

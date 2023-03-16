@@ -3,9 +3,13 @@
 @endpush
 
 <x-app-layout>
+    {{-- header part --}}
+    <div class="h-16 my-10">
+        <x-header :shops="$shops" />
+    </div>
 
     {{-- shop一覧ページ --}}
-    <section>
+    <main>
 
         <div class="grid grid-cols-4 gap-x-2 gap-y-4">
 
@@ -30,7 +34,7 @@
                             {{-- ユーザーがログインしているときだけいいねボタンを押せる --}}
                             @if (Auth::check())
                                 <button type="button" class="btn btn-primary like-btn"
-                                    data-shop-id="{{ $shop['id'] }}" data-is-liked="{{ $shop['is_liked'] }}">
+                                    data-shop-id="{{ $shop['id'] }}">
                                     <i
                                         class="fa-solid fa-heart {{ $shop['is_liked'] ? 'text-accent' : 'text-secondary-light' }} fa-lg"></i>
                                 </button>
@@ -45,6 +49,6 @@
             @endforeach
         </div>
 
-    </section>
+    </main>
 
 </x-app-layout>

@@ -28,9 +28,7 @@
         </div>
 
         {{-- navigation  --}}
-        <div>
-            <x-nav />
-        </div>
+        <x-nav />
 
         <main class="mt-10">
             {{ $slot }}
