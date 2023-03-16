@@ -1,8 +1,5 @@
 // likeShop function
 import axios from "axios";
-// axios.defaults.headers.common["X-CSRF-TOKEN"] = document
-//     .querySelector('meta[name="csrf-token"]')
-//     .getAttribute("content");
 
 const likeBtns = document.querySelectorAll(".like-btn");
 
@@ -12,7 +9,14 @@ likeBtns.forEach((likeBtn) => {
         const shopId = likeBtn.getAttribute("data-shop-id");
         if (!shopId) {
             // ログインしていないときの処理
-            alert("この機能を使うにはログインする必要があります。");
+            const answer = confirm(
+                "この機能を使うにはログインする必要があります。"
+            );
+            if (answer) {
+                const currentUrl = window.location.href;
+                const newUrl = currentUrl + "login";
+                window.location.href = newUrl;
+            }
             return;
         }
 

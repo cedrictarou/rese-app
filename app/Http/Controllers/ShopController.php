@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genre;
+use App\Models\Region;
 use App\Models\Reserve;
 use App\Models\Shop;
 use Carbon\Carbon;
@@ -12,32 +14,31 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
+        // search用
+        $search = $request->only(['genre', 'region', 'words']);
+        $regionIds = Shop::pluck('region_id')->unique();
+        $regions = Region::whereIn('id', $regionIds)->get();
+        $genreIds = Shop::pluck('genre_id')->unique();
+        $genres = Genre::whereIn('id', $genreIds)->get();
+        // 検索キーを残しておく
+        $request->session()->put('search_key', $search);
+
+        // ログインしていない場合
         if (!Auth::check()) {
-            // ログインしていない場合
-            $shops = Shop::all();
-            return view('pages.index', compact('shops'));
+            $shops = Shop::search($search)->get();
+            return view('pages.index', compact('shops', 'genres', 'regions'));
         }
         // ログインしている場合
         $user_id = Auth::id();
         // 各お店のいいね数とログイン中のユーザーがいいねを押しているかどうかを判定
-        $shops = Shop::with(['likes' => function ($query) use ($user_id) {
+        $shops = Shop::search($search)->with(['likes' => function ($query) use ($user_id) {
             $query->where('user_id', $user_id);
         }])->with('likes')->get()->map(function ($shop) {
             $shop->is_liked = $shop->likes->isNotEmpty();
             return $shop;
         });
 
-        // search用
-        // if ($request) {
-        //     $search_region = $request->input('region');
-        //     $search_genre = $request->input('genre');
-        //     $search_words = $request->input('words');
-
-        //     // dd($search_region);
-        //     // $searched_shops = $shops->where()
-        // }
-
-        return view('pages.index', compact('shops'));
+        return view('pages.index', compact('shops', 'genres', 'regions'));
     }
 
     public function detail($shop_id)

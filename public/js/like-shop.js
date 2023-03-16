@@ -2343,74 +2343,75 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 // likeShop function
 
-// axios.defaults.headers.common["X-CSRF-TOKEN"] = document
-//     .querySelector('meta[name="csrf-token"]')
-//     .getAttribute("content");
-
 var likeBtns = document.querySelectorAll(".like-btn");
 likeBtns.forEach(function (likeBtn) {
   likeBtn.addEventListener("click", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-      var shopId, heartEl, isLiked, answer;
+      var shopId, answer, currentUrl, newUrl, heartEl, isLiked, _answer;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             e.preventDefault();
             shopId = likeBtn.getAttribute("data-shop-id");
             if (shopId) {
-              _context.next = 5;
+              _context.next = 6;
               break;
             }
             // ログインしていないときの処理
-            alert("この機能を使うにはログインする必要があります。");
+            answer = confirm("この機能を使うにはログインする必要があります。");
+            if (answer) {
+              currentUrl = window.location.href;
+              newUrl = currentUrl + "login";
+              window.location.href = newUrl;
+            }
             return _context.abrupt("return");
-          case 5:
+          case 6:
             heartEl = likeBtn.firstElementChild;
             isLiked = heartEl.classList.contains("text-secondary-light") ? false : true;
             if (isLiked) {
-              _context.next = 20;
+              _context.next = 21;
               break;
             }
             // likeする
             heartEl.classList.toggle("text-secondary-light");
             heartEl.classList.toggle("text-accent");
-            _context.prev = 10;
-            _context.next = 13;
+            _context.prev = 11;
+            _context.next = 14;
             return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/likes/".concat(shopId));
-          case 13:
-            _context.next = 18;
+          case 14:
+            _context.next = 19;
             break;
-          case 15:
-            _context.prev = 15;
-            _context.t0 = _context["catch"](10);
+          case 16:
+            _context.prev = 16;
+            _context.t0 = _context["catch"](11);
             console.log(_context.t0);
-          case 18:
-            _context.next = 32;
+          case 19:
+            _context.next = 33;
             break;
-          case 20:
+          case 21:
             // unlikeする
-            answer = confirm("お気に入りから外してもいいですか？");
-            if (!answer) {
-              _context.next = 32;
+            _answer = confirm("お気に入りから外してもいいですか？");
+            if (!_answer) {
+              _context.next = 33;
               break;
             }
             heartEl.classList.toggle("text-secondary-light");
             heartEl.classList.toggle("text-accent");
-            _context.prev = 24;
-            _context.next = 27;
+            _context.prev = 25;
+            _context.next = 28;
             return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/likes/".concat(shopId));
-          case 27:
-            _context.next = 32;
+          case 28:
+            _context.next = 33;
             break;
-          case 29:
-            _context.prev = 29;
-            _context.t1 = _context["catch"](24);
+          case 30:
+            _context.prev = 30;
+            _context.t1 = _context["catch"](25);
             console.log(_context.t1);
-          case 32:
+          case 33:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[10, 15], [24, 29]]);
+      }, _callee, null, [[11, 16], [25, 30]]);
     }));
     return function (_x) {
       return _ref.apply(this, arguments);

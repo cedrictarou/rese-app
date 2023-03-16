@@ -36,4 +36,31 @@ class Shop extends Model
     {
         return $this->hasMany(Reserve::class);
     }
+
+    public function scopeSearch($query, $search)
+    {
+        foreach ($search as $key => $value) {
+            switch ($key) {
+                case 'region':
+                    if ($value) {
+                        $query->where('region_id', $value);
+                    }
+                    break;
+                case 'genre':
+                    if ($value) {
+                        $query->where('genre_id', $value);
+                    }
+                    break;
+                case 'words':
+                    if ($value) {
+                        $query->where(function ($query) use ($value) {
+                            $query->where('name', 'like', '%' . $value . '%')
+                                ->orWhere('description', 'like', '%' . $value . '%');
+                        });
+                    }
+                    break;
+            }
+        }
+        return $query;
+    }
 }

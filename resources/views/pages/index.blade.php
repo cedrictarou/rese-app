@@ -5,7 +5,7 @@
 <x-app-layout>
     {{-- header part --}}
     <div class="h-16 my-10">
-        <x-header :shops="$shops" />
+        <x-header :regions="$regions" :genres="$genres" />
     </div>
 
     {{-- shop一覧ページ --}}
