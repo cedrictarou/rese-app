@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Shop extends Model
 {
@@ -62,5 +63,18 @@ class Shop extends Model
             }
         }
         return $query;
+    }
+
+    public function isLikedBy()
+    {
+        $user_id = Auth::id();
+        $likedByUser = false;
+        foreach ($this->likes as $like) {
+            if ($like->user_id === $user_id) {
+                $likedByUser = true;
+                break;
+            }
+        }
+        return $likedByUser;
     }
 }

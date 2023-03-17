@@ -36,11 +36,11 @@
                                 <button type="button" class="btn btn-primary like-btn"
                                     data-shop-id="{{ $shop['id'] }}">
                                     <i
-                                        class="fa-solid fa-heart {{ $shop['is_liked'] ? 'text-accent' : 'text-secondary-light' }} fa-lg"></i>
+                                        class="fa-solid fa-heart {{ $shop->isLikedBy() ? 'is-liked' : 'is-not-liked' }} fa-lg"></i>
                                 </button>
                             @else
                                 <button type="button" class="btn btn-primary like-btn">
-                                    <i class="fa-solid fa-heart text-secondary-light fa-lg"></i>
+                                    <i class="fa-solid fa-heart is-not-liked fa-lg"></i>
                                 </button>
                             @endif
                         </div>

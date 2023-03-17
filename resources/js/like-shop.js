@@ -21,13 +21,13 @@ likeBtns.forEach((likeBtn) => {
         }
 
         const heartEl = likeBtn.firstElementChild;
-        const isLiked = heartEl.classList.contains("text-secondary-light")
+        const isLiked = heartEl.classList.contains("is-not-liked")
             ? false
             : true;
         if (!isLiked) {
             // likeする
-            heartEl.classList.toggle("text-secondary-light");
-            heartEl.classList.toggle("text-accent");
+            heartEl.classList.toggle("is-not-liked");
+            heartEl.classList.toggle("is-liked");
             try {
                 await axios.post(`/likes/${shopId}`);
             } catch (error) {
@@ -37,8 +37,8 @@ likeBtns.forEach((likeBtn) => {
             // unlikeする
             const answer = confirm("お気に入りから外してもいいですか？");
             if (answer) {
-                heartEl.classList.toggle("text-secondary-light");
-                heartEl.classList.toggle("text-accent");
+                heartEl.classList.toggle("is-not-liked");
+                heartEl.classList.toggle("is-liked");
                 try {
                     await axios.delete(`/likes/${shopId}`);
                 } catch (error) {

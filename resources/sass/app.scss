@@ -8,6 +8,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 // 共通
 li {
     list-style: none;
@@ -24,12 +26,6 @@ input {
 
 select,
 input {
-    // border: none;
-    // border-top: none;
-    // border-left: none;
-    // border-right: none;
-    // border-bottom: 1px solid gray;
-    outline: none;
     box-shadow: none;
     transition: .2s ease-in-out;
     cursor: pointer;
@@ -60,4 +56,17 @@ button {
 a:hover,
 button:hover {
     opacity: .7;
+}
+
+// heartの色の変更
+@layer components {
+    .is-liked {
+        // color: red;
+        @apply text-accent;
+    }
+
+    .is-not-liked {
+        // color: gray;
+        @apply text-secondary-light;
+    }
 }

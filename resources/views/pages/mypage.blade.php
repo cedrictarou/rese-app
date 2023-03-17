@@ -91,7 +91,7 @@
                                     <x-link href="/detail/{{ $like->shop['id'] }}">詳しくみる</x-link>
                                     <button type="button" class="btn btn-primary like-btn"
                                         data-shop-id="{{ $like->shop['id'] }}">
-                                        <i class="fa-solid fa-heart text-accent fa-lg"></i>
+                                        <i class="fa-solid fa-heart is-liked fa-lg"></i>
                                     </button>
                                 </div>
                             </div>

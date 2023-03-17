@@ -2367,14 +2367,14 @@ likeBtns.forEach(function (likeBtn) {
             return _context.abrupt("return");
           case 6:
             heartEl = likeBtn.firstElementChild;
-            isLiked = heartEl.classList.contains("text-secondary-light") ? false : true;
+            isLiked = heartEl.classList.contains("is-not-liked") ? false : true;
             if (isLiked) {
               _context.next = 21;
               break;
             }
             // likeする
-            heartEl.classList.toggle("text-secondary-light");
-            heartEl.classList.toggle("text-accent");
+            heartEl.classList.toggle("is-not-liked");
+            heartEl.classList.toggle("is-liked");
             _context.prev = 11;
             _context.next = 14;
             return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/likes/".concat(shopId));
@@ -2395,8 +2395,8 @@ likeBtns.forEach(function (likeBtn) {
               _context.next = 33;
               break;
             }
-            heartEl.classList.toggle("text-secondary-light");
-            heartEl.classList.toggle("text-accent");
+            heartEl.classList.toggle("is-not-liked");
+            heartEl.classList.toggle("is-liked");
             _context.prev = 25;
             _context.next = 28;
             return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/likes/".concat(shopId));
