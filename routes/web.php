@@ -25,6 +25,9 @@ Route::post('/detail/{shop_id}', [ShopController::class, 'reservation'])->middle
 Route::delete('/detail/{shop_id}', [ShopController::class, 'cancel'])->middleware(['auth'])->name('cancel');
 
 Route::get('/mypage', [UserController::class, 'index'])->middleware(['auth'])->name('mypage');
+Route::get('/mypage/reserve/{reserve_id}', [UserController::class, 'show'])->middleware(['auth'])->name('show');
+Route::put('/mypage/reserve/{reserve_id}', [UserController::class, 'update'])->middleware(['auth'])->name('update');
+
 
 Route::get('/thanks', [RegisteredUserController::class, 'thanks'])->name('thanks');
 
