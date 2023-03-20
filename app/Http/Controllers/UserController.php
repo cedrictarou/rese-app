@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use App\Models\Reserve;
-use App\Models\Shop;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,9 +25,9 @@ class UserController extends Controller
         $shop = $reserve->shop;
         if ($reserve) {
             // お店の予約があれば
-            return view('pages.edit', compact('shop', 'reserve'));
-            # code...
+            return view('pages.edit-reseve', compact('shop', 'reserve'));
         } else {
+            // お店の予約がなければ
             return view('pages.mypage');
         }
     }
