@@ -1,24 +1,25 @@
 @push('scripts')
     <script src="{{ asset('js/like-shop.js') }}" defer></script>
+    <script src="{{ asset('js/search-btn.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
     {{-- header part --}}
-    <div class="h-16 my-10">
+    <div class="h-16 my-10 w-full">
         <x-header :regions="$regions" :genres="$genres" />
     </div>
 
     {{-- shop一覧ページ --}}
     <main>
 
-        <div class="grid grid-cols-4 gap-x-2 gap-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-x-2 gap-y-4">
 
             @foreach ($shops as $shop)
                 {{-- shop card --}}
                 <x-shop-card>
                     {{-- card-header --}}
                     <x-slot name="cardHeader">
-                        <img class="h-40 rounded w-full object-cover object-center" src="{{ $shop['image'] }}"
+                        <img class="h-40 rounded w-full object-cover object-center aspect-auto" src="{{ $shop['image'] }}"
                             alt="content">
                     </x-slot>
 

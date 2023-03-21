@@ -14,7 +14,7 @@
     }
 @endphp
 
-<div {{ $attributes->merge(['class' => "rounded-lg  border-solid {$addStyle}"]) }}>
+<div {{ $attributes->merge(['class' => "rounded-lg border-solid {$addStyle}"]) }}>
     {{ $cardHeader }}
 
     {{ $slot }}

@@ -11,9 +11,15 @@
 
     {{-- my page --}}
     <main>
-        <div class="grid grid-cols-3 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="col-span-1 md:col-span-3 md:col-start-2">
+                @if (Auth::check())
+                    <x-title2 title="{{ Auth::user()->name . 'さんのページ' }}" />
+                @endif
+            </div>
+
             {{-- reserve card area --}}
-            <div class="col-span-1 ">
+            <div class="col-span-1">
                 <x-title3 title="予約状況" class="mb-4" />
                 @if ($reserves->count() === 0)
                     <p>現在予約はありません。</p>
@@ -38,7 +44,7 @@
                                 </form>
                             </div>
 
-                            <table class="w-full">
+                            <table class="w-full h-full">
                                 <tr>
                                     <th class="text-start w-1/3">Shop</th>
                                     <td class="text-start w-2/3">{{ $reserve->shop['name'] }}</td>
@@ -62,14 +68,10 @@
 
             </div>
 
-            <div class="col-span-2 relative">
-                @if (Auth::check())
-                    <x-title2 class="absolute -top-14" title="{{ Auth::user()->name . 'さんのページ' }}" />
-                @endif
-
+            <div class="col-span-1 md:col-span-2">
                 <x-title3 title="お気に入り店舗" class="mb-4" />
                 {{-- shop card arae 2 col --}}
-                <div class=" grid grid-cols-2 gap-x-2 gap-y-4">
+                <div class=" grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-4">
                     @if ($like_shops->count() === 0)
                         <p>現在お気に入りに登録はありません。</p>
                     @endif
@@ -78,7 +80,7 @@
                         <x-shop-card>
                             {{-- card-header --}}
                             <x-slot name="cardHeader">
-                                <img class="h-40 rounded w-full object-cover object-center"
+                                <img class="h-40 rounded w-full object-cover object-center aspect-auto"
                                     src="{{ $like->shop['image'] }}" alt="content">
                             </x-slot>
                             {{-- card-body --}}

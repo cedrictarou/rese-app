@@ -11,16 +11,15 @@
     {{-- shop詳細ページ --}}
     <main class="text-gray-600 body-font">
 
-        <div class="grid grid-cols-2 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
             <div class="rounded-lg border-solid">
                 <div class="flex mb-5">
-                    <x-link href="{{ url()->previous() ?? route('index') }}" color="white" class="shadow">
+                    <x-link href="{{ Auth::check() ? route('mypage') : route('index') }}" color="white" class="shadow">
                         <i class="fa-solid fa-chevron-left text-black"></i>
                     </x-link>
 
                     <x-title2 title="{{ $shop['name'] }}" class="ml-4" />
-
                 </div>
 
                 {{-- shop card --}}
@@ -44,7 +43,7 @@
             </div>
 
             {{-- reserve card --}}
-            <x-reserve-card class="relative -mt-24">
+            <x-reserve-card class="relative md:-mt-24">
                 <x-title2 title="予約" class="mb-4" />
                 <form action="{{ route('reservation', $shop['id']) }}" method="POST">
                     @csrf
@@ -79,8 +78,8 @@
                         </x-select>
                     </div>
 
-                    <div class="bg-primary-light shadow p-5 text-white rounded">
-                        <table class="w-full">
+                    <div class="bg-primary-light shadow p-5 mb-5 text-white rounded">
+                        <table class="w-full h-full">
                             <tr>
                                 <th class="text-start w-1/3">Shop</th>
                                 <td id="confirm-shop-name" class="text-start w-2/3">{{ $shop['name'] }}</td>
@@ -100,7 +99,7 @@
                         </table>
                     </div>
 
-                    <div class="w-full absolute bottom-0 left-0 rounded">
+                    <div class="w-full absolute md:bottom-0 left-0 rounded">
                         <x-button class="w-full text-lg flex justify-center bg-primary-dark py-4">
                             予約する
                         </x-button>
