@@ -1,5 +1,6 @@
 const mix = require("laravel-mix");
 const tailwindcss = require("tailwindcss");
+require("dotenv").config();
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -25,4 +26,8 @@ mix.js("resources/js/app.js", "public/js")
     })
     .version();
 
-mix.browserSync("http://127.0.0.1:8000");
+mix.browserSync({
+    proxy: "laravel.test",
+    port: process.env.MIX_PORT,
+    open: false,
+});
