@@ -7,7 +7,7 @@
     </div>
     <ul class="text-primary text-2xl font-bold items-center justify-center flex flex-col gap-10">
         <li>
-            <a href="/">
+            <a href="{{ route('index') }}">
                 Home
             </a>
         </li>

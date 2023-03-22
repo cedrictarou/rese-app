@@ -1,5 +1,6 @@
 @push('scripts')
     <script src="{{ asset('js/detail.js') }}" defer></script>
+    <script src="{{ asset('js/review.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
@@ -56,100 +57,80 @@
                 </x-shop-card>
 
                 {{-- comments area --}}
-                <div class="mt-10" id="comments-box">
-                    <div class="flex">
-                        <x-title3 title="他のお客様のレビュー" class="mb-4" />
-                        <x-button class="ml-auto">レビューを書く</x-button>
+                <x-comment />
+                {{-- comment modal --}}
+                <x-modal />
+
+            </div>
+
+        </div>
+
+        <div>
+            {{-- reserve card --}}
+            <x-reserve-card class="relative md:sticky md:top-24 md:-mt-24">
+                <x-title2 title="予約" class="mb-4" />
+                <form action="{{ route('reservation', $shop['id']) }}" method="POST">
+                    @csrf
+                    <div class="mb-4 w-1/3">
+                        <x-input id="date" type="date"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            name="date" placeholder="日付を選択してください" required />
                     </div>
-                    @for ($i = 1; $i < 5; $i++)
-                        <div class="mb-2">
-                            <div class="flex">
-                                <span class="mr-2 font-semibold">ユーザー{{ $i }}</span>
-                                <ul class="flex">
-                                    <li><i class="fa-solid fa-star text-yellow-500"></i></li>
-                                    <li><i class="fa-solid fa-star text-yellow-500"></i></li>
-                                    <li><i class="fa-solid fa-star text-yellow-500"></i></li>
-                                    <li><i class="fa-solid fa-star text-secondary-dark"></i></li>
-                                    <li><i class="fa-solid fa-star text-secondary-dark"></i></li>
-                                </ul>
-                            </div>
-                            <p class="text-secondary-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Inventore
-                                neque dolore
-                                doloremquenam,
-                                excepturi quam eligendi facilis corrupti voluptas quas culpa dolorem. Reiciendis
-                                officiis autem eaque praesentium recusandae.</p>
-                        </div>
-                    @endfor
-                </div>
-            </div>
-
-            <div>
-                {{-- reserve card --}}
-                <x-reserve-card class="relative md:sticky md:top-24 md:-mt-24">
-                    <x-title2 title="予約" class="mb-4" />
-                    <form action="{{ route('reservation', $shop['id']) }}" method="POST">
-                        @csrf
-                        <div class="mb-4 w-1/3">
-                            <x-input id="date" type="date"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                name="date" placeholder="日付を選択してください" required />
-                        </div>
-                        <div class="mb-4">
-                            <x-select
-                                class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:bg-white"
-                                type="select" id="time" name="time" required>
-                                <option selected>時間</option>
-                                @for ($hour = 12; $hour <= 20; $hour++)
-                                    @for ($minute = 0; $minute <= 30; $minute += 30)
-                                        @php
-                                            $time = sprintf('%02d:%02d', $hour, $minute);
-                                        @endphp
-                                        <option value="{{ $time }}">{{ $time }}</option>
-                                    @endfor
+                    <div class="mb-4">
+                        <x-select
+                            class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:bg-white"
+                            type="select" id="time" name="time" required>
+                            <option selected>時間</option>
+                            @for ($hour = 12; $hour <= 20; $hour++)
+                                @for ($minute = 0; $minute <= 30; $minute += 30)
+                                    @php
+                                        $time = sprintf('%02d:%02d', $hour, $minute);
+                                    @endphp
+                                    <option value="{{ $time }}">{{ $time }}</option>
                                 @endfor
-                            </x-select>
-                        </div>
-                        <div class="mb-4">
-                            <x-select
-                                class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:bg-white"
-                                type="select" id="number" name="num_of_people" required>
-                                <option selected>ご利用人数</option>
-                                @for ($i = 1; $i < 11; $i++)
-                                    <option value="{{ $i }}">{{ $i }}人</option>
-                                @endfor
-                            </x-select>
-                        </div>
+                            @endfor
+                        </x-select>
+                    </div>
+                    <div class="mb-4">
+                        <x-select
+                            class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:bg-white"
+                            type="select" id="number" name="num_of_people" required>
+                            <option selected>ご利用人数</option>
+                            @for ($i = 1; $i < 11; $i++)
+                                <option value="{{ $i }}">{{ $i }}人</option>
+                            @endfor
+                        </x-select>
+                    </div>
 
-                        <div class="bg-primary-light shadow p-5 mb-12 text-white rounded">
-                            <table class="w-full h-full">
-                                <tr>
-                                    <th class="text-start w-1/3">Shop</th>
-                                    <td id="confirm-shop-name" class="text-start w-2/3">{{ $shop['name'] }}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-start ">Date</th>
-                                    <td id="confirm-date" class="text-start">日付を選んでください。</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-start ">Time</th>
-                                    <td id="confirm-time" class="text-start">時間を選んでください。</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-start ">Number</th>
-                                    <td id="confirm-number" class="text-start">人数を選んでください。</td>
-                                </tr>
-                            </table>
-                        </div>
+                    <div class="bg-primary-light shadow p-5 mb-12 text-white rounded">
+                        <table class="w-full h-full">
+                            <tr>
+                                <th class="text-start w-1/3">Shop</th>
+                                <td id="confirm-shop-name" class="text-start w-2/3">{{ $shop['name'] }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-start ">Date</th>
+                                <td id="confirm-date" class="text-start">日付を選んでください。</td>
+                            </tr>
+                            <tr>
+                                <th class="text-start ">Time</th>
+                                <td id="confirm-time" class="text-start">時間を選んでください。</td>
+                            </tr>
+                            <tr>
+                                <th class="text-start ">Number</th>
+                                <td id="confirm-number" class="text-start">人数を選んでください。</td>
+                            </tr>
+                        </table>
+                    </div>
 
-                        <div class="w-full absolute md:bottom-0 left-0 rounded">
-                            <x-button class="w-full text-lg flex justify-center bg-primary-dark py-4">
-                                予約する
-                            </x-button>
-                        </div>
-                    </form>
-                </x-reserve-card>
-            </div>
+                    <div class="w-full absolute md:bottom-0 left-0 rounded">
+                        <x-button class="w-full text-lg flex justify-center bg-primary-dark py-4">
+                            予約する
+                        </x-button>
+                    </div>
+                </form>
+            </x-reserve-card>
+        </div>
 
 
         </div>

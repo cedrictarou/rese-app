@@ -19,11 +19,13 @@ img {
     width: 100%;
 }
 
+textarea,
 input {
     display: block;
     width: 100%;
 }
 
+textarea,
 select,
 input {
     box-shadow: none;
@@ -36,6 +38,7 @@ input:hover {
     opacity: .7;
 }
 
+
 select:focus,
 input[type="text"]:focus,
 input[type="email"]:focus,
@@ -45,6 +48,10 @@ input[type="password"]:focus {
     box-shadow: none;
     border-bottom: 1px solid #3b82f6;
     background-color: transparent;
+}
+
+textarea:focus {
+    border: 1px solid #3b82f6;
 }
 
 a,
@@ -58,15 +65,24 @@ button:hover {
     opacity: .7;
 }
 
-// heartの色の変更
 @layer components {
+
+    // heartの色の変更
     .is-liked {
-        // color: red;
         @apply text-accent;
     }
 
     .is-not-liked {
-        // color: gray;
         @apply text-secondary-light;
+    }
+
+    // star review
+    .star-rating-label:hover,
+    .star-rating-label:hover~.star-rating-label {
+        @apply text-yellow-400
+    }
+
+    .star-rating:checked~.star-rating-label {
+        @apply text-yellow-400
     }
 }
