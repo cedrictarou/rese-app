@@ -38,6 +38,11 @@ class Shop extends Model
         return $this->hasMany(Reserve::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function scopeSearch($query, $search)
     {
         foreach ($search as $key => $value) {

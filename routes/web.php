@@ -24,10 +24,12 @@ Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('detail
 Route::post('/detail/{shop_id}', [ShopController::class, 'reservation'])->middleware(['auth'])->name('reservation');
 Route::delete('/detail/{shop_id}', [ShopController::class, 'cancel'])->middleware(['auth'])->name('cancel');
 
+// review用
+Route::post('/detail/review/{shop_id}', [ShopController::class, 'review'])->middleware(['auth'])->name('review');
+
 Route::get('/mypage', [UserController::class, 'index'])->middleware(['auth'])->name('mypage');
 Route::get('/mypage/reserve/{reserve_id}', [UserController::class, 'show'])->middleware(['auth'])->name('show');
 Route::put('/mypage/reserve/{reserve_id}', [UserController::class, 'update'])->middleware(['auth'])->name('update');
-
 
 Route::get('/thanks', [RegisteredUserController::class, 'thanks'])->name('thanks');
 

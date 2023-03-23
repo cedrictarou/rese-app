@@ -16,24 +16,14 @@
 
             <div class="rounded-lg border-solid">
                 <div class="flex items-center mb-5">
-                    <x-link href="{{ Auth::check() ? route('mypage') : route('index') }}" color="white" class="shadow">
+                    <x-link href="{{ url()->previous('/') }}" color="white" class="shadow">
                         <i class="fa-solid fa-chevron-left text-black"></i>
                     </x-link>
 
                     <x-title2 title="{{ $shop['name'] }}" class="ml-4" />
 
-                    <a href="#comments-box" class="ml-auto flex">
-                        <ul class="flex">
-                            <li><i class="fa-solid fa-star text-yellow-500 fa-lg"></i></li>
-                            <li><i class="fa-solid fa-star text-yellow-500 fa-lg"></i></li>
-                            <li><i class="fa-solid fa-star text-yellow-500 fa-lg"></i></li>
-                            <li><i class="fa-solid fa-star text-secondary-dark fa-lg"></i></li>
-                            <li><i class="fa-solid fa-star text-secondary-dark fa-lg"></i></li>
-                        </ul>
-                        <div class="ml-5">
-                            <i class="fa-regular fa-comments fa-lg"></i>
-                            <span>20</span>
-                        </div>
+                    <a href="#comments-box" class="ml-auto">
+                        <x-star-rating :reviews="$reviews" />
                     </a>
                 </div>
 
@@ -57,7 +47,7 @@
                 </x-shop-card>
 
                 {{-- comments area --}}
-                <x-comment />
+                <x-comment :reviews="$reviews" />
                 {{-- comment modal --}}
                 <x-modal />
 

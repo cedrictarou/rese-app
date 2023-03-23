@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserve;
+use App\Models\Review;
 use App\Models\Shop;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -23,15 +24,17 @@ class ShopController extends Controller
         // 検索キーを残しておく
         $request->session()->put('search_key', $search);
 
+        // reviewの取得
+
+
         if (!Auth::check()) {
             // ログインしていない場合
-            $shops = Shop::search($search)->get();
+            $shops = Shop::search($search)->with('reviews')->get();
         } else {
             // ログインしている場合
             $user_id = Auth::id();
             // 各お店のいいね数とログイン中のユーザーがいいねを押しているかどうかを判定
-            $shops = Shop::search($search)->get();
-            // dd($shops);
+            $shops = Shop::search($search)->with('reviews')->get();
         }
 
         return view('pages.index', compact('shops', 'genres', 'regions'));
@@ -40,7 +43,10 @@ class ShopController extends Controller
     public function detail($shop_id)
     {
         $shop = Shop::find($shop_id);
-        return view('pages.detail', compact('shop'));
+
+        // お店ごとのコメントやratingを取得する
+        $reviews = Review::where('shop_id', $shop_id)->get();
+        return view('pages.detail', compact('shop', 'reviews'));
     }
 
     public function reservation(Request $request, $shop_id)
@@ -70,5 +76,10 @@ class ShopController extends Controller
         Reserve::find($reserve_id)->delete();
         session()->flash('message', '予約をキャンセルしました。');
         return redirect()->route('index');
+    }
+
+    public function review()
+    {
+        // お店のreview処理をここで行う
     }
 }

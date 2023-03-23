@@ -19,13 +19,19 @@
                 <x-shop-card>
                     {{-- card-header --}}
                     <x-slot name="cardHeader">
-                        <img class="h-40 rounded w-full object-cover object-center aspect-auto" src="{{ $shop['image'] }}"
-                            alt="content">
+                        <div class="relative">
+                            <img class="h-40 rounded w-full object-cover object-center aspect-auto"
+                                src="{{ $shop['image'] }}" alt="content">
+                            <div class="absolute right-2 bottom-1 bg-slate-200 opacity-70 px-3 rounded">
+                                <x-star-rating :reviews="$shop->reviews" />
+                            </div>
+                        </div>
                     </x-slot>
 
                     {{-- card-body --}}
                     <div class="p-5">
                         <h2 class="text-lg text-gray-900 font-medium title-font">{{ $shop['name'] }}</h2>
+
                         <div class="text-sm text-gray-500 mb-5 flex gap-2">
                             <span>#{{ $shop->region['region'] }}</span>
                             <span>#{{ $shop->genre['genre'] }}</span>
