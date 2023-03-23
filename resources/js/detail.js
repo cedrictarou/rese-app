@@ -1,3 +1,5 @@
+const { comment } = require("postcss");
+
 // date
 const dateInput = document.querySelector("#date");
 const confirmDate = document.querySelector("#confirm-date");
@@ -22,40 +24,22 @@ numberInput.addEventListener("input", () => {
     confirmNumber.innerText = numberInput.value + "人";
 });
 
-// スムーススクロールを実行する関数
-function smoothScroll(target, duration) {
-    var targetElement = document.querySelector(target);
-    var targetPosition = targetElement.getBoundingClientRect().top;
-    var startPosition = window.pageYOffset;
-    var distance = targetPosition - startPosition;
-    var startTime = null;
+// show more
+const commentTextArray = document.querySelectorAll(".comment-text");
 
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        var timeElapsed = currentTime - startTime;
-        var run = ease(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
+commentTextArray.forEach((commentText) => {
+    const text = commentText.innerText;
+    if (text.length >= 100) {
+        const truncatedText = text.slice(0, 100) + "...";
+        const showMore = document.createElement("span");
+        showMore.innerText = " show more";
+        showMore.style.cursor = "pointer";
+
+        commentText.innerText = truncatedText;
+        commentText.appendChild(showMore);
+
+        showMore.addEventListener("click", () => {
+            commentText.innerText = text;
+        });
     }
-
-    // イージング関数
-    function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return (c / 2) * t * t + b;
-        t--;
-        return (-c / 2) * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(animation);
-}
-
-// スムーススクロールをトリガーする要素を取得し、クリック時のイベントを設定する
-var links = document.querySelectorAll('a[href^="#"]');
-
-links.forEach(function (link) {
-    link.addEventListener("click", function (e) {
-        e.preventDefault();
-        var target = this.getAttribute("href");
-        smoothScroll(target, 1000);
-    });
 });

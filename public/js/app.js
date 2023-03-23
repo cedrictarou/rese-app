@@ -5229,6 +5229,24 @@ navClose.addEventListener("click", function () {
   nav.classList.toggle("-translate-x-full");
 });
 
+// smoth scrolling
+var smoothScrollTrigger = document.querySelectorAll('a[href^="#"]');
+smoothScrollTrigger.forEach(function (trigger) {
+  trigger.addEventListener("click", function (e) {
+    e.preventDefault();
+    var href = trigger.getAttribute("href");
+    var targetElement = document.getElementById(href.replace("#", ""));
+    var rect = targetElement.getBoundingClientRect().top;
+    var offset = window.pageYOffset;
+    var gap = 10;
+    var target = rect + offset - gap;
+    window.scrollTo({
+      top: target,
+      behavior: "smooth"
+    });
+  });
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

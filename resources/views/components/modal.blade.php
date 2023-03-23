@@ -1,5 +1,5 @@
 <div id="modal"
-    class="fixed z-50 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-6 hidden">
+    class="fixed z-50 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-6 hidden opacity-0 transition-all duration-300 ease-in-out">
     <button id="close-modal" class="absolute -top-10 -right-10"><i class="fa-solid fa-xmark fa-xl text-white"></i></button>
     <x-title3 class="mb-4" title="お客様のご意見をお聞かせください。" />
     <form action="">
@@ -20,4 +20,4 @@
     </form>
 </div>
 
-<div id="modal-overlay" class="fixed z-40 inset-0 bg-secondary-dark opacity-50 hidden">
+<div id="modal-overlay" class="fixed z-40 inset-0 bg-secondary-dark opacity-50 hidden transition-opacity duration-300">

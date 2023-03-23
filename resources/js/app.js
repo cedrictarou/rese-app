@@ -17,3 +17,21 @@ navBtn.addEventListener("click", () => {
 navClose.addEventListener("click", () => {
     nav.classList.toggle("-translate-x-full");
 });
+
+// smoth scrolling
+const smoothScrollTrigger = document.querySelectorAll('a[href^="#"]');
+smoothScrollTrigger.forEach((trigger) => {
+    trigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        const href = trigger.getAttribute("href");
+        const targetElement = document.getElementById(href.replace("#", ""));
+        const rect = targetElement.getBoundingClientRect().top;
+        const offset = window.pageYOffset;
+        const gap = 10;
+        const target = rect + offset - gap;
+        window.scrollTo({
+            top: target,
+            behavior: "smooth",
+        });
+    });
+});

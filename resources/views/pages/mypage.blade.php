@@ -32,6 +32,7 @@
                                 <x-title4>
                                     <span class="mr-2">
                                         <i class="fa-regular fa-clock"></i>
+
                                     </span>
                                     予約{{ $loop->index + 1 }}
                                 </x-title4>
@@ -39,7 +40,7 @@
                                     @method('DELETE')
                                     @csrf
                                     <button class="cancel-btn" type="submit">
-                                        <i class="fa-regular fa-xmark fa-lg"></i>
+                                        <i class="fa-solid fa-xmark text-white"></i>
                                     </button>
                                 </form>
                             </div>

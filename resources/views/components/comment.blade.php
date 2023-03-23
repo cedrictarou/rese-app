@@ -15,7 +15,7 @@
                     <li><i class="fa-solid fa-star text-secondary-dark"></i></li>
                 </ul>
             </div>
-            <p class="text-secondary-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <p class="comment-text text-secondary-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Inventore
                 neque dolore
                 doloremquenam,
