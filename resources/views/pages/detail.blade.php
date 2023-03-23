@@ -16,12 +16,11 @@
 
             <div class="rounded-lg border-solid">
                 <div class="flex items-center mb-5">
-                    <x-link href="{{ url()->previous('/') }}" color="white" class="shadow">
+                    <x-link href="{{ url()->previous() == url()->current() ? url()->previous() : route('index') }}"
+                        color="white" class="shadow">
                         <i class="fa-solid fa-chevron-left text-black"></i>
                     </x-link>
-
                     <x-title2 title="{{ $shop['name'] }}" class="ml-4" />
-
                     <a href="#comments-box" class="ml-auto">
                         <x-star-rating :reviews="$reviews" />
                     </a>
@@ -49,7 +48,7 @@
                 {{-- comments area --}}
                 <x-comment :reviews="$reviews" />
                 {{-- comment modal --}}
-                <x-modal />
+                <x-modal :shop="$shop" />
 
             </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewRequest;
 use App\Models\Reserve;
 use App\Models\Review;
 use App\Models\Shop;
@@ -23,9 +24,6 @@ class ShopController extends Controller
 
         // 検索キーを残しておく
         $request->session()->put('search_key', $search);
-
-        // reviewの取得
-
 
         if (!Auth::check()) {
             // ログインしていない場合
@@ -78,8 +76,18 @@ class ShopController extends Controller
         return redirect()->route('index');
     }
 
-    public function review()
+    public function review(ReviewRequest $request, $shop_id)
     {
-        // お店のreview処理をここで行う
+        $user_id = Auth::id();
+        $rating = $request->input('rating');
+        $comment = $request->input('comment');
+        Review::create([
+            "user_id" => $user_id,
+            "shop_id" => $shop_id,
+            "rating" => $rating,
+            "comment" => $comment,
+        ]);
+        session()->flash('message', 'レビューを投稿しました。');
+        return redirect()->route('detail', ['shop_id' => $shop_id]);
     }
 }

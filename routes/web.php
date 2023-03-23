@@ -24,7 +24,7 @@ Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('detail
 Route::post('/detail/{shop_id}', [ShopController::class, 'reservation'])->middleware(['auth'])->name('reservation');
 Route::delete('/detail/{shop_id}', [ShopController::class, 'cancel'])->middleware(['auth'])->name('cancel');
 
-// review用
+// reviewを保存する
 Route::post('/detail/review/{shop_id}', [ShopController::class, 'review'])->middleware(['auth'])->name('review');
 
 Route::get('/mypage', [UserController::class, 'index'])->middleware(['auth'])->name('mypage');
