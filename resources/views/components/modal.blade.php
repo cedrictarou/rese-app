@@ -22,3 +22,4 @@
 </div>
 
 <div id="modal-overlay" class="fixed z-40 inset-0 bg-secondary-dark opacity-50 hidden transition-opacity duration-300">
+</div>

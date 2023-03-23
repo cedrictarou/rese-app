@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReserveRequest;
 use App\Models\Like;
 use App\Models\Reserve;
 use Carbon\Carbon;
@@ -23,18 +24,30 @@ class UserController extends Controller
     {
         $reserve = Reserve::find($reserve_id);
         $shop = $reserve->shop;
+        // $reviews = $shop->reviews;
+
         if ($reserve) {
             // お店の予約があれば
-            return view('pages.edit-reseve', compact('shop', 'reserve'));
+
+            // 予約な時間を作成する
+            $now = Carbon::now(); //現在時刻
+            $timeOptionsForReservation = [];
+            for ($hour = $now->hour; $hour <= 20; $hour++) {
+                for ($minute = 0; $minute <= 30; $minute += 30) {
+                    $time = sprintf('%02d:%02d', $hour, $minute);
+                    $timeOptionsForReservation[] = $time;
+                }
+            }
+
+            return view('pages.edit-reseve', compact('shop', 'reserve', 'timeOptionsForReservation'));
         } else {
             // お店の予約がなければ
-            return view('pages.mypage');
+            return view('pages.mypage', compact('reviews'));
         }
     }
 
-    public function update($reserve_id, Request $request)
+    public function update($reserve_id, ReserveRequest $request)
     {
-
         $reserve = Reserve::find($reserve_id);
         $shop = $reserve->shop;
         $user_id = Auth::id();
@@ -44,6 +57,7 @@ class UserController extends Controller
 
         // 日付と時間を合わせる処理
         $date_time = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $time);
+
         if ($reserve) {
             $reserve->update([
                 "user_id" => $user_id,
