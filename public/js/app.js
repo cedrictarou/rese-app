@@ -5212,40 +5212,50 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+/* harmony import */ var _smooth_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./smooth-scroll */ "./resources/js/smooth-scroll.js");
+/* harmony import */ var _drawer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./drawer */ "./resources/js/drawer.js");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modal */ "./resources/js/modal.js");
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 
 
-window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
-alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
+
+
+
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_4__["default"];
+alpinejs__WEBPACK_IMPORTED_MODULE_4__["default"].start();
 
 // navigation bar
-var navBtn = document.querySelector("#nav-btn");
-var navClose = document.querySelector("#nav-close");
+var openBtn = document.querySelector("#nav-btn");
+var closeBtn = document.querySelector("#nav-close");
 var nav = document.querySelector("#nav");
-navBtn.addEventListener("click", function () {
-  nav.classList.toggle("-translate-x-full");
-});
-navClose.addEventListener("click", function () {
-  nav.classList.toggle("-translate-x-full");
-});
+var LeftToRight = "left-to-right";
+var navDrawer = new _drawer__WEBPACK_IMPORTED_MODULE_2__["default"](openBtn, closeBtn, nav, LeftToRight);
+navDrawer.toggleDrawer();
 
-// smoth scrolling
-var smoothScrollTrigger = document.querySelectorAll('a[href^="#"]');
-smoothScrollTrigger.forEach(function (trigger) {
-  trigger.addEventListener("click", function (e) {
-    e.preventDefault();
-    var href = trigger.getAttribute("href");
-    var targetElement = document.getElementById(href.replace("#", ""));
-    var rect = targetElement.getBoundingClientRect().top;
-    var offset = window.pageYOffset;
-    var gap = 10;
-    var target = rect + offset - gap;
-    window.scrollTo({
-      top: target,
-      behavior: "smooth"
-    });
-  });
-});
+// search bar
+var searchBtn = document.querySelector("#search-btn");
+var overlay = document.querySelector("#overlay");
+var searchBox = document.querySelector("#search-box");
+var RightToLeft = "right-to-left";
+if (searchBox) {
+  var searchDrawer = new _drawer__WEBPACK_IMPORTED_MODULE_2__["default"](searchBtn, overlay, searchBox, RightToLeft);
+  searchDrawer.toggleDrawer();
+}
+
+// smooth scrolling
+var triggerSelector = document.querySelectorAll('a[href^="#"]');
+var smoothScroll = new _smooth_scroll__WEBPACK_IMPORTED_MODULE_1__["default"](triggerSelector);
+smoothScroll.init();
+
+// commnet modal
+var modal = document.querySelector("#modal");
+var modalOverlay = document.querySelector("#modal-overlay");
+var openModalBtn = document.querySelector("#open-modal");
+var closeModalBtn = document.querySelector("#close-modal");
+if (modal) {
+  var commnetModal = new _modal__WEBPACK_IMPORTED_MODULE_3__["default"](modal, modalOverlay, openModalBtn, closeModalBtn);
+  commnetModal.setModal();
+}
 
 /***/ }),
 
@@ -5282,6 +5292,198 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/drawer.js":
+/*!********************************!*\
+  !*** ./resources/js/drawer.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Drawer)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+// Drawer.js
+var Drawer = /*#__PURE__*/function () {
+  function Drawer(openBtn, closeBtn, element, animationClass) {
+    _classCallCheck(this, Drawer);
+    this.openBtn = openBtn;
+    this.closeBtn = closeBtn;
+    this.element = element;
+    this.animationClass = animationClass;
+  }
+  _createClass(Drawer, [{
+    key: "openDrawer",
+    value: function openDrawer() {
+      var _this = this;
+      this.openBtn.addEventListener("click", function () {
+        _this.element.classList.toggle(_this.animationClass);
+      });
+    }
+  }, {
+    key: "closeDrawer",
+    value: function closeDrawer() {
+      var _this2 = this;
+      this.closeBtn.addEventListener("click", function () {
+        _this2.element.classList.toggle(_this2.animationClass);
+      });
+    }
+  }, {
+    key: "toggleDrawer",
+    value: function toggleDrawer() {
+      this.openDrawer();
+      this.closeDrawer();
+    }
+  }]);
+  return Drawer;
+}();
+
+
+/***/ }),
+
+/***/ "./resources/js/modal.js":
+/*!*******************************!*\
+  !*** ./resources/js/modal.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Modal)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var Modal = /*#__PURE__*/function () {
+  function Modal(modal, modalOverlay, openModalBtn, closeModalBtn) {
+    var duration = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 300;
+    _classCallCheck(this, Modal);
+    this.modal = modal;
+    this.modalOverlay = modalOverlay;
+    this.openModalBtn = openModalBtn;
+    this.closeModalBtn = closeModalBtn;
+    this.duration = duration;
+  }
+  _createClass(Modal, [{
+    key: "openModal",
+    value: function openModal() {
+      var _this = this;
+      this.modal.classList.remove("hidden");
+      setTimeout(function () {
+        _this.modal.classList.remove("opacity-0");
+        _this.modalOverlay.classList.remove("hidden");
+      }, this.duration);
+    }
+  }, {
+    key: "closeModal",
+    value: function closeModal() {
+      var _this2 = this;
+      this.modal.classList.add("opacity-0");
+      setTimeout(function () {
+        _this2.modal.classList.add("hidden");
+        _this2.modalOverlay.classList.add("hidden");
+      }, this.duration);
+    }
+  }, {
+    key: "setModal",
+    value: function setModal() {
+      var _this3 = this;
+      this.openModalBtn.addEventListener("click", function () {
+        return _this3.openModal();
+      });
+      this.closeModalBtn.addEventListener("click", function () {
+        return _this3.closeModal();
+      });
+      this.modalOverlay.addEventListener("click", function () {
+        return _this3.closeModal();
+      });
+    }
+  }]);
+  return Modal;
+}(); // const openModal = () => {
+//     modal.classList.remove("hidden");
+//     setTimeout(() => {
+//         modal.classList.remove("opacity-0");
+//         modalOverlay.classList.remove("hidden");
+//     }, this.duration);
+// };
+// const closeModal = () => {
+//     modal.classList.add("opacity-0");
+//     setTimeout(() => {
+//         modal.classList.add("hidden");
+//         modalOverlay.classList.add("hidden");
+//     }, this.duration);
+// };
+
+
+/***/ }),
+
+/***/ "./resources/js/smooth-scroll.js":
+/*!***************************************!*\
+  !*** ./resources/js/smooth-scroll.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SmoothScroll)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+// smoth scrolling
+var SmoothScroll = /*#__PURE__*/function () {
+  function SmoothScroll(triggerSelector) {
+    var gap = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
+    _classCallCheck(this, SmoothScroll);
+    this.smoothScrollTrigger = triggerSelector;
+    this.gap = gap;
+  }
+  _createClass(SmoothScroll, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+      this.smoothScrollTrigger.forEach(function (trigger) {
+        trigger.addEventListener("click", function (e) {
+          _this.handleClick(e, trigger);
+        });
+      });
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick(e, trigger) {
+      e.preventDefault();
+      var href = trigger.getAttribute("href");
+      var targetElement = document.getElementById(href.replace("#", ""));
+      var rect = targetElement.getBoundingClientRect().top;
+      var offset = window.pageYOffset;
+      var target = rect + offset - this.gap;
+      window.scrollTo({
+        top: target,
+        behavior: "smooth"
+      });
+    }
+  }]);
+  return SmoothScroll;
+}();
+
 
 /***/ }),
 

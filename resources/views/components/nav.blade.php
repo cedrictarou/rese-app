@@ -1,5 +1,4 @@
-<nav id="nav"
-    class="-translate-x-full transition-all duration-500 ease-in-out inset-0 z-50 bg-secondary-light fixed">
+<nav id="nav" class="left-to-right drawer">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 mb-10">
         <button id="nav-close">
             <i class="fa-solid fa-square-xmark fa-3x text-primary"></i>

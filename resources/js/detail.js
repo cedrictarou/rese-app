@@ -1,5 +1,3 @@
-const { comment } = require("postcss");
-
 // date
 const dateInput = document.querySelector("#date");
 const confirmDate = document.querySelector("#confirm-date");
@@ -31,7 +29,7 @@ commentTextArray.forEach((commentText) => {
     const text = commentText.innerText;
     if (text.length >= 100) {
         const truncatedText = text.slice(0, 100) + "...";
-        const showMore = document.createElement("span");
+        const showMore = document.createElement("button");
         showMore.innerText = " show more";
         showMore.style.cursor = "pointer";
 

@@ -1,6 +1,6 @@
 @push('scripts')
     <script src="{{ asset('js/detail.js') }}" defer></script>
-    <script src="{{ asset('js/review.js') }}" defer></script>
+    <script src="{{ asset('js/accordion.js') }}" defer></script>
 @endpush
 
 <x-app-layout>

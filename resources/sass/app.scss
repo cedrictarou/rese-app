@@ -33,6 +33,7 @@ input {
     cursor: pointer;
 }
 
+button:hover,
 select:hover,
 input:hover {
     opacity: .7;
@@ -84,5 +85,20 @@ button:hover {
 
     .star-rating:checked~.star-rating-label {
         @apply text-yellow-400
+    }
+}
+
+// drawer
+@layer components {
+    .drawer {
+        @apply transition-all duration-500 ease-in-out inset-0 z-50 bg-secondary-light fixed;
+    }
+
+    .left-to-right {
+        @apply -translate-x-full
+    }
+
+    .right-to-left {
+        @apply translate-x-full
     }
 }

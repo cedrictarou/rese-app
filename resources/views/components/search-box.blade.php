@@ -44,8 +44,7 @@
     </button>
 </div>
 
-<div id="search-box"
-    class="md:hidden translate-x-full transition-all duration-500 ease-in-out inset-0 z-50 fixed bg-secondary-light">
+<div id="search-box" class="md:hidden right-to-left drawer">
     <div class="p-5">
         <form action="{{ route('index') }}" method="GET"
             class="flex flex-col md:flex-row bg-white rounded-lg py-2 px-2 shadow items-center gap-2">

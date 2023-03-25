@@ -8,7 +8,7 @@
             @for ($i = 5; $i >= 1; $i--)
                 <input type="radio" class="star-rating hidden" name="rating" value="{{ $i }}"
                     id="star-{{ $i }}" {{ $i === 5 ? 'required' : '' }}>
-                <label class="star-rating-label text-2xl text-gray-400 cursor-pointer mr-2"
+                <label class="star-rating-label text-2xl text-secondary cursor-pointer mr-2"
                     for="star-{{ $i }}"><i class="fa-solid fa-star"></i></label>
             @endfor
         </div>
@@ -20,6 +20,6 @@
         </div>
     </form>
 </div>
-
+{{-- overlay --}}
 <div id="modal-overlay" class="fixed z-40 inset-0 bg-secondary-dark opacity-50 hidden transition-opacity duration-300">
 </div>

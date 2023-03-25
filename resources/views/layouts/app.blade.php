@@ -22,7 +22,7 @@
 </head>
 
 <body class="font-sans antialiased bg-gray-100">
-    <div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
         {{-- フラッシュメッセージ --}}
         @if (session()->has('message'))
             <x-flash-card>

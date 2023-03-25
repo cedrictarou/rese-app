@@ -1,6 +1,5 @@
 @push('scripts')
     <script src="{{ asset('js/like-shop.js') }}" defer></script>
-    <script src="{{ asset('js/search-btn.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
