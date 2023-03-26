@@ -1,11 +1,12 @@
-// likeShop function
+// LikeButton.js
 import axios from "axios";
 
-const likeBtns = document.querySelectorAll(".like-btn");
+export default class LikeShop {
+    constructor(btnSelector) {
+        this.likeButtons = btnSelector;
+    }
 
-likeBtns.forEach((likeBtn) => {
-    likeBtn.addEventListener("click", async (e) => {
-        e.preventDefault();
+    async handleButtonClick(likeBtn) {
         const shopId = likeBtn.getAttribute("data-shop-id");
         if (!shopId) {
             // ログインしていないときの処理
@@ -46,5 +47,14 @@ likeBtns.forEach((likeBtn) => {
                 }
             }
         }
-    });
-});
+    }
+
+    init() {
+        this.likeButtons.forEach((likeBtn) => {
+            likeBtn.addEventListener("click", async (e) => {
+                e.preventDefault();
+                await this.handleButtonClick(likeBtn);
+            });
+        });
+    }
+}

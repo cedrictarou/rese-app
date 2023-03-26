@@ -2,6 +2,9 @@ import "./bootstrap";
 import SmoothScroll from "./smooth-scroll";
 import Drawer from "./drawer";
 import Modal from "./modal";
+import Accordion from "./accordion";
+import CommentTruncator from "./comment-truncator";
+import LikeShop from "./like-shop";
 
 import Alpine from "alpinejs";
 
@@ -45,4 +48,26 @@ if (modal) {
         closeModalBtn
     );
     commnetModal.setModal();
+}
+
+// accordion
+const showMoreBtn = document.querySelector("#show-more-button");
+const hiddenContents = document.querySelectorAll("#reviews-container .hidden");
+if (showMoreBtn) {
+    const commentAccordion = new Accordion(showMoreBtn, hiddenContents);
+    commentAccordion.toggleShow();
+}
+
+// text trancator
+const commentTextArray = document.querySelectorAll(".comment-text");
+if (commentTextArray) {
+    const commentTruncator = new CommentTruncator(commentTextArray);
+    commentTruncator.truncate();
+}
+
+// like shop
+const likeButtons = document.querySelectorAll(".like-btn");
+if (likeButtons) {
+    const likeShop = new LikeShop(likeButtons);
+    likeShop.init();
 }

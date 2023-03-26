@@ -4,55 +4,27 @@
 
 <x-app-layout>
     {{-- header part --}}
-    <div class="h-16 my-10 w-full">
-        <x-header :regions="$regions" :genres="$genres" />
-    </div>
+    <x-header :regions="$regions" :genres="$genres" />
 
     {{-- shop一覧ページ --}}
-    <main>
+    <main class="mx-auto container pb-10 px-5">
+        {{-- <main class="container mt-10 mx-auto px-4 sm:px-6 lg:px-8 pb-10"> --}}
 
         <div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-x-2 gap-y-4">
-
+            @if ($shops->isEmpty())
+                <div class="col-span-4">
+                    <p class="text-center text-2xl">お店が見つかりませんでした</p>
+                </div>
+            @endif
             @foreach ($shops as $shop)
                 {{-- shop card --}}
-                <x-shop-card>
-                    {{-- card-header --}}
-                    <x-slot name="cardHeader">
-                        <div class="relative">
-                            <img class="h-40 rounded w-full object-cover object-center aspect-auto"
-                                src="{{ $shop['image'] }}" alt="content">
-                            <div class="absolute right-2 bottom-1 bg-slate-200 opacity-70 px-3 rounded">
-                                <x-star-rating :reviews="$shop->reviews" />
-                            </div>
-                        </div>
-                    </x-slot>
-
-                    {{-- card-body --}}
-                    <div class="p-5">
-                        <h2 class="text-lg text-gray-900 font-medium title-font">{{ $shop['name'] }}</h2>
-
-                        <div class="text-sm text-gray-500 mb-5 flex gap-2">
-                            <span>#{{ $shop->region['region'] }}</span>
-                            <span>#{{ $shop->genre['genre'] }}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <x-link href="/detail/{{ $shop['id'] }}">詳しくみる</x-link>
-                            {{-- ユーザーがログインしているときだけいいねボタンを押せる --}}
-                            @if (Auth::check())
-                                <button type="button" class="btn btn-primary like-btn"
-                                    data-shop-id="{{ $shop['id'] }}">
-                                    <i
-                                        class="fa-solid fa-heart {{ $shop->isLikedBy() ? 'is-liked' : 'is-not-liked' }} fa-lg"></i>
-                                </button>
-                            @else
-                                <button type="button" class="btn btn-primary like-btn">
-                                    <i class="fa-solid fa-heart is-not-liked fa-lg"></i>
-                                </button>
-                            @endif
-                        </div>
-                    </div>
-                </x-shop-card>
+                <x-shop-card :shop="$shop" shopName rating footer />
             @endforeach
+        </div>
+
+        {{-- pagination --}}
+        <div class="mt-5">
+            {{ $shops->links() }}
         </div>
 
     </main>

@@ -1,6 +1,6 @@
 // smoth scrolling
 export default class SmoothScroll {
-    constructor(triggerSelector, gap = 10) {
+    constructor(triggerSelector, gap = 100) {
         this.smoothScrollTrigger = triggerSelector;
         this.gap = gap;
     }

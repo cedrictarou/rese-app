@@ -12,7 +12,7 @@
         @endfor
     </ul>
     <span class="average-comments ml-2 font-bold">{{ round($reviews->average('rating'), 1) ?? 0 }}</span>
-    @if (Route::currentRouteName() == 'detail')
+    @if (Route::currentRouteName() == 'detail' || Route::currentRouteName() == 'show')
         <x-comment-icon :reviews="$reviews" class="ml-2" />
     @endif
 </div>

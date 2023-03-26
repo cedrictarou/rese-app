@@ -1,7 +1,6 @@
 {{-- デスクトップ用のレイアウト --}}
 <div class="hidden md:block">
-    <form action="{{ route('index') }}" method="GET"
-        class="flex bg-white rounded-lg py-2 px-2 shadow items-center gap-2">
+    <form action="{{ route('index') }}" method="GET" class="flex bg-white rounded-lg py-2 px-2 items-center gap-2">
 
         <div class="border-r-2 border-r-gray-100">
             <x-select class="mx-2" type="select" id="area" name="region">
@@ -44,7 +43,8 @@
     </button>
 </div>
 
-<div id="search-box" class="md:hidden right-to-left drawer">
+{{-- スマホサイズに表示するdrawer --}}
+<div id="search-box" class="md:hidden right-to-left drawer ">
     <div class="p-5">
         <form action="{{ route('index') }}" method="GET"
             class="flex flex-col md:flex-row bg-white rounded-lg py-2 px-2 shadow items-center gap-2">
@@ -81,5 +81,6 @@
         </form>
     </div>
 
-    <div id="overlay" class="overlay w-full h-full"></div>
+    {{-- overlay --}}
+    <div id="overlay" class="w-full h-full"></div>
 </div>

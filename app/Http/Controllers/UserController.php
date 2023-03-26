@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReserveRequest;
 use App\Models\Like;
 use App\Models\Reserve;
+use App\Models\Review;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,7 @@ class UserController extends Controller
         $reserve = Reserve::find($reserve_id);
         $shop = $reserve->shop;
         // $reviews = $shop->reviews;
+        // $reviews = Review::where('shop_id', $shop['id'])->get();
 
         if ($reserve) {
             // お店の予約があれば
@@ -39,6 +41,7 @@ class UserController extends Controller
                 }
             }
 
+            // return view('pages.detail', compact('shop', 'reserve', 'timeOptionsForReservation'));
             return view('pages.edit-reseve', compact('shop', 'reserve', 'timeOptionsForReservation'));
         } else {
             // お店の予約がなければ

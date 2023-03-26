@@ -1,20 +1,29 @@
-const showMoreButton = document.getElementById("show-more-button");
-const hiddenReviews = document.querySelectorAll("#reviews-container .hidden");
+export default class Accordion {
+    constructor(showMoreBtn, hiddenContents, duration = 300) {
+        this.showMoreBtn = showMoreBtn;
+        this.hiddenContents = hiddenContents;
+        this.duration = duration;
+    }
 
-showMoreButton.addEventListener("click", () => {
-    hiddenReviews.forEach((review) => {
-        if (review.classList.contains("hidden")) {
-            review.classList.remove("hidden");
-            setTimeout(() => {
-                review.classList.remove("opacity-0");
-                showMoreButton.innerText = "Show less";
-            }, 300);
-        } else {
-            review.classList.add("opacity-0");
-            setTimeout(() => {
-                review.classList.add("hidden");
-                showMoreButton.innerText = "Show more";
-            }, 300);
-        }
-    });
-});
+    toggleShow() {
+        this.showMoreBtn.addEventListener("click", () => {
+            this.hiddenContents.forEach((content) => {
+                if (content.classList.contains("hidden")) {
+                    // open the content
+                    content.classList.remove("hidden");
+                    setTimeout(() => {
+                        content.classList.remove("opacity-0");
+                        this.showMoreBtn.innerText = "Show less";
+                    }, this.duration);
+                } else {
+                    // hidde the content
+                    content.classList.add("opacity-0");
+                    setTimeout(() => {
+                        content.classList.add("hidden");
+                        this.showMoreBtn.innerText = "Show more";
+                    }, this.duration);
+                }
+            });
+        });
+    }
+}

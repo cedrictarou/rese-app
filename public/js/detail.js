@@ -23,22 +23,5 @@ var confirmNumber = document.querySelector("#confirm-number");
 numberInput.addEventListener("input", function () {
   confirmNumber.innerText = numberInput.value + "人";
 });
-
-// show more
-var commentTextArray = document.querySelectorAll(".comment-text");
-commentTextArray.forEach(function (commentText) {
-  var text = commentText.innerText;
-  if (text.length >= 100) {
-    var truncatedText = text.slice(0, 100) + "...";
-    var showMore = document.createElement("button");
-    showMore.innerText = " show more";
-    showMore.style.cursor = "pointer";
-    commentText.innerText = truncatedText;
-    commentText.appendChild(showMore);
-    showMore.addEventListener("click", function () {
-      commentText.innerText = text;
-    });
-  }
-});
 /******/ })()
 ;

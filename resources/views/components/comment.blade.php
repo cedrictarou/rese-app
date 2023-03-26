@@ -1,10 +1,12 @@
 <div class="mt-10" id="comments-box">
-    <div class="flex">
+    <div class="flex flex-wrap mb-5 gap-2 items-center">
         <x-title3 title="他のお客様のレビュー" class="mb-4" />
-        <x-button class="ml-auto" id="open-modal">レビューを書く</x-button>
+        <x-button class="ml-auto" id="open-modal">
+            レビューを書く
+        </x-button>
     </div>
     @if (empty($reviews) || count($reviews) === 0)
-        <p>コメントはありません</p>
+        <p class="text-secondary-dark">コメントはありません</p>
     @endif
     @php
         $counter = 0;
@@ -19,7 +21,7 @@
                 {{-- 最初の3つのレビューを表示する --}}
                 <div class="mb-2">
                     <div class="flex">
-                        <span class="mr-2 font-semibold">{{ $review->user['name'] }}</span>
+                        <span class="mr-2 font-semibold text-secondary-dark">{{ $review->user['name'] }}</span>
                         <ul class="flex">
                             {{-- ratingの数だけ星をつける --}}
                             @for ($i = 1; $i <= $review['rating']; $i++)

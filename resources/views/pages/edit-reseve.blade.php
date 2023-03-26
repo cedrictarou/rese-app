@@ -1,45 +1,21 @@
 @push('scripts')
     <script src="{{ asset('js/detail.js') }}" defer></script>
-    <script src="{{ asset('js/accordion.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
     {{-- header part --}}
-    <div class="h-16 my-10">
-        <x-header />
-    </div>
+    <x-header />
 
     {{-- shop詳細ページ --}}
-    <main>
+    <main class="mx-auto container pb-10 px-5">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
             {{-- shop info --}}
             <div class="col-span-1">
-                <div class="flex mb-5">
-                    <x-link href="{{ route('mypage') }}" color="white" class="shadow">
-                        <i class="fa-solid fa-chevron-left text-black"></i>
-                    </x-link>
+                <x-detail-top :shop="$shop" />
 
-                    <x-title2 title="{{ $shop['name'] }}" class="ml-4" />
-                </div>
+                <x-shop-card color="gray" :shop="$shop" description=true />
 
-                <x-shop-card color="gray">
-                    <x-slot name="cardHeader">
-                        <img class="rounded w-full aspect-auto object-cover object-center" src="{{ $shop['image'] }}"
-                            alt="content">
-                    </x-slot>
-                    {{-- card body --}}
-                    <div class="mt-5 text-black">
-                        <div class="text-sm text-gray-500 mb-5 flex gap-2">
-                            <span>#{{ $shop->region['region'] }}</span>
-                            <span>#{{ $shop->genre['genre'] }}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <p>{{ $shop['description'] }}
-                            </p>
-                        </div>
-                    </div>
-                </x-shop-card>
                 {{-- comments area --}}
                 <x-comment :reviews="$shop->reviews" />
 

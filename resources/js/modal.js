@@ -15,8 +15,8 @@ export default class Modal {
     openModal() {
         this.modal.classList.remove("hidden");
         setTimeout(() => {
-            this.modal.classList.remove("opacity-0");
             this.modalOverlay.classList.remove("hidden");
+            this.modal.classList.remove("opacity-0");
         }, this.duration);
     }
     closeModal() {

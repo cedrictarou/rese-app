@@ -1,51 +1,21 @@
 @push('scripts')
     <script src="{{ asset('js/detail.js') }}" defer></script>
-    <script src="{{ asset('js/accordion.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
     {{-- header part --}}
-    <div class="h-16 my-10">
-        <x-header />
-    </div>
+    <x-header />
 
     {{-- shop詳細ページ --}}
-    <main>
+    <main class="mx-auto container pb-10 px-5">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             {{-- shop info --}}
             <div class="col-span-1">
-                <div class="flex items-center mb-5">
-                    <x-link href="{{ url()->previous() == url()->current() ? url()->previous() : route('index') }}"
-                        color="white" class="shadow">
-                        <i class="fa-solid fa-chevron-left text-black"></i>
-                    </x-link>
-                    <x-title2 title="{{ $shop['name'] }}" class="ml-4" />
-                    <a href="#comments-box" class="ml-auto">
-                        <x-star-rating :reviews="$reviews" />
-                    </a>
-                </div>
-
+                <x-detail-top :shop="$shop" />
                 {{-- shop card --}}
-                <x-shop-card color="gray">
-                    <x-slot name="cardHeader">
-                        <img class="rounded w-full object-cover object-center" src="{{ $shop['image'] }}"
-                            alt="content">
-                    </x-slot>
-                    {{-- card body --}}
-                    <div class="mt-5 text-black">
-                        <div class="text-sm text-gray-500 mb-5 flex gap-2">
-                            <span>#{{ $shop->region['region'] }}</span>
-                            <span>#{{ $shop->genre['genre'] }}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <p>{{ $shop['description'] }}
-                            </p>
-                        </div>
-                    </div>
-                </x-shop-card>
-
+                <x-shop-card :shop="$shop" color="gray" description=true />
                 {{-- comments area --}}
-                <x-comment :reviews="$reviews" />
+                <x-comment :reviews="$shop->reviews" />
                 {{-- comment modal --}}
                 <x-modal :shop="$shop" />
             </div>

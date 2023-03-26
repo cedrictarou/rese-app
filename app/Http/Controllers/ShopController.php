@@ -27,12 +27,14 @@ class ShopController extends Controller
 
         if (!Auth::check()) {
             // ログインしていない場合
-            $shops = Shop::search($search)->with('reviews')->get();
+            // $shops = Shop::search($search)->with('reviews')->get();
+            $shops = Shop::search($search)->with('reviews')->paginate(12);
         } else {
             // ログインしている場合
             $user_id = Auth::id();
             // 各お店のいいね数とログイン中のユーザーがいいねを押しているかどうかを判定
-            $shops = Shop::search($search)->with('reviews')->get();
+            // $shops = Shop::search($search)->with('reviews')->get();
+            $shops = Shop::search($search)->with('reviews')->paginate(12);
         }
 
         return view('pages.index', compact('shops', 'genres', 'regions'));
