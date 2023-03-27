@@ -8490,17 +8490,14 @@ select {
 .z-0 {
   z-index: 0;
 }
+.z-10 {
+  z-index: 10;
+}
 .z-30 {
   z-index: 30;
 }
-.z-40 {
-  z-index: 40;
-}
 .z-50 {
   z-index: 50;
-}
-.z-10 {
-  z-index: 10;
 }
 .col-span-1 {
   grid-column: span 1 / span 1;
@@ -8526,10 +8523,6 @@ select {
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
-}
-.mx-5 {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
 }
 .-ml-px {
   margin-left: -1px;
@@ -8948,18 +8941,6 @@ select {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-.px-20 {
-  padding-left: 5rem;
-  padding-right: 5rem;
-}
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
@@ -9263,9 +9244,6 @@ button:hover {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
-.hover\:opacity-30:hover {
-  opacity: 0.3;
-}
 .hover\:opacity-50:hover {
   opacity: 0.5;
 }
@@ -9307,9 +9285,6 @@ button:hover {
 .focus\:text-indigo-800:focus {
   --tw-text-opacity: 1;
   color: rgb(55 48 163 / var(--tw-text-opacity));
-}
-.focus\:opacity-30:focus {
-  opacity: 0.3;
 }
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
@@ -9382,23 +9357,14 @@ button:hover {
   }
 }
 @media (min-width: 768px) {
-  .md\:fixed {
-    position: fixed;
-  }
   .md\:sticky {
     position: sticky;
   }
   .md\:bottom-0 {
     bottom: 0px;
   }
-  .md\:top-24 {
-    top: 6rem;
-  }
   .md\:top-10 {
     top: 2.5rem;
-  }
-  .md\:top-0 {
-    top: 0px;
   }
   .md\:col-span-2 {
     grid-column: span 2 / span 2;
@@ -9412,9 +9378,6 @@ button:hover {
   .md\:my-10 {
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
-  }
-  .md\:-mt-24 {
-    margin-top: -6rem;
   }
   .md\:block {
     display: block;
@@ -9442,9 +9405,9 @@ button:hover {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
-  .md\:px-5 {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
   .md\:text-3xl {
     font-size: 1.875rem;
@@ -9453,14 +9416,6 @@ button:hover {
   .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
-  }
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-  .md\:text-xs {
-    font-size: 0.75rem;
-    line-height: 1rem;
   }
   .md\:font-semibold {
     font-weight: 600;
