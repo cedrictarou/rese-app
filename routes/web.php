@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,8 @@ Route::post('/detail/{shop_id}', [ShopController::class, 'reservation'])->middle
 Route::delete('/detail/{shop_id}', [ShopController::class, 'cancel'])->middleware(['auth'])->name('cancel');
 
 // reviewを保存する
-Route::post('/detail/review/{shop_id}', [ShopController::class, 'review'])->middleware(['auth'])->name('review');
+// Route::post('/detail/review/{shop_id}', [ShopController::class, 'review'])->middleware(['auth'])->name('review');
+Route::post('/review/{reserve_id}', [ReviewController::class, 'review'])->middleware(['auth'])->name('review');
 
 Route::get('/mypage', [UserController::class, 'index'])->middleware(['auth'])->name('mypage');
 Route::get('/mypage/reserve/{reserve_id}', [UserController::class, 'show'])->middleware(['auth'])->name('show');

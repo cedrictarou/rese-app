@@ -27,13 +27,11 @@ class ShopController extends Controller
 
         if (!Auth::check()) {
             // ログインしていない場合
-            // $shops = Shop::search($search)->with('reviews')->get();
             $shops = Shop::search($search)->with('reviews')->paginate(12);
         } else {
             // ログインしている場合
             $user_id = Auth::id();
             // 各お店のいいね数とログイン中のユーザーがいいねを押しているかどうかを判定
-            // $shops = Shop::search($search)->with('reviews')->get();
             $shops = Shop::search($search)->with('reviews')->paginate(12);
         }
 
@@ -45,7 +43,7 @@ class ShopController extends Controller
         $shop = Shop::find($shop_id);
 
         // お店ごとのコメントやratingを取得する
-        $reviews = Review::where('shop_id', $shop_id)->get();
+        $reviews = Review::where('shop_id', $shop_id)->orderBy('created_at', 'desc')->get();
         // 予約な時間を作成する
         $now = Carbon::now(); //現在時刻
         $timeOptionsForReservation = [];
@@ -86,20 +84,5 @@ class ShopController extends Controller
         Reserve::find($reserve_id)->delete();
         session()->flash('message', '予約をキャンセルしました。');
         return redirect()->route('index');
-    }
-
-    public function review(ReviewRequest $request, $shop_id)
-    {
-        $user_id = Auth::id();
-        $rating = $request->input('rating');
-        $comment = $request->input('comment');
-        Review::create([
-            "user_id" => $user_id,
-            "shop_id" => $shop_id,
-            "rating" => $rating,
-            "comment" => $comment,
-        ]);
-        session()->flash('message', 'レビューを投稿しました。');
-        return redirect()->route('detail', ['shop_id' => $shop_id]);
     }
 }

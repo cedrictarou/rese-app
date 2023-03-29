@@ -17,10 +17,18 @@
                 <x-shop-card color="gray" :shop="$shop" description=true />
 
                 {{-- comments area --}}
-                <x-comment :reviews="$shop->reviews" />
+
+                <x-comment :reviews="$reviews">
+                    <div class="flex flex-wrap my-5 gap-2 items-center">
+                        <x-title3 title="過去のレビュー" />
+                        <x-button class="ml-auto" id="open-modal">
+                            新しいレビュー
+                        </x-button>
+                    </div>
+                </x-comment>
 
                 {{-- comment modal --}}
-                <x-modal :shop="$shop" />
+                <x-modal :shop="$shop" :reserve="$reserve" />
             </div>
             {{-- reserve card --}}
             <div class="col-span-1">

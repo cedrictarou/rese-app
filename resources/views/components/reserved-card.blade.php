@@ -5,7 +5,6 @@
         <x-title4>
             <span class="mr-2">
                 <i class="fa-regular fa-clock"></i>
-
             </span>
             予約{{ $loop->index + 1 }}
         </x-title4>

@@ -25,28 +25,19 @@ class UserController extends Controller
     {
         $reserve = Reserve::find($reserve_id);
         $shop = $reserve->shop;
-        // $reviews = $shop->reviews;
-        // $reviews = Review::where('shop_id', $shop['id'])->get();
+        $reviews = $shop->reviews()->where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
 
-        if ($reserve) {
-            // お店の予約があれば
-
-            // 予約な時間を作成する
-            $now = Carbon::now(); //現在時刻
-            $timeOptionsForReservation = [];
-            for ($hour = $now->hour; $hour <= 20; $hour++) {
-                for ($minute = 0; $minute <= 30; $minute += 30) {
-                    $time = sprintf('%02d:%02d', $hour, $minute);
-                    $timeOptionsForReservation[] = $time;
-                }
+        // 予約な時間を作成する
+        $now = Carbon::now(); //現在時刻
+        $timeOptionsForReservation = [];
+        for ($hour = $now->hour; $hour <= 20; $hour++) {
+            for ($minute = 0; $minute <= 30; $minute += 30) {
+                $time = sprintf('%02d:%02d', $hour, $minute);
+                $timeOptionsForReservation[] = $time;
             }
-
-            // return view('pages.detail', compact('shop', 'reserve', 'timeOptionsForReservation'));
-            return view('pages.edit-reseve', compact('shop', 'reserve', 'timeOptionsForReservation'));
-        } else {
-            // お店の予約がなければ
-            return view('pages.mypage', compact('reviews'));
         }
+
+        return view('pages.edit-reseve', compact('shop', 'reserve', 'reviews', 'timeOptionsForReservation'));
     }
 
     public function update($reserve_id, ReserveRequest $request)

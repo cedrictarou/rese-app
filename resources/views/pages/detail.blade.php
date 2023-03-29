@@ -14,10 +14,16 @@
                 <x-detail-top :shop="$shop" />
                 {{-- shop card --}}
                 <x-shop-card :shop="$shop" color="gray" description=true />
+
                 {{-- comments area --}}
-                <x-comment :reviews="$shop->reviews" />
+                <x-comment :reviews="$shop->reviews">
+                    <div class="flex flex-wrap my-5 gap-2 items-center">
+                        <x-title3 title="他のお客様のレビュー" />
+                    </div>
+                </x-comment>
+
                 {{-- comment modal --}}
-                <x-modal :shop="$shop" />
+                {{-- <x-modal :shop="$shop" /> --}}
             </div>
 
             {{-- reserve card --}}

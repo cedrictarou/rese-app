@@ -1,5 +1,5 @@
 export default class CommentTruncator {
-    constructor(commentSelector, maxLength = 100) {
+    constructor(commentSelector, maxLength = 50) {
         this.comments = commentSelector;
         this.maxLength = maxLength;
     }

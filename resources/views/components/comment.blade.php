@@ -1,10 +1,6 @@
+{{-- @props(['reserve']) --}}
 <div class="mt-10" id="comments-box">
-    <div class="flex flex-wrap mb-5 gap-2 items-center">
-        <x-title3 title="他のお客様のレビュー" class="mb-4" />
-        <x-button class="ml-auto" id="open-modal">
-            レビューを書く
-        </x-button>
-    </div>
+    {{ $slot }}
     @if (empty($reviews) || count($reviews) === 0)
         <p class="text-secondary-dark">コメントはありません</p>
     @endif

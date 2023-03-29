@@ -4,8 +4,7 @@
     'class' => 'flex gap-2 flex-wrap mb-5',
 ]) }}>
     <div class="flex">
-        <x-link href="{{ url()->previous() == url()->current() ? url()->previous() : route('index') }}" color="white"
-            class="shadow hover:opacity-50">
+        <x-link href="{{ url()->previous() }}" color="white" class="shadow hover:opacity-50">
             <i class="fa-solid fa-chevron-left text-black"></i>
         </x-link>
         <x-title2 title="{{ $shop['name'] }}" class="ml-4" />
