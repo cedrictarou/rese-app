@@ -48,7 +48,10 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect('/thanks');
+        // 入力された email アドレスをセッションに保存する
+        session()->put('email', $request->email);
+
+        return redirect()->route('thanks');
     }
 
     public function thanks()

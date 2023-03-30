@@ -1,22 +1,29 @@
-// Drawer.js
 export default class Drawer {
-    constructor(openBtn, closeBtn, element, animationClass) {
+    private openBtn: HTMLElement;
+    private closeBtn: HTMLElement;
+    private element: HTMLElement;
+    private animationClass: string;
+
+    constructor(openBtn: HTMLElement, closeBtn: HTMLElement, element: HTMLElement, animationClass: string) {
         this.openBtn = openBtn;
         this.closeBtn = closeBtn;
         this.element = element;
         this.animationClass = animationClass;
     }
-    openDrawer() {
+
+    public openDrawer(): void {
         this.openBtn.addEventListener("click", () => {
             this.element.classList.toggle(this.animationClass);
         });
     }
-    closeDrawer() {
+
+    public closeDrawer(): void {
         this.closeBtn.addEventListener("click", () => {
             this.element.classList.toggle(this.animationClass);
         });
     }
-    toggleDrawer() {
+
+    public toggleDrawer(): void {
         this.openDrawer();
         this.closeDrawer();
     }

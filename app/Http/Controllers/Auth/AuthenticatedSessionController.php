@@ -31,6 +31,8 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        // 入力された email アドレスをセッションから削除する
+        session()->forget('email');
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

@@ -1,11 +1,15 @@
 export default class Accordion {
-    constructor(showMoreBtn, hiddenContents, duration = 300) {
+    private showMoreBtn: HTMLButtonElement;
+    private hiddenContents: NodeListOf<HTMLElement>;
+    private duration: number;
+
+    constructor(showMoreBtn: HTMLButtonElement, hiddenContents: NodeListOf<HTMLElement>, duration: number = 300) {
         this.showMoreBtn = showMoreBtn;
         this.hiddenContents = hiddenContents;
         this.duration = duration;
     }
 
-    toggleShow() {
+    public toggleShow(): void {
         this.showMoreBtn.addEventListener("click", () => {
             this.hiddenContents.forEach((content) => {
                 if (content.classList.contains("hidden")) {
@@ -16,7 +20,7 @@ export default class Accordion {
                         this.showMoreBtn.innerText = "Show less";
                     }, this.duration);
                 } else {
-                    // hidde the content
+                    // hide the content
                     content.classList.add("opacity-0");
                     setTimeout(() => {
                         content.classList.add("hidden");

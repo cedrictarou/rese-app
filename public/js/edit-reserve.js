@@ -290,9 +290,9 @@ var SmoothScroll = /** @class */function () {
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!********************************!*\
-  !*** ./resources/js/detail.ts ***!
-  \********************************/
+/*!**************************************!*\
+  !*** ./resources/js/edit-reserve.ts ***!
+  \**************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _accordion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./accordion */ "./resources/js/accordion.ts");
 /* harmony import */ var _comment_truncator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comment-truncator */ "./resources/js/comment-truncator.ts");

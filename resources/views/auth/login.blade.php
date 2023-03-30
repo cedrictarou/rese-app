@@ -17,8 +17,8 @@
             <!-- Email Address -->
             <div class="flex items-center">
                 <span class="mr-4"><i class="fa-solid fa-envelope fa-lg"></i></span>
-                <x-input id="email" class="mt-1" type="email" name="email" :value="old('email')" placeholder="Email"
-                    required autofocus />
+                <x-input id="email" class="mt-1" type="email" name="email"
+                    value="{{ old('email') ?: session('email') }}" placeholder="Email" required autofocus />
             </div>
 
             <!-- Password -->

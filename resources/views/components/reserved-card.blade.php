@@ -1,4 +1,4 @@
-@props(['reserve', 'loop'])
+@props(['reserve'])
 
 @php
     switch ($reserve['status']) {

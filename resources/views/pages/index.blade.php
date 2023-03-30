@@ -1,5 +1,5 @@
 @push('scripts')
-    <script src="{{ asset('js/like-shop.js') }}" defer></script>
+    <script src="{{ asset('js/index.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
@@ -8,7 +8,6 @@
 
     {{-- shop一覧ページ --}}
     <main class="mx-auto container pb-10 px-5">
-        {{-- <main class="container mt-10 mx-auto px-4 sm:px-6 lg:px-8 pb-10"> --}}
 
         <div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-x-2 gap-y-4">
             @if ($shops->isEmpty())

@@ -1,12 +1,13 @@
-// LikeButton.js
 import axios from "axios";
 
 export default class LikeShop {
-    constructor(btnSelector) {
+    private likeButtons: NodeListOf<HTMLButtonElement>;
+
+    constructor(btnSelector: NodeListOf<HTMLButtonElement>) {
         this.likeButtons = btnSelector;
     }
 
-    async handleButtonClick(likeBtn) {
+    private async handleButtonClick(likeBtn: HTMLButtonElement): Promise<void> {
         const shopId = likeBtn.getAttribute("data-shop-id");
         if (!shopId) {
             // ログインしていないときの処理
@@ -21,7 +22,7 @@ export default class LikeShop {
             return;
         }
 
-        const heartEl = likeBtn.firstElementChild;
+        const heartEl = likeBtn.firstElementChild as HTMLElement;
         const isLiked = heartEl.classList.contains("is-not-liked")
             ? false
             : true;
@@ -49,7 +50,7 @@ export default class LikeShop {
         }
     }
 
-    init() {
+    public init(): void {
         this.likeButtons.forEach((likeBtn) => {
             likeBtn.addEventListener("click", async (e) => {
                 e.preventDefault();

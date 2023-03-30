@@ -1,5 +1,5 @@
 @push('scripts')
-    <script src="{{ asset('js/detail.js') }}" defer></script>
+    <script src="{{ asset('js/edit-reserve.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
@@ -30,7 +30,9 @@
                 </x-comment>
 
                 {{-- comment modal --}}
-                <x-modal :shop="$shop" :reserve="$reserve" />
+                @if ($reserve['status'] === 1)
+                    <x-modal :shop="$shop" :reserve="$reserve" />
+                @endif
             </div>
             {{-- reserve card --}}
             <div class="col-span-1">

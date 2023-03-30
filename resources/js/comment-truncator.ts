@@ -1,10 +1,13 @@
 export default class CommentTruncator {
-    constructor(commentSelector, maxLength = 50) {
+    private comments: NodeListOf<HTMLElement>;
+    private maxLength: number;
+
+    constructor(commentSelector: NodeListOf<HTMLElement>, maxLength: number = 50) {
         this.comments = commentSelector;
         this.maxLength = maxLength;
     }
 
-    truncate() {
+    public truncate(): void {
         this.comments.forEach((comment) => {
             const text = comment.innerText;
             if (text.length >= this.maxLength) {

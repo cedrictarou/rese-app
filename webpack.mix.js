@@ -12,10 +12,11 @@ require("dotenv").config();
  |
  */
 
-mix.js("resources/js/app.js", "public/js")
-    .js("resources/js/detail.js", "public/js")
-    // .js("resources/js/like-shop.js", "public/js")
-    .js("resources/js/cancel-reserve.js", "public/js")
+mix.ts("resources/js/app.ts", "public/js")
+    .ts("resources/js/index.ts", "public/js")
+    .ts("resources/js/detail.ts", "public/js")
+    .ts("resources/js/mypage.ts", "public/js")
+    .ts("resources/js/edit-reserve.ts", "public/js")
     .sass("resources/sass/app.scss", "public/css", [])
     .sass("resources/sass/reset.scss", "public/css", [])
     .options({

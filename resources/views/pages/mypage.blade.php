@@ -1,6 +1,5 @@
 @push('scripts')
-    <script src="{{ asset('js/like-shop.js') }}" defer></script>
-    <script src="{{ asset('js/cancel-reserve.js') }}" defer></script>
+    <script src="{{ asset('js/mypage.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
@@ -25,7 +24,7 @@
                 @foreach ($reserves as $reserve)
                     {{-- reserve card --}}
                     <a href="{{ route('show', $reserve['id']) }}">
-                        <x-reserved-card :reserve="$reserve" :loop="$loop" />
+                        <x-reserved-card :reserve="$reserve" />
                     </a>
                 @endforeach
 
