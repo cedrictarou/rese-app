@@ -12,6 +12,7 @@
     'timeText' => '',
     'numOfPeopleText' => '',
     'buttonText' => '',
+    'reserve',
 ])
 
 <form action="{{ $action }}" method="POST">
@@ -23,13 +24,13 @@
     <div class="mb-4 w-1/3">
         <x-input id="date" type="date"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="date" placeholder="日付を選択してください" :value="$dateValue" required :min="$dateMin" />
+            name="date" placeholder="日付を選択してください" :value="$dateValue" required :min="$dateMin" :disabled="$reserve['status'] !== 0" />
     </div>
 
     <div class="mb-4">
         <x-select
             class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:bg-white"
-            type="select" id="time" name="time" required>
+            type="select" id="time" name="time" required :disabled="$reserve['status'] !== 0">
             <option value="" {{ $timeSelected === '' ? 'selected' : '' }}>時間</option>
             @foreach ($timeOptions as $timeOption)
                 <option value="{{ $timeOption }}" {{ $timeSelected === $timeOption ? 'selected' : '' }}>
@@ -41,7 +42,7 @@
     <div class="mb-4">
         <x-select
             class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:bg-white"
-            type="select" id="number" name="num_of_people" required>
+            type="select" id="number" name="num_of_people" required :disabled="$reserve['status'] !== 0">
             <option value="" selected>ご利用人数</option>
             @for ($i = 1; $i < 11; $i++)
                 <option value="{{ $i }}" {{ $numOfPeopleValue === $i ? 'selected' : '' }}>
@@ -50,7 +51,7 @@
         </x-select>
     </div>
 
-    <div class="bg-primary-light shadow p-5 mb-12 text-white rounded">
+    <div class="bg-primary-light shadow p-5 mb-8 text-white rounded">
         <table class="w-full">
             <tr>
                 <th class="text-start w-1/3">Shop</th>
@@ -72,7 +73,7 @@
     </div>
 
     <div class="w-full absolute md:bottom-0 left-0 rounded">
-        <x-button class="w-full text-lg flex justify-center bg-primary-dark py-4">
+        <x-button class="w-full flex justify-center bg-primary-dark" :disabled="$reserve['status'] !== 0">
             {{ $buttonText }}
         </x-button>
     </div>

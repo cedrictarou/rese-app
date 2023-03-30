@@ -15,6 +15,7 @@ class Reserve extends Model
         'num_of_people',
         'user_id',
         'shop_id',
+        'status',
     ];
 
     public function shop()
@@ -32,5 +33,9 @@ class Reserve extends Model
     {
         $carbon = Carbon::createFromFormat('Y-m-d H:i:s', $this->date_time);
         return $carbon->format('H:i');
+    }
+    public function reviews()
+    {
+        return $this->hadMany(Review::class);
     }
 }

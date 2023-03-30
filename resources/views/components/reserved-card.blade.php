@@ -1,20 +1,54 @@
 @props(['reserve', 'loop'])
 
-<div {{ $attributes->merge(['class' => 'bg-primary text-white shadow p-5 rounded mb-3']) }}>
+@php
+    switch ($reserve['status']) {
+        case 0: // 予約済み
+            $addStyle = 'bg-primary text-white';
+            break;
+        case 1: // 来店済み
+            $addStyle = 'bg-primary-light text-white';
+            break;
+        case 2: // キャンセル済み
+            $addStyle = 'bg-secondary-dark text-white';
+            break;
+        default:
+            $addStyle = 'bg-primary text-white';
+            break;
+    }
+@endphp
+
+<div {{ $attributes->merge(['class' => "shadow p-5 rounded mb-3 {$addStyle}"]) }}>
     <div class="flex justify-between mb-5">
+
         <x-title4>
             <span class="mr-2">
                 <i class="fa-regular fa-clock"></i>
             </span>
-            予約{{ $loop->index + 1 }}
+            @switch($reserve['status'])
+                @case(0)
+                    予約済み
+                @break
+
+                @case(1)
+                    来店済み レビューを書く
+                @break
+
+                @case(2)
+                    キャンセル済み
+                @break
+
+                @default
+            @endswitch
         </x-title4>
-        <form action="{{ route('cancel', $reserve['id']) }}" method="POST">
-            @method('DELETE')
-            @csrf
-            <button class="cancel-btn" type="submit">
-                <i class="fa-solid fa-xmark text-white"></i>
-            </button>
-        </form>
+        @if ($reserve['status'] === 0)
+            <form action="{{ route('cancel', $reserve['id']) }}" method="POST">
+                @method('PUT')
+                @csrf
+                <button class="cancel-btn" type="submit">
+                    <i class="fa-solid fa-xmark text-white"></i>
+                </button>
+            </form>
+        @endif
     </div>
 
     <table class="w-full h-full">

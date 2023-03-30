@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
@@ -23,15 +24,16 @@ Route::get('/', [ShopController::class, 'index'])->name('index');
 Route::get('/detail/done', [ShopController::class, 'done'])->name('done');
 Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('detail');
 Route::post('/detail/{shop_id}', [ShopController::class, 'reservation'])->middleware(['auth'])->name('reservation');
-Route::delete('/detail/{shop_id}', [ShopController::class, 'cancel'])->middleware(['auth'])->name('cancel');
+
 
 // reviewを保存する
-// Route::post('/detail/review/{shop_id}', [ShopController::class, 'review'])->middleware(['auth'])->name('review');
 Route::post('/review/{reserve_id}', [ReviewController::class, 'review'])->middleware(['auth'])->name('review');
 
 Route::get('/mypage', [UserController::class, 'index'])->middleware(['auth'])->name('mypage');
-Route::get('/mypage/reserve/{reserve_id}', [UserController::class, 'show'])->middleware(['auth'])->name('show');
-Route::put('/mypage/reserve/{reserve_id}', [UserController::class, 'update'])->middleware(['auth'])->name('update');
+// 予約の管理
+Route::get('/reserve/{reserve_id}', [ReserveController::class, 'show'])->middleware(['auth'])->name('show');
+Route::put('/reserve/{reserve_id}', [ReserveController::class, 'update'])->middleware(['auth'])->name('update');
+Route::put('/reserve/{reserve_id}/cancel', [ReserveController::class, 'cancel'])->middleware(['auth'])->name('cancel');
 
 Route::get('/thanks', [RegisteredUserController::class, 'thanks'])->name('thanks');
 

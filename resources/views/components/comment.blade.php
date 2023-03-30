@@ -1,6 +1,8 @@
-{{-- @props(['reserve']) --}}
+@props(['reviews'])
+
 <div class="mt-10" id="comments-box">
     {{ $slot }}
+
     @if (empty($reviews) || count($reviews) === 0)
         <p class="text-secondary-dark">コメントはありません</p>
     @endif
@@ -8,6 +10,7 @@
         $counter = 0;
     @endphp
     <div id="reviews-container">
+
         @foreach ($reviews as $review)
             @php
                 $counter++;

@@ -40,6 +40,13 @@ input:hover {
     opacity: .7;
 }
 
+button:disabled,
+select:disabled,
+input[type="date"]:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
 select:focus,
 input[type="text"]:focus,
 input[type="email"]:focus,

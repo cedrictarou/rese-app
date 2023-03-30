@@ -24,7 +24,7 @@
                 @endif
                 @foreach ($reserves as $reserve)
                     {{-- reserve card --}}
-                    <a href="/mypage/reserve/{{ $reserve['id'] }}">
+                    <a href="{{ route('show', $reserve['id']) }}">
                         <x-reserved-card :reserve="$reserve" :loop="$loop" />
                     </a>
                 @endforeach

@@ -70,6 +70,7 @@ class ShopController extends Controller
             "shop_id" => $shop_id,
             "date_time" => $date_time,
             "num_of_people" => $num_of_people,
+            "status" => 0,
         ]);
 
         return redirect()->route('done');
@@ -77,12 +78,5 @@ class ShopController extends Controller
     public function done()
     {
         return view('pages.done');
-    }
-
-    public function cancel($reserve_id)
-    {
-        Reserve::find($reserve_id)->delete();
-        session()->flash('message', '予約をキャンセルしました。');
-        return redirect()->route('index');
     }
 }

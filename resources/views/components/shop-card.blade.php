@@ -34,7 +34,7 @@
     </div>
 
     {{-- card-body --}}
-    <div class="{{ $description ? '' : 'p-2' }}">
+    <div class="{{ $description ? '' : 'p-5' }}">
         @if ($shopName)
             <h2 class="text-lg text-secondary-dark font-semibold">{{ $shop['name'] }}</h2>
 
@@ -54,7 +54,8 @@
         {{-- footer --}}
         @if ($footer)
             <div class="flex justify-between">
-                <x-link href="/detail/{{ $shop['id'] }}">詳しくみる</x-link>
+                <x-link href="{{ route('detail', $shop['id']) }}">詳しくみる</x-link>
+                {{-- <x-link href="/detail/{{ $shop['id'] }}">詳しくみる</x-link> --}}
                 {{-- ユーザーがログインしているときだけいいねボタンを押せる --}}
                 @if (Auth::check())
                     <button type="button" class="btn btn-primary like-btn" data-shop-id="{{ $shop['id'] }}">

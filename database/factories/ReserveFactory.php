@@ -32,6 +32,7 @@ class ReserveFactory extends Factory
             'num_of_people' => $this->faker->numberBetween($min = 1, $max = 10),
             'user_id' => $this->faker->numberBetween($min = 1, $max = 5),
             'shop_id' => $this->faker->numberBetween($min = 1, $max = 20),
+            'status' => 0,
         ];
     }
 }
