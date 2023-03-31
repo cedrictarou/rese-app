@@ -33,6 +33,15 @@
                     required autocomplete="new-password" />
             </div>
 
+            <div class="mt-4 flex items-center">
+                <span class="mr-4"><i class="fa-regular fa-id-card"></i></span>
+                <x-select name="role_id" class="block mt-1 w-full" required>
+                    <option value=1 selected>通常</option>
+                    <option value=2>店舗管理者</option>
+                    <option value=3>管理者</option>
+                </x-select>
+            </div>
+
             <div class="flex items-center justify-end mt-4 gap-3">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     登録済みですか

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReserveController;
@@ -40,5 +41,10 @@ Route::get('/thanks', [RegisteredUserController::class, 'thanks'])->name('thanks
 Route::post('/likes/{shop_id}', [LikeController::class, 'like'])->middleware(['auth'])->name('like');
 Route::delete('/likes/{shop_id}', [LikeController::class, 'unlike'])->middleware(['auth'])->name('unlike');
 
+
+// 店舗管理者のみアクセス可能
+Route::get('/admin/{shop_id}', [AdminController::class, 'shopAdmin'])->middleware(['auth'])->name('shopAdmin');
+// アプリ管理者
+Route::get('/admin', [AdminController::class, 'admin'])->middleware(['auth'])->name('admin');
 
 require __DIR__ . '/auth.php';
