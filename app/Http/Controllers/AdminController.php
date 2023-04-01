@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -10,8 +11,11 @@ class AdminController extends Controller
     {
         return view('pages.shop-admin');
     }
+
     public function admin()
+    // 管理者のみアクセス可能
     {
-        return view('pages.admin');
+        $shops = Shop::with('user')->get();
+        return view('pages.admin', compact('shops'));
     }
 }

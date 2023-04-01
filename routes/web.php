@@ -42,9 +42,9 @@ Route::post('/likes/{shop_id}', [LikeController::class, 'like'])->middleware(['a
 Route::delete('/likes/{shop_id}', [LikeController::class, 'unlike'])->middleware(['auth'])->name('unlike');
 
 
-// 店舗管理者のみアクセス可能
-Route::get('/admin/{shop_id}', [AdminController::class, 'shopAdmin'])->middleware(['auth'])->name('shopAdmin');
+// 店舗管理者とアプリ管理者のみアクセス可能
+Route::get('/admin/{shop_id}', [AdminController::class, 'shopAdmin'])->middleware(['auth', 'shopAdmin'])->name('shopAdmin');
 // アプリ管理者
-Route::get('/admin', [AdminController::class, 'admin'])->middleware(['auth'])->name('admin');
+Route::get('/admin', [AdminController::class, 'admin'])->middleware(['auth', 'admin'])->name('admin');
 
 require __DIR__ . '/auth.php';
