@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
+use App\Models\Region;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,14 +29,30 @@ class ShopAdminController extends Controller
     public function create()
     {
         // 新しい店舗情報を入力するためのビューを返す処理
+        $regions = Region::all();
+        $genres = Genre::all();
 
-        return view('pages.shop-admin.create');
+        return view('pages.shop-admin.create', compact('regions', 'genres'));
     }
 
     public function store(Request $request)
     {
         // 新しい店舗情報をデータベースに登録する処理
-        return redirect()->route('pages.shop-admin.index')->with('success', '新しい店舗情報を登録しました。');
+        // 取得したファイル名で保存
+        $dir = 'images';
+        $file_name = $request->file('image')->getClientOriginalName();
+        $request->file('image')->storeAs('public/' . $dir, $file_name);
+        $file_dir = 'storage/' . $dir . '/' . $file_name;
+        Shop::create([
+            'name' => $request->name,
+            'region_id' => $request->region_id,
+            'genre_id' => $request->genre_id,
+            'description' => $request->description,
+            'image' => $file_dir,
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->route('shop-admin.index')->with('message', '新しい店舗情報を登録しました。');
     }
 
     public function edit($shop_id)
@@ -47,12 +65,13 @@ class ShopAdminController extends Controller
     public function update(Request $request, $shop_id)
     {
         // 既存の店舗情報をデータベースに更新する処理
-        return redirect()->route('pages.shop-admin.show', ['shop_id' => $shop_id])->with('success', '店舗情報を更新しました。');
+        return redirect()->route('shop-admin.show', ['shop_id' => $shop_id])->with('success', '店舗情報を更新しました。');
     }
 
     public function destroy($shop_id)
     {
         // 既存の店舗情報をデータベースから削除する処理
-        return redirect()->route('pages.shop-admin.index')->with('success', '店舗情報を削除しました。');
+        Shop::destroy($shop_id);
+        return redirect()->route('shop-admin.index')->with('success', '店舗情報を削除しました。');
     }
 }

@@ -48,11 +48,14 @@ Route::prefix('shop-admin')->middleware(['auth', 'shopAdmin'])->group(function (
     // 店舗情報を管理するためのルート
     Route::get('/', [ShopAdminController::class, 'index'])->name('shop-admin.index');
 
-    // 登録されている店舗情報の詳細情報を見る、予約状況を確認、編集するためのルート
-    Route::get('{shop_id}', [ShopAdminController::class, 'show'])->name('shop-admin.show');
+    // 新規店舗情報を作成するためのルート
+    Route::get('/create', [ShopAdminController::class, 'create'])->name('shop-admin.create');
 
     // 新規店舗情報を登録するためのルート
-    Route::post('{shop_id}', [ShopAdminController::class, 'store'])->name('shop-admin.store');
+    Route::post('/create', [ShopAdminController::class, 'store'])->name('shop-admin.store');
+
+    // 登録されている店舗情報の詳細情報を見る、予約状況を確認、編集するためのルート
+    Route::get('{shop_id}', [ShopAdminController::class, 'show'])->name('shop-admin.show');
 
     // 登録されている店舗の情報を編集するためのルート
     Route::get('{shop_id}/edit', [ShopAdminController::class, 'edit'])->name('shop-admin.edit');

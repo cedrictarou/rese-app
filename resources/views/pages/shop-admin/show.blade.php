@@ -31,7 +31,9 @@
                         </tr>
                         <tr>
                             <th class="text-start">イメージURL</th>
-                            <td>{{ $shop['image'] }}</td>
+                            <td><img src="{{ asset($shop['image']) }}"></td>
+                            {{-- <td>{{ $shop['image'] }}</td> --}}
+
                         </tr>
                         <tr>
                             <th class="text-start">管理者</th>

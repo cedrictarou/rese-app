@@ -8,6 +8,11 @@
     <main class="mx-auto container pb-10 px-5">
         <x-title2 title="店舗管理者ページ" />
         <div>
+            <x-link href="{{ route('shop-admin.create') }}">
+                店舗を追加する
+            </x-link>
+        </div>
+        <div>
             <div>{{ Auth::id() }}</div>
             <div>{{ Auth::user()->name }}</div>
             <div>{{ Auth::user()->email }}</div>
