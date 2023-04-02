@@ -20,14 +20,14 @@ class ShopsSeeder extends Seeder
                 'region_id' => 13,
                 'genre_id' => 1,
                 'description' => "料理長厳選の食材から作る寿司を用いたコースをぜひお楽しみください。食材・味・価格、お客様の満足度を徹底的に追及したお店です。特別な日のお食事、ビジネス接待まで気軽に使用することができます。",
-                'image' => "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg"
+                'image' => "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg",
             ],
             [
                 "name" => "牛助",
                 'region_id' => 27,
                 'genre_id' => 2,
                 'description' => "焼肉業界で20年間経験を積み、肉を熟知したマスターによる実力派焼肉店。長年の実績とお付き合いをもとに、なかなか食べられない希少部位も仕入れております。また、ゆったりとくつろげる空間はお仕事終わりの一杯や女子会にぴったりです。",
-                'image' => "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/yakiniku.jpg"
+                'image' => "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/yakiniku.jpg",
             ],
             [
                 "name" => "戦慄",
@@ -158,6 +158,15 @@ class ShopsSeeder extends Seeder
 
         ];
         foreach ($shops as $shop) {
+            // shopにuser_idを追加
+            // 0か1をランダムで生成する
+            $random_number = rand(0, 1);
+            // ランダムな値によってuser_idを代入する
+            if ($random_number === 0) {
+                $shop['user_id'] = 21;
+            } else {
+                $shop['user_id'] = 22;
+            }
             Shop::create($shop);
         }
     }

@@ -40,8 +40,9 @@
         @endif
         @if (Auth::check() && Auth::user()->role_id === 2)
             {{-- 店舗管理者の場合 --}}
+
             <li>
-                <a href="{{ route('shopAdmin') }}">
+                <a href="{{ route('shop-admin.index') }}">
                     店舗管理者ページ
                 </a>
             </li>

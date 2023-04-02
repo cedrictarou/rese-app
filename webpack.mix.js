@@ -21,8 +21,10 @@ mix.ts("resources/js/app.ts", "public/js")
     .sass("resources/sass/reset.scss", "public/css", [])
     .options({
         postCss: [
-            require("postcss-import"),
+            // require("postcss-import"),
+            // tailwindcss("./tailwind.config.js"),
             tailwindcss("./tailwind.config.js"),
+            require("autoprefixer"),
         ],
     })
     .version();

@@ -54,7 +54,7 @@
         {{-- footer --}}
         @if ($footer)
             <div class="flex justify-between">
-                <x-link href="{{ route('detail', $shop['id']) }}">詳しくみる</x-link>
+                <x-link class="md:text-xs" href="{{ route('detail', $shop['id']) }}">詳しくみる</x-link>
                 {{-- <x-link href="/detail/{{ $shop['id'] }}">詳しくみる</x-link> --}}
                 {{-- ユーザーがログインしているときだけいいねボタンを押せる --}}
                 @if (Auth::check())

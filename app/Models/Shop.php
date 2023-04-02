@@ -16,6 +16,7 @@ class Shop extends Model
         'genre_id',
         'description',
         'image',
+        'user_id',
     ];
 
     public function region()
@@ -41,6 +42,16 @@ class Shop extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function isShopAdmin()
+    {
+        return $this->role_id == 2;
     }
 
     public function scopeSearch($query, $search)

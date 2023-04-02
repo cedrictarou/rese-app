@@ -3,6 +3,7 @@
 @endpush
 
 <x-app-layout>
+
     {{-- header part --}}
     <x-header :regions="$regions" :genres="$genres" />
 

@@ -48,6 +48,7 @@ input[type="date"]:disabled {
 }
 
 select:focus,
+textarea:focus,
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
@@ -59,9 +60,9 @@ input[type="password"]:focus {
     @apply text-black;
 }
 
-textarea:focus {
-    border: 1px solid #3b82f6;
-}
+// textarea:focus {
+//     border: 1px solid #3b82f6;
+// }
 
 a,
 button {

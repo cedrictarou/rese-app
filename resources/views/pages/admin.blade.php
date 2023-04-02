@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($shops as $shop)
+                    {{-- @foreach ($shops as $shop)
                         <tr>
                             <td>{{ $shop->name }}</td>
                             <td>{{ $shop->id }}</td>
@@ -38,7 +38,7 @@
                             <td>{{ $shop->user->created_at }}</td>
                             <td>{{ $shop->user->updated_at }}</td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
                 </tbody>
             </table>
         </div>

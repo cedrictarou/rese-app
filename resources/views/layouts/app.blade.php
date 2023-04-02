@@ -30,7 +30,7 @@
             </x-flash-card>
         @endif
 
-        {{-- navigation  --}}
+        {{-- navigation --}}
         <x-nav />
 
         <!-- Page Content -->
