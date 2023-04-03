@@ -30,29 +30,21 @@
                             <td>{{ $shop['description'] }}</td>
                         </tr>
                         <tr>
-                            <th class="text-start">イメージURL</th>
+                            <th class="text-start align-top">画像</th>
                             <td><img src="{{ asset($shop['image']) }}"></td>
-                            {{-- <td>{{ $shop['image'] }}</td> --}}
+                            {{-- <td><img src="{{ $shop['image']) }}"></td> --}}
+                        </tr>
 
-                        </tr>
-                        <tr>
-                            <th class="text-start">管理者</th>
-                            <td>{{ $shop->user['name'] }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-start">メールアドレス</th>
-                            <td>{{ $shop->user['email'] }}</td>
-                        </tr>
                     </tbody>
                 </table>
-                <div class="flex justify-end gap-2">
-                    <x-link href="{{ route('shop-admin.edit', $shop['id']) }}">編集する</x-link>
+                <div class="flex justify-between">
                     <form action="{{ route('shop-admin.destroy', $shop['id']) }}" method="POST"
                         onsubmit="return confirm('本当に削除しますか？')">
                         @csrf
                         @method('DELETE')
                         <x-button color="red">削除する</x-button>
                     </form>
+                    <x-link href="{{ route('shop-admin.edit', $shop['id']) }}">編集する</x-link>
                 </div>
             </div>
         </section>

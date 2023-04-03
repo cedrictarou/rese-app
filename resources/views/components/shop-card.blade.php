@@ -25,7 +25,7 @@
     {{-- card-header --}}
     <div class="relative">
         <img class="rounded w-full object-contain object-center aspect-auto min-h-40 rounded-b-none"
-            src="{{ $shop['image'] }}" alt="content">
+            src="{{ asset($shop['image']) }}" alt="content">
         <div class="absolute right-2 bottom-1 bg-slate-200 opacity-70 px-3 rounded">
             @if ($rating)
                 <x-star-rating :reviews="$shop->reviews" />

@@ -17,6 +17,7 @@ mix.ts("resources/js/app.ts", "public/js")
     .ts("resources/js/detail.ts", "public/js")
     .ts("resources/js/mypage.ts", "public/js")
     .ts("resources/js/edit-reserve.ts", "public/js")
+    .ts("resources/js/preview-image.ts", "public/js")
     .sass("resources/sass/app.scss", "public/css", [])
     .sass("resources/sass/reset.scss", "public/css", [])
     .options({

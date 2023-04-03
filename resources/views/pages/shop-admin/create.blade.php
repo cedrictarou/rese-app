@@ -1,4 +1,5 @@
 @push('scripts')
+    <script src="{{ asset('js/preview-image.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
@@ -56,24 +57,18 @@
                                 <td>
                                     {{-- <x-input type="file" class="md:bg-transparent" type="text" name="image"
                                         value="{{ old('image') }}" required placeholder="画像のパスを入力してください" /> --}}
-                                    <input type="file" name="image">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-start">管理者</th>
-                                <td>
-                                    {{ auth()->user()->name }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-start">メールアドレス</th>
-                                <td>
-                                    {{ auth()->user()->email }}
+                                    <div class="mb-2">
+                                        {{-- <img id="image-before" src="{{ asset($shop['image']) }}"> --}}
+                                        <img id="image-after" class="hidden" src="" alt="Image Preview">
+                                    </div>
+                                    <div class="flex justify-end">
+                                        <input type="file" id="image-input" name="image">
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="flex justify-end gap-2 mt-2">
+                    <div class="flex justify-between mt-2">
                         <x-button>登録する</x-button>
                         <x-link class="text-base" href="{{ route('shop-admin.index') }}">戻る</x-link>
                     </div>

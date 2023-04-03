@@ -20,11 +20,20 @@
                     </button>
                 </form>
             </li>
-            <li>
-                <a href="/mypage">
-                    Mypage
-                </a>
-            </li>
+            @if (Auth::user()->role_id === 2)
+                {{-- 店舗管理者の場合 --}}
+                <li>
+                    <a href="{{ route('shop-admin.index') }}">
+                        ShopAdmin
+                    </a>
+                </li>
+            @else
+                <li>
+                    <a href="/mypage">
+                        Mypage
+                    </a>
+                </li>
+            @endif
         @else
             {{-- ログインしていない場合 --}}
             <li>
@@ -35,29 +44,6 @@
             <li>
                 <a href="{{ route('login') }}">
                     Login
-                </a>
-            </li>
-        @endif
-        @if (Auth::check() && Auth::user()->role_id === 2)
-            {{-- 店舗管理者の場合 --}}
-
-            <li>
-                <a href="{{ route('shop-admin.index') }}">
-                    店舗管理者ページ
-                </a>
-            </li>
-        @endif
-        @if (Auth::check() && Auth::user()->role_id === 3)
-            {{-- アプリ管理者の場合 --}}
-            {{-- 店舗管理者の場合 --}}
-            {{-- <li>
-                <a href="{{ route('shopAdmin') }}">
-                    店舗管理者ページ
-                </a>
-            </li> --}}
-            <li>
-                <a href="{{ route('admin') }}">
-                    Adminpage
                 </a>
             </li>
         @endif
