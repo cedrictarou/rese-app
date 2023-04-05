@@ -5,6 +5,7 @@
     'description' => false,
     'footer' => false,
     'rating' => false,
+    'bigImage' => false,
 ])
 
 @php
@@ -24,7 +25,7 @@
 <article {{ $attributes->merge(['class' => "rounded-lg border-solid {$addStyle}"]) }}>
     {{-- card-header --}}
     <div class="relative">
-        <img class="rounded w-full object-contain object-center aspect-auto min-h-40 rounded-b-none"
+        <img class="rounded w-full object-cover object-center {{ $bigImage ? 'md:h-96' : 'md:h-40' }} h-50 aspect-auto rounded-b-none"
             src="{{ asset($shop['image']) }}" alt="content">
         <div class="absolute right-2 bottom-1 bg-slate-200 opacity-70 px-3 rounded">
             @if ($rating)
@@ -55,7 +56,7 @@
         @if ($footer)
             <div class="flex justify-between">
                 <x-link class="md:text-xs" href="{{ route('detail', $shop['id']) }}">詳しくみる</x-link>
-                {{-- <x-link href="/detail/{{ $shop['id'] }}">詳しくみる</x-link> --}}
+
                 {{-- ユーザーがログインしているときだけいいねボタンを押せる --}}
                 @if (Auth::check())
                     <button type="button" class="btn btn-primary like-btn" data-shop-id="{{ $shop['id'] }}">

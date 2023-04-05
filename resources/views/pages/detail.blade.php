@@ -11,9 +11,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             {{-- shop info --}}
             <div class="col-span-1">
-                <x-detail-top :shop="$shop" />
+                <x-detail-top :shop="$shop" backUrl="top" />
                 {{-- shop card --}}
-                <x-shop-card :shop="$shop" color="gray" description=true />
+                <x-shop-card :shop="$shop" color="gray" description=true bigImage />
 
                 {{-- comments area --}}
                 <x-comment :reviews="$shop->reviews">

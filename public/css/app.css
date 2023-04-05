@@ -11098,6 +11098,12 @@ select {
 .z-50 {
   z-index: 50;
 }
+.order-2 {
+  order: 2;
+}
+.order-1 {
+  order: 1;
+}
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
@@ -11240,6 +11246,9 @@ select {
 .h-full {
   height: 100%;
 }
+.h-auto {
+  height: auto;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -11273,8 +11282,20 @@ select {
 .w-full {
   width: 100%;
 }
-.w-3 {
-  width: 0.75rem;
+.w-40 {
+  width: 10rem;
+}
+.w-96 {
+  width: 24rem;
+}
+.w-1\/5 {
+  width: 20%;
+}
+.w-4\/5 {
+  width: 80%;
+}
+.w-2\/4 {
+  width: 50%;
 }
 .max-w-6xl {
   max-width: 72rem;
@@ -11284,6 +11305,9 @@ select {
 }
 .max-w-xl {
   max-width: 36rem;
+}
+.max-w-lg {
+  max-width: 32rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -11331,6 +11355,9 @@ select {
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+.flex-row {
+  flex-direction: row;
+}
 .flex-row-reverse {
   flex-direction: row-reverse;
 }
@@ -11343,6 +11370,9 @@ select {
 .items-center {
   align-items: center;
 }
+.justify-start {
+  justify-content: flex-start;
+}
 .justify-end {
   justify-content: flex-end;
 }
@@ -11352,6 +11382,9 @@ select {
 .justify-between {
   justify-content: space-between;
 }
+.justify-around {
+  justify-content: space-around;
+}
 .gap-10 {
   gap: 2.5rem;
 }
@@ -11360,6 +11393,9 @@ select {
 }
 .gap-3 {
   gap: 0.75rem;
+}
+.gap-5 {
+  gap: 1.25rem;
 }
 .gap-x-2 {
   -moz-column-gap: 0.5rem;
@@ -11500,10 +11536,6 @@ select {
 .fill-current {
   fill: currentColor;
 }
-.object-contain {
-  -o-object-fit: contain;
-     object-fit: contain;
-}
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -11578,11 +11610,17 @@ select {
 .pt-8 {
   padding-top: 2rem;
 }
+.pl-2 {
+  padding-left: 0.5rem;
+}
 .text-center {
   text-align: center;
 }
 .text-start {
   text-align: start;
+}
+.text-end {
+  text-align: end;
 }
 .align-top {
   vertical-align: top;
@@ -12008,14 +12046,17 @@ button:hover {
   .md\:hidden {
     display: none;
   }
+  .md\:h-40 {
+    height: 10rem;
+  }
+  .md\:h-96 {
+    height: 24rem;
+  }
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .md\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .md\:flex-row {
     flex-direction: row;
@@ -12051,8 +12092,15 @@ button:hover {
     font-size: 0.75rem;
     line-height: 1rem;
   }
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
 }
 @media (min-width: 1024px) {
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;

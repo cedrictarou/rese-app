@@ -10,7 +10,7 @@
     {{-- shop一覧ページ --}}
     <main class="mx-auto container pb-10 px-5">
 
-        <div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-x-2 gap-y-4">
+        <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-2 gap-y-4">
             @if ($shops->isEmpty())
                 <div class="col-span-4">
                     <p class="text-center text-2xl">お店が見つかりませんでした</p>

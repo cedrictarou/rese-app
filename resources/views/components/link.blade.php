@@ -8,11 +8,14 @@
         case 'white':
             $addStyle = 'text-black bg-white';
             break;
+        case 'red':
+            $addStyle = 'text-white bg-accent';
+            break;
         default:
             $addStyle = 'text-white bg-primary';
             break;
     }
-
+    
 @endphp
 
 <a

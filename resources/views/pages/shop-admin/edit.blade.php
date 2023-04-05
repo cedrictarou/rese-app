@@ -20,7 +20,11 @@
                         <tbody>
                             <tr>
                                 <th class="text-start w-1/4">ID</th>
-                                <td class="w-3/4">{{ $shop['id'] }}</td>
+                                <td class="w-3/4">
+                                    <span class="ml-3">
+                                        {{ $shop['id'] }}
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
                                 <th class="text-start">店舗名</th>
@@ -32,7 +36,7 @@
                             <tr>
                                 <th class="text-start">ジャンル</th>
                                 <td>
-                                    <x-select required name="genre_id">
+                                    <x-select required name="genre_id" class="w-full bg-transparent">
                                         @foreach ($genres as $genre)
                                             <option value="{{ $genre['id'] }}">{{ $genre['genre'] }}</option>
                                         @endforeach
@@ -41,7 +45,7 @@
                             </tr>
                             <th class="text-start">地域</th>
                             <td>
-                                <x-select required name="region_id">
+                                <x-select required name="region_id" class="w-full bg-transparent">
                                     @foreach ($regions as $region)
                                         <option value="{{ $region['id'] }}">{{ $region['region'] }}</option>
                                     @endforeach
@@ -56,24 +60,33 @@
                             <tr>
                                 <th class="text-start align-top">画像</th>
                                 <td>
-                                    {{-- <x-input class="md:bg-transparent" type="text" name="image"
-                                        value="{{ $shop['image'] }}" required /> --}}
-
                                     <div class="mb-2">
-                                        <img id="image-before" src="{{ asset($shop['image']) }}">
+                                        <div class="object-cover">
+                                            <img id="image-before" src="{{ asset($shop['image']) }}">
+                                        </div>
+
                                         <img id="image-after" class="hidden" src="" alt="Image Preview">
                                     </div>
-                                    <div class="flex justify-end">
-                                        <input type="file" id="image-input" name="image">
+                                    <div class="flex flex-end">
+                                        <x-input class="w-full" type="file" id="image-input" name="image"
+                                            accept=".jpeg,.jpg,.png" />
                                     </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="flex justify-between mt-2">
-                        <x-link class="text-base" href="{{ route('shop-admin.show', $shop['id']) }}">戻る</x-link>
+                    <div class="flex justify-between mt-5">
+                        <x-link color="red" class="text-base" href="{{ route('shop-admin.show', $shop['id']) }}">
+                            キャンセル</x-link>
                         <x-button>更新する</x-button>
                     </div>
+
                 </form>
             </div>
         </section>

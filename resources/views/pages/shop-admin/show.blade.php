@@ -6,48 +6,43 @@
     <x-header />
 
     <main class="mx-auto container pb-10 px-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {{-- shop info --}}
+            <div class="col-span-1 order-1">
+                <x-detail-top :shop="$shop" backUrl="shopAdminPage" />
+                {{-- shop card --}}
+                <x-shop-card :shop="$shop" color="gray" description=true bigImage />
 
-        <section class="w-3/4 mx-auto">
-            <div class="flex justify-between">
-                <x-title2 title="詳細ページ" />
-                <x-link href="{{ route('shop-admin.index') }}">一覧ページへ</x-link>
-            </div>
-            <div class="mt-5">
-                <table class="w-full">
-                    <tbody>
-                        <tr>
-                            <th class="text-start w-1/4">ID</th>
-                            <td class="w-3/4">{{ $shop['id'] }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-start">店舗名</th>
-                            <td>
-                                {{ $shop['name'] }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-start">説明</th>
-                            <td>{{ $shop['description'] }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-start align-top">画像</th>
-                            <td><img src="{{ asset($shop['image']) }}"></td>
-                            {{-- <td><img src="{{ $shop['image']) }}"></td> --}}
-                        </tr>
-
-                    </tbody>
-                </table>
-                <div class="flex justify-between">
-                    <form action="{{ route('shop-admin.destroy', $shop['id']) }}" method="POST"
-                        onsubmit="return confirm('本当に削除しますか？')">
-                        @csrf
-                        @method('DELETE')
-                        <x-button color="red">削除する</x-button>
-                    </form>
+                <div class="flex justify-end">
                     <x-link href="{{ route('shop-admin.edit', $shop['id']) }}">編集する</x-link>
                 </div>
+
+                {{-- comments area --}}
+                <x-comment :reviews="$shop->reviews">
+                    <div class="flex flex-wrap my-5 gap-2 items-center">
+                        <x-title3 title="お店のレビュー" />
+                    </div>
+                </x-comment>
             </div>
-        </section>
+
+            {{-- reserve card --}}
+            <div class="col-span-1 order-2">
+
+                <div class="flex justify-between items-center">
+                    <x-title2 title="予約状況" class="mb-4" />
+                    <span>計{{ count($shop->reserves->where('status', 0)) }}件</span>
+                </div>
+                @if ($shop->reserves->count() === 0)
+                    <p>現在予約はありません。</p>
+                @endif
+                @foreach ($shop->reserves as $reserve)
+                    {{-- reserve card --}}
+                    {{-- 来店済みボタンを作る --}}
+                    <x-reserved-card :reserve="$reserve" isAdmin />
+                @endforeach
+            </div>
+
+        </div>
     </main>
 
 </x-app-layout>

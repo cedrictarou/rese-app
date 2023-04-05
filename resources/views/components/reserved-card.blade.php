@@ -1,4 +1,4 @@
-@props(['reserve'])
+@props(['reserve', 'isAdmin' => false])
 
 @php
     switch ($reserve['status']) {
@@ -41,7 +41,7 @@
             @endswitch
         </x-title4>
         @if ($reserve['status'] === 0)
-            <form action="{{ route('cancel', $reserve['id']) }}" method="POST">
+            <form action="{{ route('cancel', $reserve['id']) }}" method="POST" onsubmit="return confirm('本当に削除しますか？')">
                 @method('PUT')
                 @csrf
                 <button class="cancel-btn" type="submit">
@@ -53,8 +53,13 @@
 
     <table class="w-full h-full">
         <tr>
-            <th class="text-start w-1/3">Shop</th>
-            <td class="text-start w-2/3">{{ $reserve->shop['name'] }}</td>
+            @if ($isAdmin)
+                <th class="text-start w-1/3">User</th>
+                <td class="text-start w-2/3">{{ $reserve->user['name'] }}</td>
+            @else
+                <th class="text-start w-1/3">Shop</th>
+                <td class="text-start w-2/3">{{ $reserve->shop['name'] }}</td>
+            @endif
         </tr>
         <tr>
             <th class="text-start">Date</th>

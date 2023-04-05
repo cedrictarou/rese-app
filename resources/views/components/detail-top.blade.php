@@ -1,10 +1,29 @@
-@props(['shop'])
+@props(['shop', 'backUrl'])
+
+@php
+    switch ($backUrl) {
+        case 'top':
+            $url = route('index');
+            break;
+        case 'myPage':
+            $url = route('mypage');
+            break;
+        case 'shopAdminPage':
+            $url = route('shop-admin.index');
+            break;
+    
+        default:
+            $url = route('index');
+            break;
+    }
+@endphp
 
 <div {{ $attributes->merge([
     'class' => 'flex gap-2 flex-wrap mb-5',
 ]) }}>
     <div class="flex">
-        <x-link href="{{ url()->previous() }}" color="white" class="shadow hover:opacity-50">
+        {{-- <x-link href="{{ url()->previous() }}" color="white" class="shadow hover:opacity-50"> --}}
+        <x-link href="{{ $url }}" color="white" class="shadow hover:opacity-50">
             <i class="fa-solid fa-chevron-left text-black"></i>
         </x-link>
         <x-title2 title="{{ $shop['name'] }}" class="ml-4" />
