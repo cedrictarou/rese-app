@@ -30,7 +30,10 @@
                 @break
 
                 @case(1)
-                    来店済み レビューを書く
+                    来店済み
+                    @if (!$isAdmin)
+                        レビューを書く
+                    @endif
                 @break
 
                 @case(2)
@@ -74,4 +77,15 @@
             <td class="text-start">{{ $reserve['num_of_people'] . '人' }}</td>
         </tr>
     </table>
+    @if ($reserve['status'] === 0)
+        <div class="flex justify-end">
+            <form action="{{ route('came', $reserve['id']) }}" method="POST"
+                onsubmit="return confirm('お客さんが来店しましたか？')">
+                @method('PUT')
+                @csrf
+                <x-button>来店確認</x-button>
+            </form>
+
+        </div>
+    @endif
 </div>

@@ -36,6 +36,7 @@ Route::get('/mypage', [UserController::class, 'index'])->middleware(['auth'])->n
 Route::get('/reserve/{reserve_id}', [ReserveController::class, 'show'])->middleware(['auth'])->name('show');
 Route::put('/reserve/{reserve_id}', [ReserveController::class, 'update'])->middleware(['auth'])->name('update');
 Route::put('/reserve/{reserve_id}/cancel', [ReserveController::class, 'cancel'])->middleware(['auth'])->name('cancel');
+Route::put('/reserve/{reserve_id}/came', [ReserveController::class, 'came'])->middleware(['auth'])->name('came');
 
 Route::get('/thanks', [RegisteredUserController::class, 'thanks'])->name('thanks');
 

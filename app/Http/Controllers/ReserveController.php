@@ -47,8 +47,8 @@ class ReserveController extends Controller
                 "date_time" => $date_time,
                 "num_of_people" => intval($num_of_people),
             ]);
-            session()->flash('message', '予約を変更しました。');
-            return redirect()->route('mypage');
+
+            return redirect()->back()->with('message', '予約を変更しました。');
         } else {
             return view('pages.mypage');
         }
@@ -57,7 +57,14 @@ class ReserveController extends Controller
     public function cancel($reserve_id)
     {
         Reserve::find($reserve_id)->update(["status" => 2]);
-        session()->flash('message', '予約をキャンセルしました。');
-        return redirect()->route('mypage');
+
+        return redirect()->back()->with('message', '予約をキャンセルしました。');
+    }
+
+    public function came($reserve_id)
+    {
+        Reserve::find($reserve_id)->update(["status" => 1]);
+
+        return redirect()->back()->with('message', '来店済みに変更しました。');
     }
 }

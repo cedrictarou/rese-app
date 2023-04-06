@@ -93,6 +93,6 @@ class ShopAdminController extends Controller
     {
         // 既存の店舗情報をデータベースから削除する処理
         Shop::destroy($shop_id);
-        return redirect()->route('shop-admin.index')->with('success', '店舗情報を削除しました。');
+        return redirect()->route('shop-admin.index')->with('message', '店舗情報を削除しました。');
     }
 }

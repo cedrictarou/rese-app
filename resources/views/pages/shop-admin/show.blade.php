@@ -1,4 +1,5 @@
 @push('scripts')
+    <script src="{{ asset('js/mypage.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
@@ -11,7 +12,7 @@
             <div class="col-span-1 order-1">
                 <x-detail-top :shop="$shop" backUrl="shopAdminPage" />
                 {{-- shop card --}}
-                <x-shop-card :shop="$shop" color="gray" description=true bigImage />
+                <x-shop-card :shop="$shop" color="gray" description bigImage />
 
                 <div class="flex justify-end">
                     <x-link href="{{ route('shop-admin.edit', $shop['id']) }}">編集する</x-link>
@@ -37,8 +38,9 @@
                 @endif
                 @foreach ($shop->reserves as $reserve)
                     {{-- reserve card --}}
-                    {{-- 来店済みボタンを作る --}}
-                    <x-reserved-card :reserve="$reserve" isAdmin />
+                    @if ($reserve['date_time'] >= date('Y-m-d'))
+                        <x-reserved-card :reserve="$reserve" isAdmin />
+                    @endif
                 @endforeach
             </div>
 

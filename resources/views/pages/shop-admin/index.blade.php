@@ -15,14 +15,9 @@
             </div>
 
             <div class="col-span-1">
-                <x-title3 title="店舗管理者" class="mb-4" />
                 {{-- 店舗管理者情報を編集できるようにする --}}
-                <div class="bg-primary text-white p-5 rounded col-span-1 text-lg">
-                    <div class="flex justify-end">
-                        <button>
-                            <i class="fa-solid fa-user-pen"></i>
-                        </button>
-                    </div>
+                <div class="bg-primary text-white p-5 rounded col-span-1 text-lg sticky top-20">
+                    <x-title3 title="店舗管理者" class="mb-4" />
                     <table>
                         <tr>
                             <th class="text-start">ID</th>
