@@ -1,5 +1,5 @@
 @push('scripts')
-    <script src="{{ asset('js/mypage.js') }}" defer></script>
+    <script src="{{ asset('js/shop-admin/show.js') }}" defer></script>
 @endpush
 
 <x-app-layout>

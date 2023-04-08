@@ -36,7 +36,11 @@
             </div>
 
             <div class="col-span-1 md:col-span-2">
-                <x-title3 title="登録している店舗一覧" class="mb-4" />
+                <div class="flex justify-between mb-4">
+                    <x-title3 title="登録している店舗一覧" />
+                    <x-link href="{{ route('shop-admin.create') }}"><i class="fa-solid fa-plus"></i>
+                    </x-link>
+                </div>
 
                 {{-- shop card arae 2 col --}}
                 <div class=" grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-4">

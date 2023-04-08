@@ -1,4 +1,4 @@
-// // cancel処理
+// cancel処理
 export default class CancelReserve {
     private cancelBtns: NodeListOf<HTMLButtonElement>;
 

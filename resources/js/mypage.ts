@@ -1,5 +1,5 @@
-import CancelReserve from "./cancel-reserve";
-import LikeShop from "./like-shop";
+import CancelReserve from "./modules/cancel-reserve";
+import LikeShop from "./modules/like-shop";
 
 // cancel処理
 const cancelBtns = document.querySelectorAll<HTMLButtonElement>(".cancel-btn")!;

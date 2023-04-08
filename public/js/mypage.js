@@ -2054,10 +2054,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/cancel-reserve.ts":
-/*!****************************************!*\
-  !*** ./resources/js/cancel-reserve.ts ***!
-  \****************************************/
+/***/ "./resources/js/modules/cancel-reserve.ts":
+/*!************************************************!*\
+  !*** ./resources/js/modules/cancel-reserve.ts ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2065,7 +2065,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-// // cancel処理
+// cancel処理
 var CancelReserve = /** @class */function () {
   function CancelReserve(cancelBtns) {
     this.cancelBtns = cancelBtns;
@@ -2088,10 +2088,10 @@ var CancelReserve = /** @class */function () {
 
 /***/ }),
 
-/***/ "./resources/js/like-shop.ts":
-/*!***********************************!*\
-  !*** ./resources/js/like-shop.ts ***!
-  \***********************************/
+/***/ "./resources/js/modules/like-shop.ts":
+/*!*******************************************!*\
+  !*** ./resources/js/modules/like-shop.ts ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2587,17 +2587,17 @@ var __webpack_exports__ = {};
   !*** ./resources/js/mypage.ts ***!
   \********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _cancel_reserve__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cancel-reserve */ "./resources/js/cancel-reserve.ts");
-/* harmony import */ var _like_shop__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./like-shop */ "./resources/js/like-shop.ts");
+/* harmony import */ var _modules_cancel_reserve__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/cancel-reserve */ "./resources/js/modules/cancel-reserve.ts");
+/* harmony import */ var _modules_like_shop__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/like-shop */ "./resources/js/modules/like-shop.ts");
 
 
 // cancel処理
 var cancelBtns = document.querySelectorAll(".cancel-btn");
-var cancelReserve = new _cancel_reserve__WEBPACK_IMPORTED_MODULE_0__["default"](cancelBtns);
+var cancelReserve = new _modules_cancel_reserve__WEBPACK_IMPORTED_MODULE_0__["default"](cancelBtns);
 cancelReserve.cancel();
 // like shop
 var likeButtons = document.querySelectorAll(".like-btn");
-var likeShop = new _like_shop__WEBPACK_IMPORTED_MODULE_1__["default"](likeButtons);
+var likeShop = new _modules_like_shop__WEBPACK_IMPORTED_MODULE_1__["default"](likeButtons);
 likeShop.init();
 })();
 

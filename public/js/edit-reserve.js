@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./resources/js/accordion.ts":
-/*!***********************************!*\
-  !*** ./resources/js/accordion.ts ***!
-  \***********************************/
+/***/ "./resources/js/modules/accordion.ts":
+/*!*******************************************!*\
+  !*** ./resources/js/modules/accordion.ts ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -49,10 +49,10 @@ var Accordion = /** @class */function () {
 
 /***/ }),
 
-/***/ "./resources/js/comment-truncator.ts":
-/*!*******************************************!*\
-  !*** ./resources/js/comment-truncator.ts ***!
-  \*******************************************/
+/***/ "./resources/js/modules/comment-truncator.ts":
+/*!***************************************************!*\
+  !*** ./resources/js/modules/comment-truncator.ts ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -90,10 +90,10 @@ var CommentTruncator = /** @class */function () {
 
 /***/ }),
 
-/***/ "./resources/js/modal.ts":
-/*!*******************************!*\
-  !*** ./resources/js/modal.ts ***!
-  \*******************************/
+/***/ "./resources/js/modules/modal.ts":
+/*!***************************************!*\
+  !*** ./resources/js/modules/modal.ts ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -145,10 +145,10 @@ var Modal = /** @class */function () {
 
 /***/ }),
 
-/***/ "./resources/js/reservation.ts":
-/*!*************************************!*\
-  !*** ./resources/js/reservation.ts ***!
-  \*************************************/
+/***/ "./resources/js/modules/reservation.ts":
+/*!*********************************************!*\
+  !*** ./resources/js/modules/reservation.ts ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -187,10 +187,10 @@ var setupNumberInput = function setupNumberInput() {
 
 /***/ }),
 
-/***/ "./resources/js/smooth-scroll.ts":
-/*!***************************************!*\
-  !*** ./resources/js/smooth-scroll.ts ***!
-  \***************************************/
+/***/ "./resources/js/modules/smooth-scroll.ts":
+/*!***********************************************!*\
+  !*** ./resources/js/modules/smooth-scroll.ts ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -294,23 +294,23 @@ var __webpack_exports__ = {};
   !*** ./resources/js/edit-reserve.ts ***!
   \**************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _accordion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./accordion */ "./resources/js/accordion.ts");
-/* harmony import */ var _comment_truncator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comment-truncator */ "./resources/js/comment-truncator.ts");
-/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal */ "./resources/js/modal.ts");
-/* harmony import */ var _reservation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reservation */ "./resources/js/reservation.ts");
-/* harmony import */ var _smooth_scroll__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./smooth-scroll */ "./resources/js/smooth-scroll.ts");
+/* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/accordion */ "./resources/js/modules/accordion.ts");
+/* harmony import */ var _modules_comment_truncator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/comment-truncator */ "./resources/js/modules/comment-truncator.ts");
+/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modal */ "./resources/js/modules/modal.ts");
+/* harmony import */ var _modules_reservation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/reservation */ "./resources/js/modules/reservation.ts");
+/* harmony import */ var _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/smooth-scroll */ "./resources/js/modules/smooth-scroll.ts");
 
 
 
 
 
 // 予約フォームの入力値を確認画面に反映する処理
-(0,_reservation__WEBPACK_IMPORTED_MODULE_3__.setupDateInput)();
-(0,_reservation__WEBPACK_IMPORTED_MODULE_3__.setupTimeInput)();
-(0,_reservation__WEBPACK_IMPORTED_MODULE_3__.setupNumberInput)();
+(0,_modules_reservation__WEBPACK_IMPORTED_MODULE_3__.setupDateInput)();
+(0,_modules_reservation__WEBPACK_IMPORTED_MODULE_3__.setupTimeInput)();
+(0,_modules_reservation__WEBPACK_IMPORTED_MODULE_3__.setupNumberInput)();
 // smooth scrolling
 var triggerSelector = document.querySelectorAll('a[href^="#"]');
-var smoothScroll = new _smooth_scroll__WEBPACK_IMPORTED_MODULE_4__["default"](triggerSelector);
+var smoothScroll = new _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_4__["default"](triggerSelector);
 smoothScroll.init();
 // comment modal
 var modal = document.querySelector("#modal");
@@ -318,20 +318,20 @@ var modalOverlay = document.querySelector("#modal-overlay");
 var openModalBtn = document.querySelector("#open-modal");
 var closeModalBtn = document.querySelector("#close-modal");
 if (modal) {
-  var commentModal = new _modal__WEBPACK_IMPORTED_MODULE_2__["default"](modal, modalOverlay, openModalBtn, closeModalBtn);
+  var commentModal = new _modules_modal__WEBPACK_IMPORTED_MODULE_2__["default"](modal, modalOverlay, openModalBtn, closeModalBtn);
   commentModal.setModal();
 }
 // accordion
 var showMoreBtn = document.querySelector("#show-more-button");
 var hiddenContents = document.querySelectorAll("#reviews-container .hidden");
 if (showMoreBtn) {
-  var commentAccordion = new _accordion__WEBPACK_IMPORTED_MODULE_0__["default"](showMoreBtn, hiddenContents);
+  var commentAccordion = new _modules_accordion__WEBPACK_IMPORTED_MODULE_0__["default"](showMoreBtn, hiddenContents);
   commentAccordion.toggleShow();
 }
 // text truncator
 var commentTextArray = document.querySelectorAll(".comment-text");
 if (commentTextArray) {
-  var commentTruncator = new _comment_truncator__WEBPACK_IMPORTED_MODULE_1__["default"](commentTextArray);
+  var commentTruncator = new _modules_comment_truncator__WEBPACK_IMPORTED_MODULE_1__["default"](commentTextArray);
   commentTruncator.truncate();
 }
 })();

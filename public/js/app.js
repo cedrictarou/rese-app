@@ -9,8 +9,8 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _drawer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./drawer */ "./resources/js/drawer.ts");
-/* harmony import */ var _flash_message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./flash-message */ "./resources/js/flash-message.ts");
+/* harmony import */ var _modules_drawer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/drawer */ "./resources/js/modules/drawer.ts");
+/* harmony import */ var _modules_flash_message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/flash-message */ "./resources/js/modules/flash-message.ts");
 
 
 // navigation bar
@@ -18,7 +18,7 @@ var openBtn = document.querySelector("#nav-btn");
 var closeBtn = document.querySelector("#nav-close");
 var nav = document.querySelector("#nav");
 var LeftToRight = "left-to-right";
-var navDrawer = new _drawer__WEBPACK_IMPORTED_MODULE_0__["default"](openBtn, closeBtn, nav, LeftToRight);
+var navDrawer = new _modules_drawer__WEBPACK_IMPORTED_MODULE_0__["default"](openBtn, closeBtn, nav, LeftToRight);
 navDrawer.toggleDrawer();
 // search bar
 var searchBtn = document.querySelector("#search-btn");
@@ -26,22 +26,22 @@ var overlay = document.querySelector("#overlay");
 var searchBox = document.querySelector("#search-box");
 var RightToLeft = "right-to-left";
 if (searchBox) {
-  var searchDrawer = new _drawer__WEBPACK_IMPORTED_MODULE_0__["default"](searchBtn, overlay, searchBox, RightToLeft);
+  var searchDrawer = new _modules_drawer__WEBPACK_IMPORTED_MODULE_0__["default"](searchBtn, overlay, searchBox, RightToLeft);
   searchDrawer.toggleDrawer();
 }
 // flash message
 var flashMessage = document.querySelector("#flash-message");
 if (flashMessage) {
-  var message = new _flash_message__WEBPACK_IMPORTED_MODULE_1__["default"](flashMessage);
+  var message = new _modules_flash_message__WEBPACK_IMPORTED_MODULE_1__["default"](flashMessage);
   message.flash();
 }
 
 /***/ }),
 
-/***/ "./resources/js/drawer.ts":
-/*!********************************!*\
-  !*** ./resources/js/drawer.ts ***!
-  \********************************/
+/***/ "./resources/js/modules/drawer.ts":
+/*!****************************************!*\
+  !*** ./resources/js/modules/drawer.ts ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -77,10 +77,10 @@ var Drawer = /** @class */function () {
 
 /***/ }),
 
-/***/ "./resources/js/flash-message.ts":
-/*!***************************************!*\
-  !*** ./resources/js/flash-message.ts ***!
-  \***************************************/
+/***/ "./resources/js/modules/flash-message.ts":
+/*!***********************************************!*\
+  !*** ./resources/js/modules/flash-message.ts ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);

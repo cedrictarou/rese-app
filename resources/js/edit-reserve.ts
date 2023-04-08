@@ -1,8 +1,8 @@
-import Accordion from "./accordion";
-import CommentTruncator from "./comment-truncator";
-import Modal from "./modal";
-import { setupDateInput, setupTimeInput, setupNumberInput } from "./reservation";
-import SmoothScroll from "./smooth-scroll";
+import Accordion from "./modules/accordion";
+import CommentTruncator from "./modules/comment-truncator";
+import Modal from "./modules/modal";
+import { setupDateInput, setupTimeInput, setupNumberInput } from "./modules/reservation";
+import SmoothScroll from "./modules/smooth-scroll";
 
 // 予約フォームの入力値を確認画面に反映する処理
 setupDateInput();

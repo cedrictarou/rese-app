@@ -17,16 +17,13 @@ mix.ts("resources/js/app.ts", "public/js")
     .ts("resources/js/detail.ts", "public/js")
     .ts("resources/js/mypage.ts", "public/js")
     .ts("resources/js/edit-reserve.ts", "public/js")
-    .ts("resources/js/preview-image.ts", "public/js")
+    .ts("resources/js/shop-admin/show.ts", "public/js/shop-admin")
+    .ts("resources/js/shop-admin/create.ts", "public/js/shop-admin")
+    .ts("resources/js/shop-admin/edit.ts", "public/js/shop-admin")
     .sass("resources/sass/app.scss", "public/css", [])
     .sass("resources/sass/reset.scss", "public/css", [])
     .options({
-        postCss: [
-            // require("postcss-import"),
-            // tailwindcss("./tailwind.config.js"),
-            tailwindcss("./tailwind.config.js"),
-            require("autoprefixer"),
-        ],
+        postCss: [tailwindcss("./tailwind.config.js"), require("autoprefixer")],
     })
     .version();
 

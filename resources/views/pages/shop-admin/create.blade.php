@@ -1,5 +1,5 @@
 @push('scripts')
-    <script src="{{ asset('js/preview-image.js') }}" defer></script>
+    <script src="{{ asset('js/shop-admin/create.js') }}" defer></script>
 @endpush
 
 <x-app-layout>
@@ -10,7 +10,7 @@
 
         <section class="w-3/4 mx-auto">
             <div class="flex justify-between">
-                <x-title2 title="編集ページ" />
+                <x-title2 title="登録ページ" />
             </div>
             <div class="mt-5">
                 <form action="{{ route('shop-admin.store') }}" method="POST" enctype="multipart/form-data">
@@ -18,8 +18,8 @@
                     <table class="w-full">
                         <tbody>
                             <tr>
-                                <th class="text-start">店舗名</th>
-                                <td>
+                                <th class="text-start w-1/4">店舗名</th>
+                                <td class="text-start w-3/4">
                                     <x-input class="md:bg-transparent" type="text" value="{{ old('name') }}"
                                         name="name" required placeholder="お店の名前を入力してください" />
                                 </td>
@@ -27,7 +27,7 @@
                             <tr>
                                 <th class="text-start">ジャンル</th>
                                 <td>
-                                    <x-select required name="genre_id">
+                                    <x-select required name="genre_id" class="w-full bg-transparent">
                                         @foreach ($genres as $genre)
                                             <option value="{{ $genre['id'] }}">{{ $genre['genre'] }}</option>
                                         @endforeach
@@ -37,7 +37,7 @@
                             <tr>
                                 <th class="text-start">地域</th>
                                 <td>
-                                    <x-select required name="region_id">
+                                    <x-select required name="region_id" class="w-full bg-transparent">
                                         @foreach ($regions as $region)
                                             <option value="{{ $region['id'] }}">{{ $region['region'] }}</option>
                                         @endforeach
@@ -55,22 +55,24 @@
                             <tr>
                                 <th class="text-start">画像</th>
                                 <td>
-                                    {{-- <x-input type="file" class="md:bg-transparent" type="text" name="image"
-                                        value="{{ old('image') }}" required placeholder="画像のパスを入力してください" /> --}}
                                     <div class="mb-2">
-                                        {{-- <img id="image-before" src="{{ asset($shop['image']) }}"> --}}
+                                        <div class="object-cover">
+                                            <img id="image-before" src="{{ old('image') }}">
+                                        </div>
+
                                         <img id="image-after" class="hidden" src="" alt="Image Preview">
                                     </div>
-                                    <div class="flex justify-end">
-                                        <input type="file" id="image-input" name="image">
+                                    <div class="flex flex-end">
+                                        <x-input class="w-full" type="file" id="image-input" name="image"
+                                            accept=".jpeg,.jpg,.png" />
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="flex justify-between mt-2">
+                    <div class="flex justify-between mt-5">
+                        <x-link class="text-base" color="red" href="{{ route('shop-admin.index') }}">キャンセル</x-link>
                         <x-button>登録する</x-button>
-                        <x-link class="text-base" href="{{ route('shop-admin.index') }}">戻る</x-link>
                     </div>
                 </form>
             </div>

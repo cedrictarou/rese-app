@@ -2054,10 +2054,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/like-shop.ts":
-/*!***********************************!*\
-  !*** ./resources/js/like-shop.ts ***!
-  \***********************************/
+/***/ "./resources/js/modules/like-shop.ts":
+/*!*******************************************!*\
+  !*** ./resources/js/modules/like-shop.ts ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2553,11 +2553,11 @@ var __webpack_exports__ = {};
   !*** ./resources/js/index.ts ***!
   \*******************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _like_shop__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./like-shop */ "./resources/js/like-shop.ts");
+/* harmony import */ var _modules_like_shop__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/like-shop */ "./resources/js/modules/like-shop.ts");
 
 // like shop
 var likeButtons = document.querySelectorAll(".like-btn");
-var likeShop = new _like_shop__WEBPACK_IMPORTED_MODULE_0__["default"](likeButtons);
+var likeShop = new _modules_like_shop__WEBPACK_IMPORTED_MODULE_0__["default"](likeButtons);
 likeShop.init();
 })();
 

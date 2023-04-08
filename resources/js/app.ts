@@ -1,5 +1,5 @@
-import Drawer from "./drawer";
-import FlashMessage from "./flash-message";
+import Drawer from "./modules/drawer";
+import FlashMessage from "./modules/flash-message";
 
 // navigation bar
 const openBtn = document.querySelector<HTMLButtonElement>("#nav-btn")!;
