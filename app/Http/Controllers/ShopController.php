@@ -25,16 +25,8 @@ class ShopController extends Controller
         // 検索キーを残しておく
         $request->session()->put('search_key', $search);
 
-        // if (!Auth::check()) {
-        // ログインしていない場合
-        // $shops = Shop::search($search)->with('reviews')->paginate(12);
-        // } else {
-        // ログインしている場合
-        // $user_id = Auth::id();
         // 各お店のいいね数とログイン中のユーザーがいいねを押しているかどうかを判定
         $shops = Shop::search($search)->with('reviews')->paginate(12);
-        // }
-
 
         return view('pages.index', compact('shops', 'genres', 'regions'));
     }
@@ -44,7 +36,7 @@ class ShopController extends Controller
         $shop = Shop::find($shop_id);
 
         // お店ごとのコメントやratingを取得する
-        $reviews = Review::where('shop_id', $shop_id)->orderBy('created_at', 'desc')->get();
+        $reviews = Review::with('shop')->where('shop_id', $shop_id)->orderBy('created_at', 'desc')->get();
         // 予約な時間を作成する
         $now = Carbon::now(); //現在時刻
         $timeOptionsForReservation = [];

@@ -1,4 +1,5 @@
 @push('scripts')
+    {{-- <script src="{{ asset('js/shop-admin/show.js') }}" defer></script> --}}
 @endpush
 
 <x-app-layout>
@@ -8,27 +9,33 @@
     <main class="mx-auto container pb-10 px-5">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
 
-            <div class="col-span-1 md:col-span-3 md:col-start-2">
-                @if (Auth::check())
-                    <x-title2 title="{{ Auth::user()->name . 'さんのページ' }}" />
-                @endif
+            <div class="col-span-3 md:col-start-1 md:col-end-4">
+                <div class="flex gap-2">
+                    <x-link href="{{ route('admin.index') }}" color="white" class="shadow hover:opacity-50">
+                        <i class="fa-solid fa-chevron-left text-black"></i>
+                    </x-link>
+                    <x-title2 title="{{ $user['name'] }}" />
+                </div>
             </div>
 
             <div class="col-span-1">
                 <div class="bg-primary text-white p-5 rounded col-span-1 text-lg sticky top-20 shadow">
-                    <x-title3 title="店舗管理者" class="mb-4" />
+                    <div class="flex justify-between">
+                        <x-title3 title="店舗管理者" class="mb-4" />
+                        <a href="{{ route('admin.edit', $user['id']) }}"><i class="fa-solid fa-user-pen"></i></a>
+                    </div>
                     <table>
                         <tr>
                             <th class="text-start">ID</th>
-                            <td>{{ Auth::id() }}</td>
+                            <td>{{ $user['id'] }}</td>
                         </tr>
                         <tr>
                             <th class="text-start">Account</th>
-                            <td>{{ Auth::user()->name }}</td>
+                            <td>{{ $user['name'] }}</td>
                         </tr>
                         <tr>
                             <th class="text-start">Email</th>
-                            <td>{{ Auth::user()->email }}</td>
+                            <td>{{ $user['email'] }}</td>
                         </tr>
                     </table>
                 </div>
@@ -37,13 +44,11 @@
             <div class="col-span-1 md:col-span-2">
                 <div class="flex justify-between mb-4">
                     <x-title3 title="登録している店舗一覧" />
-                    <x-link href="{{ route('shop-admin.create') }}"><i class="fa-solid fa-plus"></i>
-                    </x-link>
                 </div>
 
                 {{-- shop card arae 2 col --}}
                 <div class=" grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-4">
-                    @foreach ($shops as $shop)
+                    @foreach ($user->shops as $shop)
                         <article class="rounded-lg border-solid bg-white shadow-lg">
                             {{-- card-header --}}
                             <div class="relative">
@@ -80,6 +85,6 @@
                 </div>
             </div>
         </div>
-
     </main>
+
 </x-app-layout>

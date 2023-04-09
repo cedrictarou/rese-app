@@ -23,7 +23,7 @@ class ShopAdminController extends Controller
     public function show($shop_id)
     {
         // 指定された店舗の詳細情報を表示するための処理
-        $shop = Shop::find($shop_id);
+        $shop = Shop::with('reserves', 'reviews')->find($shop_id);
         return view('pages.shop-admin.show', compact('shop'));
     }
 

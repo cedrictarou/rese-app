@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ShopAdminController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReserveController;
@@ -69,6 +69,11 @@ Route::prefix('shop-admin')->middleware(['auth', 'shopAdmin'])->group(function (
 });
 
 // アプリ管理者
-// Route::get('/admin', [AdminController::class, 'admin'])->middleware(['auth', 'admin'])->name('admin');
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    // 店舗管理者一覧
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/users/{user_id}', [AdminController::class, 'show'])->name('admin.show');
+    Route::get('/users/{user_id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+});
 
 require __DIR__ . '/auth.php';

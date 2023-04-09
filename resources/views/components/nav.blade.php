@@ -27,6 +27,13 @@
                         ShopAdmin
                     </a>
                 </li>
+            @elseif (Auth::user()->role_id === 3)
+                {{-- 店舗ユーザーの場合 --}}
+                <li>
+                    <a href="{{ route('admin.index') }}">
+                        Admin
+                    </a>
+                </li>
             @else
                 <li>
                     <a href="/mypage">
