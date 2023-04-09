@@ -7,6 +7,10 @@
     <x-header />
 
     <main class="mx-auto container pb-10 px-5">
+        {{-- エラーメッセージ --}}
+        @if ($errors->any())
+            <x-error-message :errors="$errors" class="mb-10" />
+        @endif
 
         <section class="w-3/4 mx-auto">
             <div class="flex justify-between">
@@ -64,14 +68,15 @@
                                     </div>
                                     <div class="flex flex-end">
                                         <x-input class="w-full" type="file" id="image-input" name="image"
-                                            accept=".jpeg,.jpg,.png" />
+                                            accept=".jpeg,.jpg,.png" required />
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="flex justify-between mt-5">
-                        <x-link class="text-base" color="red" href="{{ route('shop-admin.index') }}">キャンセル</x-link>
+                        <x-link class="text-base" color="red" href="{{ route('shop-admin.index') }}">キャンセル
+                        </x-link>
                         <x-button>登録する</x-button>
                     </div>
                 </form>

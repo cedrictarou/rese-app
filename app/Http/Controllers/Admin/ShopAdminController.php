@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShopRequest;
 use App\Models\Genre;
 use App\Models\Region;
 use App\Models\Shop;
@@ -35,7 +36,7 @@ class ShopAdminController extends Controller
         return view('pages.shop-admin.create', compact('regions', 'genres'));
     }
 
-    public function store(Request $request)
+    public function store(ShopRequest $request)
     {
         // 新しい店舗情報をデータベースに登録する処理
         $dir = 'images';
@@ -64,7 +65,7 @@ class ShopAdminController extends Controller
         return view('pages.shop-admin.edit', compact('shop', 'regions', 'genres'));
     }
 
-    public function update(Request $request, $shop_id)
+    public function update(ShopRequest $request, $shop_id)
     {
         // 既存の店舗情報をデータベースに更新する処理
         $shop = Shop::find($shop_id);

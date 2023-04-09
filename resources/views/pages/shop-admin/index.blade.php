@@ -16,7 +16,7 @@
 
             <div class="col-span-1">
                 {{-- 店舗管理者情報を編集できるようにする --}}
-                <div class="bg-primary text-white p-5 rounded col-span-1 text-lg sticky top-20">
+                <div class="bg-primary text-white p-5 rounded col-span-1 text-lg sticky top-20 shadow">
                     <x-title3 title="店舗管理者" class="mb-4" />
                     <table>
                         <tr>
