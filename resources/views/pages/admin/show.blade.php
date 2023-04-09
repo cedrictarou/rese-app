@@ -48,6 +48,10 @@
 
                 {{-- shop card arae 2 col --}}
                 <div class=" grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-4">
+
+                    @if ($user->shops->count() === 0)
+                        <p>登録されている店舗情報はありません</p>
+                    @endif
                     @foreach ($user->shops as $shop)
                         <article class="rounded-lg border-solid bg-white shadow-lg">
                             {{-- card-header --}}

@@ -33,10 +33,14 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         // 入力された email アドレスをセッションから削除する
         session()->forget('email');
+
         if (Auth::user()->role_id === 2) {
             return redirect()->route('shop-admin.index');
+        } elseif (Auth::user()->role_id === 3) {
+            return redirect()->route('admin.index');
+        } else {
+            return redirect()->intended(RouteServiceProvider::HOME);
         }
-        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

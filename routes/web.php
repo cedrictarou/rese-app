@@ -72,8 +72,11 @@ Route::prefix('shop-admin')->middleware(['auth', 'shopAdmin'])->group(function (
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     // 店舗管理者一覧
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/users/create', [AdminController::class, 'create'])->name('admin.create');
+    Route::post('/users', [AdminController::class, 'store'])->name('admin.store');
     Route::get('/users/{user_id}', [AdminController::class, 'show'])->name('admin.show');
     Route::get('/users/{user_id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::put('/users/{user_id}', [AdminController::class, 'update'])->name('admin.update');
 });
 
 require __DIR__ . '/auth.php';
