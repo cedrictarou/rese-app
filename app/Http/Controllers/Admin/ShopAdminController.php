@@ -7,7 +7,7 @@ use App\Http\Requests\ShopRequest;
 use App\Models\Genre;
 use App\Models\Region;
 use App\Models\Shop;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ShopAdminController extends Controller
@@ -16,8 +16,8 @@ class ShopAdminController extends Controller
     {
         // 店舗情報の一覧を表示するための処理
         $user = Auth::user();
-        $shops = Shop::where('user_id', $user->id)->get();
-        return view('pages.shop-admin.index', compact('shops'));
+        $user  = User::with('shops')->find($user['id']);
+        return view('pages.shop-admin.index', compact('user'));
     }
 
     public function show($shop_id)
@@ -29,7 +29,6 @@ class ShopAdminController extends Controller
 
     public function create()
     {
-        // 新しい店舗情報を入力するためのビューを返す処理
         $regions = Region::all();
         $genres = Genre::all();
 
@@ -38,11 +37,19 @@ class ShopAdminController extends Controller
 
     public function store(ShopRequest $request)
     {
-        // 新しい店舗情報をデータベースに登録する処理
         $dir = 'images';
-        $file_name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->storeAs('public/' . $dir, $file_name);
-        $file_dir = 'storage/' . $dir . '/' . $file_name;
+        // アップロードされたファイルを取得
+        $file = $request->file('image');
+
+        if ($file) {
+            // アップロードされた画像を保存
+            $file_name = $file->getClientOriginalName();
+            $file->storeAs('public/' . $dir, $file_name);
+            $file_dir = 'storage/' . $dir . '/' . $file_name;
+        } else {
+            // デフォルト画像を保存
+            $file_dir = 'storage/' . $dir . '/default-image.jpg';
+        }
         Shop::create([
             'name' => $request->name,
             'region_id' => $request->region_id,
@@ -57,7 +64,6 @@ class ShopAdminController extends Controller
 
     public function edit($shop_id)
     {
-        // 既存の店舗情報を編集するためのビューを返す処理
         $shop = Shop::find($shop_id);
         $regions = Region::all();
         $genres = Genre::all();
@@ -67,10 +73,7 @@ class ShopAdminController extends Controller
 
     public function update(ShopRequest $request, $shop_id)
     {
-        // 既存の店舗情報をデータベースに更新する処理
         $shop = Shop::find($shop_id);
-        // 取得したファイル名で保存
-        // 画像がアップロードされた場合
         if ($request->hasFile('image')) {
             $dir = 'images';
             $file_name = $request->file('image')->getClientOriginalName();
@@ -92,7 +95,6 @@ class ShopAdminController extends Controller
 
     public function destroy($shop_id)
     {
-        // 既存の店舗情報をデータベースから削除する処理
         Shop::destroy($shop_id);
         return redirect()->route('shop-admin.index')->with('message', '店舗情報を削除しました。');
     }

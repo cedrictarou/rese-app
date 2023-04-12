@@ -6,6 +6,8 @@
     'footer' => false,
     'rating' => false,
     'bigImage' => false,
+    'href',
+    'likeBtn' => false,
 ])
 
 @php
@@ -55,17 +57,20 @@
         {{-- footer --}}
         @if ($footer)
             <div class="flex justify-between">
-                <x-link class="md:text-xs" href="{{ route('detail', $shop['id']) }}">詳しくみる</x-link>
+                <x-link class="md:text-xs" href="{{ $href }}">詳しくみる</x-link>
 
-                {{-- ユーザーがログインしているときだけいいねボタンを押せる --}}
-                @if (Auth::check())
-                    <button type="button" class="btn btn-primary like-btn" data-shop-id="{{ $shop['id'] }}">
-                        <i class="fa-solid fa-heart {{ $shop->isLikedBy() ? 'is-liked' : 'is-not-liked' }} fa-lg"></i>
-                    </button>
-                @else
-                    <button type="button" class="btn btn-primary like-btn">
-                        <i class="fa-solid fa-heart is-not-liked fa-lg"></i>
-                    </button>
+                @if ($likeBtn)
+                    @if (Auth::check())
+                        {{-- ユーザーがログインしているときだけいいねボタンを押せる --}}
+                        <button type="button" class="btn btn-primary like-btn" data-shop-id="{{ $shop['id'] }}">
+                            <i
+                                class="fa-solid fa-heart {{ $shop->isLikedBy() ? 'is-liked' : 'is-not-liked' }} fa-lg"></i>
+                        </button>
+                    @else
+                        <button type="button" class="btn btn-primary like-btn">
+                            <i class="fa-solid fa-heart is-not-liked fa-lg"></i>
+                        </button>
+                    @endif
                 @endif
             </div>
         @endif

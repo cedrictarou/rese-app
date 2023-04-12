@@ -10,35 +10,12 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
 
             <div class="col-span-3 md:col-start-1 md:col-end-4">
-                <div class="flex gap-2">
-                    <x-link href="{{ route('admin.index') }}" color="white" class="shadow hover:opacity-50">
-                        <i class="fa-solid fa-chevron-left text-black"></i>
-                    </x-link>
-                    <x-title2 title="{{ $user['name'] }}" />
-                </div>
+                <x-common.back-button :href="route('admin.index')" :title="$user['name']" />
+
             </div>
 
             <div class="col-span-1">
-                <div class="bg-primary text-white p-5 rounded col-span-1 text-lg sticky top-20 shadow">
-                    <div class="flex justify-between">
-                        <x-title3 title="店舗管理者" class="mb-4" />
-                        <a href="{{ route('admin.edit', $user['id']) }}"><i class="fa-solid fa-user-pen"></i></a>
-                    </div>
-                    <table>
-                        <tr>
-                            <th class="text-start">ID</th>
-                            <td>{{ $user['id'] }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-start">Account</th>
-                            <td>{{ $user['name'] }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-start">Email</th>
-                            <td>{{ $user['email'] }}</td>
-                        </tr>
-                    </table>
-                </div>
+                <x-common.user-info :user="$user" />
             </div>
 
             <div class="col-span-1 md:col-span-2">

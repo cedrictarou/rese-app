@@ -14,10 +14,19 @@
 
         <section class="w-3/4 mx-auto">
             <div class="flex justify-between">
-                <x-title2 title="編集ページ" />
+                <x-common.back-button :href="route('shop-admin.show', $shop['id'])" title="編集ページ" />
+                <form action="{{ route('shop-admin.destroy', $shop['id']) }}" method="POST"
+                    onsubmit="return confirm('本当に削除しますか？')">
+                    @csrf
+                    @method('DELETE')
+                    <x-button color="red"><i class="fa-solid fa-trash"></i></x-button>
+                </form>
             </div>
             <div class="mt-5">
-                <form action="{{ route('shop-admin.update', $shop['id']) }}" method="POST" enctype="multipart/form-data">
+                <x-shop-admin.shop-form :shop="$shop" :action="route('shop-admin.update', $shop['id'])" method="PUT" :genres="$genres"
+                    :regions="$regions" />
+                {{-- <form action="{{ route('shop-admin.update', $shop['id']) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <table class="w-full">
@@ -77,12 +86,6 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th></th>
-                                <td>
-
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                     <div class="flex justify-between mt-5">
@@ -91,7 +94,7 @@
                         <x-button>更新する</x-button>
                     </div>
 
-                </form>
+                </form> --}}
             </div>
         </section>
     </main>

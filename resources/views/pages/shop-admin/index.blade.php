@@ -15,23 +15,7 @@
             </div>
 
             <div class="col-span-1">
-                <div class="bg-primary text-white p-5 rounded col-span-1 text-lg sticky top-20 shadow">
-                    <x-title3 title="店舗管理者" class="mb-4" />
-                    <table>
-                        <tr>
-                            <th class="text-start">ID</th>
-                            <td>{{ Auth::id() }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-start">Account</th>
-                            <td>{{ Auth::user()->name }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-start">Email</th>
-                            <td>{{ Auth::user()->email }}</td>
-                        </tr>
-                    </table>
-                </div>
+                <x-common.user-info :user="$user" />
             </div>
 
             <div class="col-span-1 md:col-span-2">
@@ -43,39 +27,8 @@
 
                 {{-- shop card arae 2 col --}}
                 <div class=" grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-4">
-                    @foreach ($shops as $shop)
-                        <article class="rounded-lg border-solid bg-white shadow-lg">
-                            {{-- card-header --}}
-                            <div class="relative">
-                                <img class="rounded w-full object-cover object-center md:h-40 h-50 aspect-auto rounded-b-none"
-                                    src="{{ asset($shop['image']) }}" alt="content">
-                                <div class="absolute right-2 bottom-1 bg-slate-200 opacity-70 px-3 rounded">
-
-                                </div>
-                            </div>
-
-                            {{-- card-body --}}
-                            <div class="p-5">
-                                <h2 class="text-lg text-secondary-dark font-semibold">{{ $shop['name'] }}</h2>
-
-                                <div class="text-sm text-secondary-dark mb-2 flex gap-2">
-                                    <span>#{{ $shop->region['region'] }}</span>
-                                    <span>#{{ $shop->genre['genre'] }}</span>
-                                </div>
-
-                                {{-- footer --}}
-                                <div class="flex justify-between">
-                                    <x-link class="md:text-xs" href="{{ route('shop-admin.show', $shop['id']) }}">詳細ページ
-                                    </x-link>
-                                    <form action="{{ route('shop-admin.destroy', $shop['id']) }}" method="POST"
-                                        onsubmit="return confirm('本当に削除しますか？')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <x-button color="red"><i class="fa-solid fa-trash"></i></x-button>
-                                    </form>
-                                </div>
-                            </div>
-                        </article>
+                    @foreach ($user->shops as $shop)
+                        <x-shop-card :shop="$shop" shopName footer :href="route('shop-admin.show', $shop['id'])" />
                     @endforeach
                 </div>
             </div>

@@ -77,6 +77,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/users/{user_id}', [AdminController::class, 'show'])->name('admin.show');
     Route::get('/users/{user_id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
     Route::put('/users/{user_id}', [AdminController::class, 'update'])->name('admin.update');
+    Route::delete('/users/{user_id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
 
 require __DIR__ . '/auth.php';

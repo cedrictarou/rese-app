@@ -10,7 +10,7 @@
     <main class="mx-auto container pb-10 px-5">
         <section class="w-3/4 mx-auto">
             <div class="flex justify-between mb-5">
-                <x-title2 title="admin page" />
+                <x-title2 title="店舗管理者一覧" />
                 <x-link href="{{ route('admin.create') }}"><i class="fa-solid fa-plus"></i></x-link>
             </div>
             <table class="w-full">

@@ -22,7 +22,6 @@
     'class' => 'flex gap-2 flex-wrap mb-5',
 ]) }}>
     <div class="flex">
-        {{-- <x-link href="{{ url()->previous() }}" color="white" class="shadow hover:opacity-50"> --}}
         <x-link href="{{ $url }}" color="white" class="shadow hover:opacity-50">
             <i class="fa-solid fa-chevron-left text-black"></i>
         </x-link>

@@ -11528,6 +11528,9 @@ select {
 .p-1 {
   padding: 0.25rem;
 }
+.p-10 {
+  padding: 2.5rem;
+}
 .p-5 {
   padding: 1.25rem;
 }
@@ -11740,6 +11743,14 @@ select {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.placeholder-white::-moz-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-placeholder-opacity));
+}
+.placeholder-white::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-placeholder-opacity));
+}
 .opacity-0 {
   opacity: 0;
 }
@@ -11844,7 +11855,6 @@ input[type=password]:focus {
   outline: none;
   box-shadow: none;
   border-bottom: 1px solid #3b82f6;
-  background-color: transparent;
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }

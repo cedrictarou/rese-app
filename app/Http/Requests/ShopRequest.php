@@ -28,7 +28,6 @@ class ShopRequest extends FormRequest
             'genre_id' => 'required|integer',
             'region_id' => 'required|integer',
             'description' => 'required|string|max:255',
-            'image' => 'required',
         ];
     }
     public function messages()
@@ -40,7 +39,6 @@ class ShopRequest extends FormRequest
             'region.required' => '地域を選択してください。',
             'description.required' => '説明を入力してください。',
             'description.max' => '説明は255文字以内で入力してください。',
-            'image.required' => '画像を選択してください。',
         ];
     }
 }

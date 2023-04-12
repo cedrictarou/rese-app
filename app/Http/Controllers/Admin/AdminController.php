@@ -58,13 +58,26 @@ class AdminController extends Controller
         ]);
 
         $user = User::find($user_id);
-        $user->update([
+        $user_data = [
             'name' => $request->name,
             'email' => $request->email,
             'role_id' => 2,
             'password' => $request->filled('password') ? Hash::make($request->password) : $user->password,
-        ]);
+        ];
+
+        if ($user_data == $user->toArray()) {
+            return redirect()->route('admin.show', $user->id)->with('message', '変更がありません');
+        }
+        $user->update($user_data);
 
         return redirect()->route('admin.show', $user->id)->with('message', '店舗管理者を更新しました');
+    }
+
+    public function destroy($user_id)
+    {
+        $user = User::find($user_id);
+        $user->delete();
+
+        return redirect()->route('admin.index')->with('message', '店舗管理者を削除しました');
     }
 }
