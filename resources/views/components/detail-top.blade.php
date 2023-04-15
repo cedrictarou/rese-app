@@ -1,31 +1,18 @@
-@props(['shop', 'backUrl'])
-
-@php
-    switch ($backUrl) {
-        case 'top':
-            $url = route('index');
-            break;
-        case 'myPage':
-            $url = route('mypage');
-            break;
-        case 'shopAdminPage':
-            $url = route('shop-admin.index');
-            break;
-    
-        default:
-            $url = route('index');
-            break;
-    }
-@endphp
+@props(['shop', 'backLink'])
 
 <div {{ $attributes->merge([
     'class' => 'flex gap-2 flex-wrap mb-5',
 ]) }}>
     <div class="flex">
-        <x-link href="{{ $url }}" color="white" class="shadow hover:opacity-50">
-            <i class="fa-solid fa-chevron-left text-black"></i>
-        </x-link>
-        <x-title2 title="{{ $shop['name'] }}" class="ml-4" />
+        @php
+            $currentUrl = url()->current();
+            $previousUrl = url()->previous();
+            $backButtonHref = $currentUrl == $previousUrl ? route('index') : $previousUrl;
+        @endphp
+
+        <x-common.back-button :href="$backButtonHref" title="{{ $shop['name'] }}" />
+
+
         <div class="ml-2 flex gap-2 self-end text-secondary-dark ">
             <span>#{{ $shop->region['region'] }}</span>
             <span>#{{ $shop->genre['genre'] }}</span>

@@ -12,7 +12,7 @@
 
             {{-- shop info --}}
             <div class="col-span-1">
-                <x-detail-top :shop="$shop" />
+                <x-detail-top :shop="$shop" backUrl="myPage" />
 
                 <x-shop-card color="gray" :shop="$shop" description=true />
 
@@ -49,7 +49,7 @@
                                 $title = 'キャンセル済み';
                                 break;
                         }
-
+                        
                     @endphp
                     <x-title2 :title="$title" class="mb-4" />
                     <x-reserve-form :action="route('update', $reserve['id'])" method="PUT" :dateValue="$reserve->getDate()" :timeOptions="$timeOptionsForReservation"

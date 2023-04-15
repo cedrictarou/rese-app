@@ -77,7 +77,7 @@
             <td class="text-start">{{ $reserve['num_of_people'] . '人' }}</td>
         </tr>
     </table>
-    @if ($reserve['status'] === 0)
+    @if ($reserve['status'] === 0 && (Auth::user()->role_id == 2 || Auth::user()->role_id == 3))
         <div class="flex justify-end">
             <form action="{{ route('came', $reserve['id']) }}" method="POST"
                 onsubmit="return confirm('お客さんが来店しましたか？')">

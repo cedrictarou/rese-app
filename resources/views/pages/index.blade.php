@@ -18,7 +18,8 @@
             @endif
             @foreach ($shops as $shop)
                 {{-- shop card --}}
-                <x-shop-card :shop="$shop" shopName rating footer :href="route('detail', $shop['id'])" likeBtn />
+                <x-shop-card :shop="$shop" shopName rating footer :href="route('detail', $shop['id'])"
+                    likeBtn="{{ optional(Auth::user())->role_id == 1 || optional(Auth::user())->role_id === null ? true : false }}" />
             @endforeach
         </div>
 

@@ -39,7 +39,7 @@
                     @endif
                     @foreach ($like_shops as $like)
                         {{-- shop card --}}
-                        <x-shop-card :shop="$like->shop" footer shopName rating />
+                        <x-shop-card :shop="$like->shop" footer shopName rating :href="route('detail', $like->shop['id'])" likeBtn />
                     @endforeach
                 </div>
             </div>
