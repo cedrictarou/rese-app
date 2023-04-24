@@ -28,7 +28,9 @@
     {{-- card-header --}}
     <div class="relative">
         <img class="rounded w-full object-cover object-center {{ $bigImage ? 'md:h-96' : 'md:h-40' }} h-50 aspect-auto rounded-b-none"
-            src="{{ asset($shop['image']) }}" alt="content">
+            src="{{ Storage::disk('s3')->url($shop['image']) }}" alt="content">
+        {{-- <img class="rounded w-full object-cover object-center {{ $bigImage ? 'md:h-96' : 'md:h-40' }} h-50 aspect-auto rounded-b-none"
+            src="{{ asset($shop['image']) }}" alt="content"> --}}
         <div class="absolute right-2 bottom-1 bg-slate-200 opacity-70 px-3 rounded">
             @if ($rating)
                 <x-star-rating :reviews="$shop->reviews" />

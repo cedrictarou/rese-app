@@ -9,6 +9,7 @@ use App\Models\Region;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ShopAdminController extends Controller
 {
@@ -41,14 +42,23 @@ class ShopAdminController extends Controller
         // アップロードされたファイルを取得
         $file = $request->file('image');
 
+        // if ($file) {
+        //     // アップロードされた画像を保存
+        //     $file_name = $file->getClientOriginalName();
+        //     $file->storeAs('public/' . $dir, $file_name);
+        //     $file_dir = 'storage/' . $dir . '/' . $file_name;
+        // } else {
+        //     // デフォルト画像を保存
+        //     $file_dir = 'storage/' . $dir . '/default-image.jpg';
+        // }
         if ($file) {
             // アップロードされた画像を保存
             $file_name = $file->getClientOriginalName();
-            $file->storeAs('public/' . $dir, $file_name);
-            $file_dir = 'storage/' . $dir . '/' . $file_name;
+            Storage::disk('s3')->putFileAs($dir, $file, $file_name);
+            $file_dir = Storage::disk('s3')->url($dir . '/' . $file_name);
         } else {
             // デフォルト画像を保存
-            $file_dir = 'storage/' . $dir . '/default-image.jpg';
+            $file_dir = Storage::disk('s3')->url($dir . '/default-image.jpg');
         }
         Shop::create([
             'name' => $request->name,
@@ -74,12 +84,25 @@ class ShopAdminController extends Controller
     public function update(ShopRequest $request, $shop_id)
     {
         $shop = Shop::find($shop_id);
+        // if ($request->hasFile('image')) {
+        //     $dir = 'images';
+        //     $file_name = $request->file('image')->getClientOriginalName();
+        //     $request->file('image')->storeAs('public/' . $dir, $file_name);
+        //     $file_dir = 'storage/' . $dir . '/' . $file_name;
+        //     $shop->image = $file_dir;
+        // }
         if ($request->hasFile('image')) {
             $dir = 'images';
-            $file_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir, $file_name);
-            $file_dir = 'storage/' . $dir . '/' . $file_name;
-            $shop->image = $file_dir;
+            $file = $request->file('image');
+            $file_name = $file->getClientOriginalName();
+
+            // ファイルをS3ディスクに保存
+            $file_path = $file->storeAs($dir, $file_name, 's3');
+
+            // Storage::url()メソッドを使用して、保存されたファイルへのURLを生成
+            $file_url = Storage::disk('s3')->url($file_path);
+
+            $shop->image = $file_url;
         }
 
         $shop->update([
