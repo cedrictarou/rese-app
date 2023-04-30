@@ -12,8 +12,7 @@
 
 ## アプリケーション URL
 
--   URL
--   ログイン情報
+-   http://ec2-54-92-112-39.ap-northeast-1.compute.amazonaws.com/
 
 ## 他のリポジトリ
 
