@@ -41,24 +41,28 @@ class ShopAdminController extends Controller
         $dir = 'images';
         // アップロードされたファイルを取得
         $file = $request->file('image');
-
-        // if ($file) {
-        //     // アップロードされた画像を保存
-        //     $file_name = $file->getClientOriginalName();
-        //     $file->storeAs('public/' . $dir, $file_name);
-        //     $file_dir = 'storage/' . $dir . '/' . $file_name;
-        // } else {
-        //     // デフォルト画像を保存
-        //     $file_dir = 'storage/' . $dir . '/default-image.jpg';
-        // }
         if ($file) {
             // アップロードされた画像を保存
             $file_name = $file->getClientOriginalName();
-            Storage::disk('s3')->putFileAs($dir, $file, $file_name);
-            $file_dir = Storage::disk('s3')->url($dir . '/' . $file_name);
+
+            if (config('app.env') === 'local') {
+                // 開発環境: ローカルストレージにファイルをアップロード
+                $request->file('image')->storeAs('public/' . $dir, $file_name);
+                $file_dir = 'storage/' . $dir . '/' . $file_name;
+            } else {
+                // 本番環境: S3にファイルをアップロード
+                Storage::disk('s3')->putFileAs($dir, $file, $file_name);
+                $file_dir = Storage::disk('s3')->url($dir . '/' . $file_name);
+            }
         } else {
             // デフォルト画像を保存
-            $file_dir = Storage::disk('s3')->url($dir . '/default-image.jpg');
+            if (config('app.env') === 'local') {
+                // 開発環境: ローカルストレージのデフォルト画像のURL
+                $file_dir = 'storage/' . $dir . '/default-image.jpg';
+            } else {
+                // 本番環境: S3のデフォルト画像のURL
+                $file_dir = Storage::disk('s3')->url($dir . '/default-image.jpg');
+            }
         }
         Shop::create([
             'name' => $request->name,
@@ -84,25 +88,23 @@ class ShopAdminController extends Controller
     public function update(ShopRequest $request, $shop_id)
     {
         $shop = Shop::find($shop_id);
-        // if ($request->hasFile('image')) {
-        //     $dir = 'images';
-        //     $file_name = $request->file('image')->getClientOriginalName();
-        //     $request->file('image')->storeAs('public/' . $dir, $file_name);
-        //     $file_dir = 'storage/' . $dir . '/' . $file_name;
-        //     $shop->image = $file_dir;
-        // }
-        if ($request->hasFile('image')) {
+        // アップロードされたファイルを取得
+        $file = $request->file('image');
+        if ($file) {
             $dir = 'images';
-            $file = $request->file('image');
             $file_name = $file->getClientOriginalName();
 
-            // ファイルをS3ディスクに保存
-            $file_path = $file->storeAs($dir, $file_name, 's3');
-
-            // Storage::url()メソッドを使用して、保存されたファイルへのURLを生成
-            $file_url = Storage::disk('s3')->url($file_path);
-
-            $shop->image = $file_url;
+            if (config('app.env') === 'local') {
+                // 開発環境: ローカルストレージにファイルをアップロード
+                $file->storeAs('public/' . $dir, $file_name);
+                $file_dir = 'storage/' . $dir . '/' . $file_name;
+                $shop->image = $file_dir;
+            } else {
+                // 本番環境: S3にファイルをアップロード
+                $path = Storage::disk('s3')->putFileAs($dir, $request->file('image'), $file_name, 'public');
+                $file_url = Storage::disk('s3')->url($path);
+                $shop->image = $file_url;
+            }
         }
 
         $shop->update([

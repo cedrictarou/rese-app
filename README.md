@@ -1,64 +1,211 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Rese
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 概要説明
 
-## About Laravel
+-   飲食店の予約をすることができる
+-   飲食店の評価をすることがきる
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 作成した目的
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   お客様が簡単に飲食店の予約をできるようにするため
+-   お店側の予約管理をかんたんにするため
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## アプリケーション URL
 
-## Learning Laravel
+-   URL
+-   ログイン情報
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 他のリポジトリ
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   https://github.com/cedrictarou/rese-app
 
-## Laravel Sponsors
+## 機能一覧
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+-   会員登録
+-   ログイン
+-   ログアウト
+-   ユーザー情報取得
+-   ユーザー飲食店お気に入り一覧取得
+-   ユーザー飲食店予約情報取得
+-   飲食店一覧取得 未ログインでも可能
+-   飲食店詳細取得 未ログインでも可能
+-   飲食店お気に入り追加
+-   飲食店お気に入り削除
+-   飲食店予約情報追加
+-   飲食店予約情報削除
+-   飲食店予約変更機能
+-   エリアで検索する 未ログインでも可能
+-   ジャンルで検索する 未ログインでも可能
+-   店名で検索する 未ログインでも可能
+-   飲食店評価機能
 
-### Premium Partners
+## 使用技術（実行環境）
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+-   laravel8
+-   laravel mix
+-   typescript5
+-   tailwind3
+-   aws
 
-## Contributing
+## テーブル設計
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Users テーブル
 
-## Code of Conduct
+| カラム名   | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| ---------- | --------------- | ----------- | ---------- | -------- | ----------- |
+| id         | unsigned bigint | ○           |            | ○        |             |
+| name       | string          |             |            | ○        |             |
+| email      | string          |             | ○          | ○        |             |
+| password   | string          |             |            | ○        |             |
+| role_id    | foreignId       |             | ○          | ○        |             |
+| created_at | timestamp       |             |            |          |             |
+| updated_at | timestamp       |             |            |          |             |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Shops テーブル
 
-## Security Vulnerabilities
+| カラム名    | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| ----------- | --------------- | ----------- | ---------- | -------- | ----------- |
+| id          | unsigned bigint | ○           |            | ○        |             |
+| name        | string          |             |            | ○        |             |
+| region_id   | foreignId       |             | ○          | ○        |             |
+| genre_id    | foreignId       |             | ○          | ○        |             |
+| description | text            |             |            | ○        |             |
+| image       | string          |             |            |          |             |
+| review_id   | foreignId       |             |            | ○        |             |
+| created_at  | timestamp       |             |            |          |             |
+| updated_at  | timestamp       |             |            |          |             |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Reserves テーブル
 
-## License
+| カラム名      | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| ------------- | --------------- | ----------- | ---------- | -------- | ----------- |
+| id            | unsigned bigint | ○           |            | ○        |             |
+| user_id       | foreignId       |             | ○          | ○        |             |
+| shop_id       | foreignId       |             | ○          | ○        |             |
+| date_time     | dateTime        |             |            | ○        |             |
+| num_of_people | integer         |             |            | ○        |             |
+| status        | tinyint         |             |            | ○        |             |
+| created_at    | timestamp       |             |            |          |             |
+| updated_at    | timestamp       |             |            |          |             |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Regions テーブル
+
+| カラム名   | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| ---------- | --------------- | ----------- | ---------- | -------- | ----------- |
+| id         | unsigned bigint | ○           |            | ○        |             |
+| region     | string          |             |            | ○        |             |
+| created_at | timestamp       |             |            |          |             |
+| updated_at | timestamp       |             |            |          |             |
+
+### Genres テーブル
+
+| カラム名   | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| ---------- | --------------- | ----------- | ---------- | -------- | ----------- |
+| id         | unsigned bigint | ○           |            | ○        |             |
+| name       | string          |             |            | ○        |             |
+| created_at | timestamp       |             |            |          |             |
+| updated_at | timestamp       |             |            |          |             |
+
+### Likes テーブル
+
+| カラム名   | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| ---------- | --------------- | ----------- | ---------- | -------- | ----------- |
+| id         | unsigned bigint | ○           |            | ○        |             |
+| user_id    | foreignId       |             | ○          | ○        |             |
+| shop_id    | foreignId       |             | ○          | ○        |             |
+| created_at | timestamp       |             |            |          |             |
+| updated_at | timestamp       |             |            |          |             |
+
+### Reviews テーブル
+
+| カラム名   | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| ---------- | --------------- | ----------- | ---------- | -------- | ----------- |
+| id         | unsigned bigint | ○           |            | ○        |             |
+| reserve_id | foreignId       |             | ○          | ○        |             |
+| rating     | tinyInteger     |             |            | ○        |             |
+| comment    | text            |             |            | ○        |             |
+| created_at | timestamp       |             |            |          |             |
+| updated_at | timestamp       |             |            |          |             |
+
+### Roles テーブル
+
+| カラム名   | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| ---------- | --------------- | ----------- | ---------- | -------- | ----------- |
+| id         | unsigned bigint | ○           |            | ○        |             |
+| name       | string          |             |            | ○        |             |
+| created_at | timestamp       |             |            |          |             |
+| updated_at | timestamp       |             |            |          |             |
+
+## ER 図
+
+-   index.drawio.png を参照
+
+## 環境構築
+
+### 1\. Docker のインストール
+
+まずは、Docker をインストールしてください。Docker は以下のリンクからダウンロードできます。
+
+[https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
+
+### 2\. Laravel Sail のインストール
+
+Laravel Sail をインストールするために、以下のコマンドを実行します。
+
+`composer install`
+
+### 3\. .env ファイルの設定
+
+リポジトリーには、`.env.example`というファイルが含まれています。このファイルをコピーして、`.env`という名前で保存してください。
+
+`cp .env.example .env`
+
+`.env`ファイルをエディタで開き、以下の設定を変更してください。
+
+```
+DB_PORT=3306
+DB_DATABASE=rese-app
+DB_USERNAME=rese-app
+DB_PASSWORD=password
+
+APP_PORT=8000
+PHPMYADMIN_PORT=8888
+MIX_PORT=3000
+```
+
+### 4\. Docker コンテナの起動
+
+Docker コンテナを起動するために、以下のコマンドを実行してください。
+
+`./vendor/bin/sail up -d`
+
+### 5\. マイグレーションとシーディング
+
+Docker コンテナが起動したら、以下のコマンドでマイグレーションとシーディングを実行してください。
+
+`./vendor/bin/sail artisan migrate ./vendor/bin/sail artisan db:seed`
+
+以上で、環境構築が完了しました。アプリケーションを起動するためには、ブラウザで `http://localhost` にアクセスしてください。
+
+## その他
+
+### テストアカウント
+
+#### 店舗管理者テストアカウント
+
+| account  | shop-admin1           |
+| -------- | --------------------- |
+| email    | shop-admin1@email.com |
+| password | password123           |
+
+| account  | shop-admin2           |
+| -------- | --------------------- |
+| email    | shop-admin2@email.com |
+| password | password123           |
+
+#### アプリ管理者テストアカウント
+
+| account  | admin           |
+| -------- | --------------- |
+| email    | admin@email.com |
+| password | password123     |
