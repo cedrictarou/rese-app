@@ -100,6 +100,8 @@ class ShopAdminController extends Controller
                 $file_dir = 'storage/' . $dir . '/' . $file_name;
                 $shop->image = $file_dir;
             } else {
+								// 古い画像ファイルの削除
+								Storage::disk('s3')->delete($shop->image);
                 // 本番環境: S3にファイルをアップロード
                 $path = Storage::disk('s3')->putFileAs($dir, $request->file('image'), $file_name, 'public');
                 $file_url = Storage::disk('s3')->url($path);
