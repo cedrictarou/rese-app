@@ -14,7 +14,12 @@
 
         <section class="w-3/4 mx-auto">
             <div class="flex justify-between">
-                <x-common.back-button :href="route('shop-admin.index')" title="登録ページ" />
+                {{-- <x-common.back-button :href="route('shop-admin.index')" title="登録ページ" /> --}}
+                @php
+                    $user = Auth::user();
+                    $href = $user->role_id === 3 ? route('admin.show') : route('shop-admin.index');
+                @endphp
+                <x-common.back-button :href="$href" title="登録ページ" />
             </div>
             <div class="mt-5">
                 <x-shop-admin.shop-form :action="route('shop-admin.store')" method="POST" :genres="$genres" :regions="$regions" />

@@ -100,8 +100,8 @@ class ShopAdminController extends Controller
                 $file_dir = 'storage/' . $dir . '/' . $file_name;
                 $shop->image = $file_dir;
             } else {
-								// 古い画像ファイルの削除
-								Storage::disk('s3')->delete($shop->image);
+                // 古い画像ファイルの削除
+                Storage::disk('s3')->delete($shop->image);
                 // 本番環境: S3にファイルをアップロード
                 $path = Storage::disk('s3')->putFileAs($dir, $request->file('image'), $file_name, 'public');
                 $file_url = Storage::disk('s3')->url($path);
@@ -122,7 +122,14 @@ class ShopAdminController extends Controller
 
     public function destroy($shop_id)
     {
+        $user = Auth::user();
+        $shop = Shop::find($shop_id);
+        $shop_admin = $shop->user['id'];
         Shop::destroy($shop_id);
-        return redirect()->route('shop-admin.index')->with('message', '店舗情報を削除しました。');
+
+        if ($user->role_id === 2) {
+            return redirect()->route('shop-admin.index')->with('message', '店舗情報を削除しました。');
+        } else
+            return redirect()->route('admin.show', $shop_admin)->with('message', '店舗情報を削除しました。');
     }
 }

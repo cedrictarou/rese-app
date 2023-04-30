@@ -1,17 +1,11 @@
-@props(['shop', 'backLink'])
+@props(['shop'])
 
 <div {{ $attributes->merge([
     'class' => 'flex gap-2 flex-wrap mb-5',
 ]) }}>
     <div class="flex">
-        @php
-            $currentUrl = url()->current();
-            $previousUrl = url()->previous();
-            $backButtonHref = $currentUrl == $previousUrl ? route('index') : $previousUrl;
-        @endphp
-
-        <x-common.back-button :href="$backButtonHref" title="{{ $shop['name'] }}" />
-
+        {{-- 戻るボタン --}}
+        {{ $slot }}
 
         <div class="ml-2 flex gap-2 self-end text-secondary-dark ">
             <span>#{{ $shop->region['region'] }}</span>

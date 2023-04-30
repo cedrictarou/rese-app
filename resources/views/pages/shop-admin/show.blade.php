@@ -10,7 +10,13 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             {{-- shop info --}}
             <div class="col-span-1 order-1">
-                <x-detail-top :shop="$shop" backUrl="shopAdminPage" />
+                <x-detail-top :shop="$shop" backUrl="shopAdminPage">
+                    @php
+                        $user = Auth::user();
+                        $href = $user->role_id === 3 ? route('admin.show', $shop->user['id']) : route('shop-admin.index');
+                    @endphp
+                    <x-common.back-button :href="$href" title="{{ $shop['name'] }}" />
+                </x-detail-top>
                 {{-- shop card --}}
                 <x-shop-card :shop="$shop" color="gray" description bigImage />
 

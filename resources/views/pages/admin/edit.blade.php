@@ -16,7 +16,7 @@
         <div class="w-3/4 mx-auto">
 
             <div class="mb-5">
-                <x-common.back-button :href="route('admin.index')" title="{{ $user['name'] . '編集ページ' }}">
+                <x-common.back-button :href="route('admin.show', $user['id'])" title="{{ $user['name'] . '編集ページ' }}">
                     <form action="{{ route('admin.destroy', $user['id']) }}" method="POST"
                         onsubmit="return confirm('本当に削除しますか？')" class="ml-auto">
                         @csrf

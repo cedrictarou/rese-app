@@ -9,13 +9,14 @@
     <main class="mx-auto container pb-10 px-5">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
 
-            <div class="col-span-3 md:col-start-1 md:col-end-4">
-                <x-common.back-button :href="route('admin.index')" :title="$user['name']" />
+            <div class="flex flex-col gap-y-5">
+                <div class="col-span-3 md:col-start-1 md:col-end-4">
+                    <x-common.back-button :href="route('admin.index')" :title="$user['name']" />
+                </div>
 
-            </div>
-
-            <div class="col-span-1">
-                <x-common.user-info :user="$user" />
+                <div class="col-span-1">
+                    <x-common.user-info :user="$user" />
+                </div>
             </div>
 
             <div class="col-span-1 md:col-span-2">
