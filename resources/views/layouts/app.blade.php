@@ -33,7 +33,7 @@
         {{-- navigation --}}
         <x-nav />
 
-        <!-- Page Content -->
+        {{-- page content --}}
         <div>
             {{ $slot }}
         </div>

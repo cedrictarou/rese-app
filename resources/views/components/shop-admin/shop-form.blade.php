@@ -91,7 +91,6 @@
                     <div class="flex flex-end">
                         <x-input class="w-full" type="file" id="image-input" name="image"
                             accept=".jpeg,.jpg,.png" />
-
                     </div>
                 </td>
             </tr>

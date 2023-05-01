@@ -13,32 +13,35 @@
                 <x-title2 title="店舗管理者一覧" />
                 <x-link href="{{ route('admin.create') }}"><i class="fa-solid fa-plus"></i></x-link>
             </div>
-            <table class="w-full">
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Created</td>
-                        <td>Updated</td>
-                        <td class="text-center">Detail</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($users as $user)
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <thead>
                         <tr>
-                            <td>{{ $user['id'] }}</td>
-                            <td>{{ $user['name'] }}</td>
-                            <td>{{ $user['email'] }}</td>
-                            <td>{{ $user['created_at'] }}</td>
-                            <td>{{ $user['updated_at'] }}</td>
-                            <td class="text-end">
-                                <x-link href="{{ route('admin.show', $user['id']) }}">詳細</x-link>
-                            </td>
+                            <th class="text-start table-cell">ID</th>
+                            <th class="text-start table-cell">Name</th>
+                            <th class="text-start table-cell">Email</th>
+                            <th class="hidden sm:table-cell sm:text-start">Created</th>
+                            <th class="hidden sm:table-cell sm:text-start">Updated</th>
+                            <th class="text-start">Detail</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td class="table-cell">{{ $user['id'] }}</td>
+                                <td class="table-cell">{{ $user['name'] }}</td>
+                                <td class="table-cell">{{ $user['email'] }}</td>
+                                <td class="hidden sm:table-cell">{{ $user['created_at'] }}</td>
+                                <td class="hidden sm:table-cell">{{ $user['updated_at'] }}</td>
+                                <td class="text-start">
+                                    <x-link href="{{ route('admin.show', $user['id']) }}">詳細</x-link>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
         </section>
         <div>
             {{ $users->links() }}

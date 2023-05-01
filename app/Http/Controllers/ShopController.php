@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReviewRequest;
 use App\Models\Reserve;
 use App\Models\Review;
 use App\Models\Shop;
@@ -40,12 +39,13 @@ class ShopController extends Controller
         // 予約な時間を作成する
         $now = Carbon::now(); //現在時刻
         $timeOptionsForReservation = [];
-        for ($hour = $now->hour; $hour <= 20; $hour++) {
+        for ($hour = max(9, $now->hour); $hour <= 20; $hour++) {
             for ($minute = 0; $minute <= 30; $minute += 30) {
                 $time = sprintf('%02d:%02d', $hour, $minute);
                 $timeOptionsForReservation[] = $time;
             }
         }
+
 
         return view('pages.detail', compact('shop', 'reviews', 'timeOptionsForReservation'));
     }

@@ -11222,6 +11222,9 @@ select {
 .table {
   display: table;
 }
+.table-cell {
+  display: table-cell;
+}
 .grid {
   display: grid;
 }
@@ -11340,9 +11343,6 @@ select {
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
-.flex-row {
-  flex-direction: row;
-}
 .flex-row-reverse {
   flex-direction: row-reverse;
 }
@@ -11373,9 +11373,6 @@ select {
 .gap-3 {
   gap: 0.75rem;
 }
-.gap-5 {
-  gap: 1.25rem;
-}
 .gap-x-2 {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
@@ -11391,6 +11388,9 @@ select {
 }
 .overflow-hidden {
   overflow: hidden;
+}
+.overflow-x-auto {
+  overflow-x: auto;
 }
 .rounded {
   border-radius: 0.25rem;
@@ -11615,9 +11615,6 @@ select {
 }
 .text-end {
   text-align: end;
-}
-.align-top {
-  vertical-align: top;
 }
 .font-sans {
   font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -11990,6 +11987,9 @@ button:hover {
   .sm\:flex {
     display: flex;
   }
+  .sm\:table-cell {
+    display: table-cell;
+  }
   .sm\:hidden {
     display: none;
   }
@@ -12024,6 +12024,12 @@ button:hover {
   .sm\:pt-0 {
     padding-top: 0px;
   }
+  .sm\:text-center {
+    text-align: center;
+  }
+  .sm\:text-start {
+    text-align: start;
+  }
 }
 @media (min-width: 768px) {
   .md\:sticky {
@@ -12056,6 +12062,9 @@ button:hover {
   }
   .md\:block {
     display: block;
+  }
+  .md\:table-cell {
+    display: table-cell;
   }
   .md\:hidden {
     display: none;
@@ -12090,6 +12099,10 @@ button:hover {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
+  .md\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -12108,8 +12121,20 @@ button:hover {
   }
 }
 @media (min-width: 1024px) {
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+  .lg\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+  .lg\:col-start-2 {
+    grid-column-start: 2;
+  }
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .lg\:px-8 {
     padding-left: 2rem;

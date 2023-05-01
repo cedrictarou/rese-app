@@ -7,18 +7,23 @@
             <a href="{{ route('admin.edit', $user['id']) }}"><i class="fa-solid fa-user-pen"></i></a>
         @endif
     </div>
-    <table>
-        <tr>
-            <th class="text-start">ID</th>
-            <td>{{ $user['id'] }}</td>
-        </tr>
-        <tr>
-            <th class="text-start">Account</th>
-            <td>{{ $user['name'] }}</td>
-        </tr>
-        <tr>
-            <th class="text-start">Email</th>
-            <td>{{ $user['email'] }}</td>
-        </tr>
-    </table>
+    <div class="overflow-x-auto">
+        <table class="table w-full">
+            <tbody>
+                <tr>
+                    <th class="text-start">ID</th>
+                    <td>{{ $user['id'] }}</td>
+                </tr>
+                <tr>
+                    <th class="text-start">Account</th>
+                    <td>{{ $user['name'] }}</td>
+                </tr>
+                <tr>
+                    <th class="text-start">Email</th>
+                    <td>{{ $user['email'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
